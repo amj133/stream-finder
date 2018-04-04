@@ -8,6 +8,10 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to user_path(user.slug)
+    elsif request.env["omniauth.auth"]
+      session[:user_id] = user.id
+      User.create_or_update
+      redirect_to user_path(user.slug)
     else
       flash[:notice] = "Incorrect credentials"
       render :new

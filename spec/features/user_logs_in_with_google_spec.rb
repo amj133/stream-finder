@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 def stub_omniauth
-  OmniAuth.configure.test_mode = true
+  OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new(
     {
       "provider" => "google",
       "uid" => "12345",
-      "info" => {"name"=>"Andrew Jeffery",
-                     "email"=>"amj@vt.edu",
-                     "first_name"=>"Andrew",
-                     "last_name"=>"Jeffery",
+      "info" => {"name"=>"Billy Bob",
+                     "email"=>"billy@example.com",
+                     "first_name"=>"Billy",
+                     "last_name"=>"Bob",
                      "image"=>"https://lh3.googleusercontent.com/-WlovucTzrcg/AAAAAAAAAAI/AAAAAAAAAAA/b6cHrPLGZsM/s50-c/photo.jpg",
                      "urls"=>{"google"=>"https://plus.google.com/102753798395250312915"}},
       "credentials" => {"token"=>
@@ -23,6 +23,7 @@ end
 feature "user logs in with Google Oauth" do
   context "visits root" do
     it "clicks sign in with google" do
+      stub_omniauth
       visit root_path
       click_on("Sign in with Google")
 
