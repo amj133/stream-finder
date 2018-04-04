@@ -6,6 +6,8 @@ feature "user can log in" do
       let(:user) { create(:user) }
 
       it "fills out information, clicks sign in, brought to their dashboard" do
+        user
+
         visit "/"
         click_on("Sign in")
 
@@ -15,7 +17,7 @@ feature "user can log in" do
         fill_in("password", with: "password")
         click_on("Sign in")
 
-        expect(current)path).to eq("/users/billy")
+        expect(current_path).to eq("/users/billy")
       end
     end
   end
