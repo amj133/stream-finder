@@ -2,9 +2,22 @@ require 'rails_helper'
 
 def stub_omniauth
   OmniAuth.configure.test_mode = true
-  OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
-
-    })
+  OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new(
+    {
+      "provider" => "google",
+      "uid" => "12345",
+      "info" => {"name"=>"Andrew Jeffery",
+                     "email"=>"amj@vt.edu",
+                     "first_name"=>"Andrew",
+                     "last_name"=>"Jeffery",
+                     "image"=>"https://lh3.googleusercontent.com/-WlovucTzrcg/AAAAAAAAAAI/AAAAAAAAAAA/b6cHrPLGZsM/s50-c/photo.jpg",
+                     "urls"=>{"google"=>"https://plus.google.com/102753798395250312915"}},
+      "credentials" => {"token"=>
+                        "ya29.GluTBeTjXUBAVhdQvj_itydUpV1f9t-yZV0HuHV5Dx8hXq46CH6kIt-ULKlvCzJKEEECDdAKAv3kuRDepP--hCxjr_WbJG-kevtlvIR96yDHiZz3u7N4J-MT32QI",
+                        "expires_at"=>1522848529,
+                        "expires"=>true}
+    }
+  )
 end
 
 feature "user logs in with Google Oauth" do
