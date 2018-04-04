@@ -35,14 +35,15 @@ gem 'jbuilder', '~> 2.5'
 gem 'active_model_serializers', '0.10'
 gem 'bcrypt'
 gem 'figaro'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
 end
 
 group :test do
-  gem 'pry'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'rspec-rails'
