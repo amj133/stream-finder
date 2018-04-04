@@ -19,6 +19,24 @@ feature "visitor can register" do
         expect(current_path).to eq("/users/billy")
         expect(page).to have_content("Welcome to StreamFinder Billy")
        end
+
+       it "does not register without valid password confirmation" do
+         visit root_path
+
+         click_on("Sign up!")
+
+         expect(current_path).to eq("/register")
+
+         fill_in("Name", with: "Billy")
+         fill_in("Email", with: "Billy@example.com")
+         fill_in("Password", with: "password")
+         fill_in("Password confirmation", with: "wrong")
+         click_on("Sign up")
+
+         expect(current_path).to_not eq("/users/billy")
+         expect(current_path).to eq("/users")
+         expect(User.count).to eq(0)
+       end
     end
   end
 end
