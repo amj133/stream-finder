@@ -4,8 +4,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
   before_create :generate_slug
-  # validates :password, presence: true
-  # validates_confirmation_of :password, on: :create
 
   def self.create_or_update(auth_info)
     user = User.find_by_uid(auth_info[:uid]) || User.new

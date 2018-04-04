@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_current_user, only: [:show]
 
   def show
     @user = User.find_by_slug(params[:slug])
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if password_confirmed? && @user.save
+      session[:user_id] = @user.id
       redirect_to user_path(@user.slug)
     else
       render :new
@@ -24,6 +26,10 @@ class UsersController < ApplicationController
 
     def password_confirmed?
       params[:user][:password] == params[:user][:password_confirmation]
+    end
+
+    def require_current_user
+      render file: "/public/404" unless current_user
     end
 
 end

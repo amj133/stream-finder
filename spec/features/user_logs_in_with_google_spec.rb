@@ -29,6 +29,8 @@ feature "user logs in with Google Oauth" do
 
       expect(current_path).to eq("/users/billy")
       expect(page).to have_content("Welcome to StreamFinder Billy")
+      expect(page).to have_content("logout") 
+      expect(User.count).to eq(1)
     end
   end
 end
