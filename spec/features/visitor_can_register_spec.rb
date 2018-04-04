@@ -13,12 +13,12 @@ feature "visitor can register" do
         fill_in("Name", with: "Billy")
         fill_in("Email", with: "Billy@example.com")
         fill_in("Password", with: "password")
-        fill_in("Password_confirmation", with: "password")
+        fill_in("Password confirmation", with: "password")
         click_on("Sign up")
 
         expect(current_path).to eq("/users/billy")
-        expect(page).to have_content("Welcome to StreamFinder Billy!")
-      end
+        expect(page).to have_content("Welcome to StreamFinder Billy")
+       end
     end
   end
 end
