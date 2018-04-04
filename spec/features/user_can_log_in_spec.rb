@@ -13,14 +13,14 @@ feature "user can log in" do
 
         expect(current_path).to eq("/login")
 
-        fill_in("name", with: "Billy")
+        fill_in("email", with: "billy@example.com")
         fill_in("password", with: "password")
         click_on("Sign in")
 
         expect(current_path).to eq("/users/billy")
       end
 
-      it "cannot log in with incorrect name" do
+      it "cannot log in with incorrect email" do
         user
 
         visit "/"
@@ -28,7 +28,7 @@ feature "user can log in" do
 
         expect(current_path).to eq("/login")
 
-        fill_in("name", with: "Billy123")
+        fill_in("email", with: "Billy123@example.com")
         fill_in("password", with: "password")
         click_on("Sign in")
 
@@ -44,7 +44,7 @@ feature "user can log in" do
 
         expect(current_path).to eq("/login")
 
-        fill_in("name", with: "Billy")
+        fill_in("email", with: "billy@example.com")
         fill_in("password", with: "wrong")
         click_on("Sign in")
 

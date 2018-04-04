@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180404132222) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "uid"
+    t.string "uid"
     t.string "first_name"
     t.string "last_name"
     t.string "token"

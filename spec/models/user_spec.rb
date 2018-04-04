@@ -25,7 +25,7 @@ describe User do
 
     user = User.create_or_update(auth)
 
-    expect(user.uid).to eq(12345)
+    expect(user.uid).to eq("12345")
     expect(user.email).to eq("billy@example.com")
     expect(user.first_name).to eq("Billy")
     expect(user.last_name).to eq("Bob")
