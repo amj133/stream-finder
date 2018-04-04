@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show], param: :slug
   get "/register", to: "users#new"
+
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
 end
