@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
-  before_create :generate_slug
+  before_save :generate_slug
 
   def self.create_or_update(auth_info)
     user = User.find_by_uid(auth_info[:uid]) || User.new

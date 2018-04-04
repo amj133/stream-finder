@@ -24,13 +24,29 @@ feature "user logs in with Google Oauth" do
   context "visits root" do
     it "clicks sign in with google" do
       stub_omniauth
+
       visit root_path
       click_on("Sign in with Google")
 
       expect(current_path).to eq("/users/billy")
       expect(page).to have_content("Welcome to StreamFinder Billy")
-      expect(page).to have_content("logout") 
+      expect(page).to have_content("logout")
       expect(User.count).to eq(1)
+    end
+  end
+
+  context "user changes info on google" do
+    it "and user info is updated" do
+      stub_omniauth
+
+      create(:user, uid: "12345", email: "monkeysRock@example.com")
+
+      stub_omniauth
+      visit root_path
+      click_on("Sign in with Google")
+
+      expect(User.last.email).to eq("billy@example.com")
+      expect(User.last.slug).to eq("billy")
     end
   end
 end
