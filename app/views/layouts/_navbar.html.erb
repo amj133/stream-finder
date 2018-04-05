@@ -1,0 +1,41 @@
+<nav>
+  <div class="max-width-5 mx-auto top-90 top-nav">
+    <div class="clearfix">
+      <div class="col col-6">&nbsp;</div>
+      <div class="col col-2">&nbsp;</div>
+      <!-- <div class="col col-1">&nbsp;</div> -->
+      <div class="col col-1 nav-links left-align"><%= link_to "Sign up!", register_path %></div>
+      <div class="col col-1 nav-links left-align"><%= link_to "Sign in", login_path %></div>
+      <div class="col col-1 nav-links left-align"><%= link_to "Sign in with Google", "/auth/google" %></div>
+    </div>
+  </div>
+
+  <div class="max-width-5 mx-auto top-90 mid-nav">
+    <div class="clearfix">
+      <%= image_tag 'logo4' %>
+    </div>
+  </div>
+
+  <div class="max-width-5 mx-auto top-90 bottom-nav">
+      <div class="nav-buttons-container">
+        <div class="">
+          Dashboard
+        </div>
+        <div class="">
+          Stations Index
+        </div>
+        <div class="">
+          Station Search
+        </div>
+        <div class="">
+          Recent Searches
+        </div>
+        <div class="">
+          Providers
+        </div>
+        <div class="">
+          About Us
+        </div>
+    </div>
+  </div>
+</nav>

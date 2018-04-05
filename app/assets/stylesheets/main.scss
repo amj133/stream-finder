@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: rgb(104, 134, 120);
+}
+
+.top-nav {
+  background-color: #A4AC96;
+  height: 30px;
+}
+
+.mid-nav {
+  background-image: image-url('stream-painting.jpg');
+  background-position: 40%91.5%;
+  height: 200px;
+}
+
+.bottom-nav {
+  background-color: #313628;
+  height: 50px;
+}
+
+.nav-links {
+  font-family: 'Ubuntu', sans-serif;
+  margin-top: 4px;
+  margin-left: 30px;
+  a {
+    text-decoration: none;
+    color: #595358;
+    font-style: normal;
+    font-size: 12px;
+  }
+}
+
+.sign-in {
+  width: 400px;
+  background-color: rgb(186, 179, 136);
+}
+
+.sign-up {
+  background-color: rgb(186, 179, 136);
+  height: 200px;
+  width: 400px;
+}
+
+.nav-buttons-container {
+  color: #8a8188;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+}
