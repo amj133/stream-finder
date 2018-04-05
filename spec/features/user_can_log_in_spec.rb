@@ -15,7 +15,7 @@ feature "user can log in" do
 
         fill_in("email", with: "billy@example.com")
         fill_in("password", with: "password")
-        click_on("Sign in")
+        click_button("Sign in")
 
         expect(current_path).to eq("/users/billy")
       end
@@ -30,7 +30,7 @@ feature "user can log in" do
 
         fill_in("email", with: "Billy123@example.com")
         fill_in("password", with: "password")
-        click_on("Sign in")
+        click_button("Sign in")
 
         expect(current_path).to_not eq("/users/billy")
         expect(current_path).to eq("/login")
@@ -46,7 +46,7 @@ feature "user can log in" do
 
         fill_in("email", with: "billy@example.com")
         fill_in("password", with: "wrong")
-        click_on("Sign in")
+        click_button("Sign in")
 
         expect(current_path).to_not eq("/users/billy")
         expect(current_path).to eq("/login")
@@ -65,7 +65,7 @@ feature "user can log in" do
 
       fill_in("email", with: "billy@example.com")
       fill_in("password", with: "password")
-      click_on("Sign in")
+      click_button("Sign in")
 
       click_on('logout')
 
