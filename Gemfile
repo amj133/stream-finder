@@ -51,6 +51,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
   gem 'capybara'
+  gem 'webmock'
 end
 
 group :development do
