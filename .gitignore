@@ -21,4 +21,8 @@
 # Ignore application configuration
 /config/application.yml
 
+# Ignore large csv datasets
 /db/csv
+
+# Ignore compiled assets
+public/assets
