@@ -7,15 +7,8 @@ class StationsByHUC
 
   def stations
     response = raw_stations
-    binding.pry
-    if response["WQX"]["Organization"].class == Array
-      parse_array(response).map do |raw_station|
-        Station.new(raw_station)
-      end
-    else
-      response["WQX"]["Organization"]["MonitoringLocation"].map do |raw_station|
-        Station.new(raw_station)
-      end
+    parse_array(response).map do |raw_station|
+      Station.new(raw_station)
     end
   end
 
