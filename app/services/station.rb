@@ -7,10 +7,11 @@ class Station
     @name = attrs["MonitoringLocationIdentity"]["MonitoringLocationName"]
     @type = attrs["MonitoringLocationIdentity"]["MonitoringLocationTypeName"]
     @description = attrs["MonitoringLocationIdentity"]["MonitoringLocationDescriptionText"]
-    @drainage_area = attrs["MonitoringLocationIdentity"]["DrainageAreaMeasure"]["MeasureValue"]
-    @drainage_area_units = attrs["MonitoringLocationIdentity"]["DrainageAreaMeasure"]["MeasureUnitCode"]
     @latitude = attrs["MonitoringLocationGeospatial"]["LatitudeMeasure"]
     @longitude = attrs["MonitoringLocationGeospatial"]["LongitudeMeasure"]
+    if attrs["MonitoringLocationIdentity"]["DrainageAreaMeasure"]
+      @drainage_area = attrs["MonitoringLocationIdentity"]["DrainageAreaMeasure"]["MeasureValue"]
+      @drainage_area_units = attrs["MonitoringLocationIdentity"]["DrainageAreaMeasure"]["MeasureUnitCode"]
+    end
   end
-
 end

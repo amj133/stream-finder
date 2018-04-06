@@ -1,0 +1,20 @@
+Select from options below to view stations by Watershed (HUC 8-digit)
+
+<%= form_tag("/stations", method: "get") do %>
+  <%= label_tag(:huc, "Watershed") %>
+  <%= select_tag(:huc_code, options_for_select(@co_watershed_hucs)) %>
+
+
+  <%= submit_tag("Find Stations") %>
+<% end %>
+
+<% unless @stations.nil? %>
+  <% @stations.each do |station| %>
+    <%= station.id %>
+    <%= station.name %>
+    <%= station.type %>
+    <%= station.drainage_area %> <%= station.drainage_area_units %>
+    <%= station.latitude %>
+    <%= station.longitude %>
+  <% end %>
+<% end %>

@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#delete"
   get "/auth/google", as: :google_login
   get "/auth/google/callback", to: "sessions#create"
+
+  resources :stations, only: [:index]
 end
