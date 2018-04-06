@@ -8,11 +8,10 @@ describe Station do
          "MonitoringLocationName"=>"MF LITTLE SNAKE RIVER NEAR BATTLE CREEK, CO.",
          "MonitoringLocationTypeName"=>"Stream",
          "MonitoringLocationDescriptionText"=>"Nice stream near a good wetland",
-         "HUCEightDigitCode"=>"14050003",
          "DrainageAreaMeasure"=>{"MeasureValue"=>"120", "MeasureUnitCode"=>"sq mi"}},
        "MonitoringLocationGeospatial"=>
          {"LatitudeMeasure"=>"40.9905222", "LongitudeMeasure"=>"-107.0442186"}
-        }
+    }
   }
   subject { Station.new(attrs) }
 
