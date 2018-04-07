@@ -1,5 +1,7 @@
-Station: <%= @station.id %>
-Type: <%= @station.type %>
-Description: <%= @station.description %>
-Coordinates: <%= @station.latitude %>, <%= @station.longitude %>
-Drainage Area: <%= @station.drainage_area %> <%= @station.drainage_area_units %>.
+<div class="p2 bg-white border rounded my2 mx-auto station-show-info">
+  Station: <%= @station.id %><br><br>
+  Type: <%= @station.type %><br><br>
+  Description: <%= @station.description %><br><br>
+  Coordinates: <%= @station.latitude %>, <%= @station.longitude %><br><br>
+  Drainage Area: <%= @station.drainage_area %> <%= @station.drainage_area_units %>.
+<div>
