@@ -6,6 +6,24 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'support/factory_bot'
+require 'webmock/rspec'
+require 'vcr'
+
+def stations_stub
+  repo_uri = "data/Station/search?huc=14050003&state=US:08"
+  get_WQP_stub("little_snake_stations", repo_uri)
+end
+
+def get_WQP_stub(filename, uri)
+  xml_response = File.open("./spec/fixtures/#{filename}.xml")
+  stub_request(:get, "https://www.waterqualitydata.us/#{uri}").to_return(status: 200, body: xml_response)
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.hook_into :webmock
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
