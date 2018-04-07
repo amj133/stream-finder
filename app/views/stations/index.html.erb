@@ -22,7 +22,7 @@
       <tbody class="stations-index-table-body">
         <% @stations.each do |station| %>
           <tr class="station-index-table-rows">
-            <td align="center"><%= station.id %></td>
+            <td align="center"><%= link_to station.id, station_path(station.id) %></td>
             <td align="center"><%= station.name %></td>
             <td align="center"><%= station.type %></td>
             <td align="center"><%= station.description %></td>

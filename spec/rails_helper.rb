@@ -9,9 +9,14 @@ require 'support/factory_bot'
 require 'webmock/rspec'
 require 'vcr'
 
-def stations_stub
-  repo_uri = "data/Station/search?huc=14050003&state=US:08"
-  get_WQP_stub("little_snake_stations", repo_uri)
+def stations_by_huc_stub
+  uri = "data/Station/search?huc=14050003&state=US:08"
+  get_WQP_stub("little_snake_stations", uri)
+end
+
+def station_by_id_stub
+  uri = "data/Station/search?siteid=USGS-09251500&state=US:08"
+  get_WQP_stub("little_snake_river_station", uri)
 end
 
 def get_WQP_stub(filename, uri)

@@ -6,7 +6,7 @@ describe StationsByHUC do
       it "returns array of stations" do
         search = StationsByHUC.new("14050003")
 
-        stations_stub
+        stations_by_huc_stub
 
         expect(search.stations.count).to eq(433)
         expect(search.stations.first).to be_a(Station)
