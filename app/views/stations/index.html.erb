@@ -1,20 +1,37 @@
-Select from options below to view stations by Watershed (HUC 8-digit)
+<div class="p2 bg-white border rounded my2 mx-auto index-filter">
+  Select from options below to view stations by Colorado Watershed (HUC 8-digit)<br><br>
+  <%= form_tag("/stations", method: "get") do %>
+    <%= select_tag(:huc_code, options_for_select(@co_watershed_hucs)) %><br><br>
 
-<%= form_tag("/stations", method: "get") do %>
-  <%= label_tag(:huc, "Watershed") %>
-  <%= select_tag(:huc_code, options_for_select(@co_watershed_hucs)) %>
-
-
-  <%= submit_tag("Find Stations") %>
-<% end %>
+    <%= submit_tag("Find Stations") %>
+  <% end %>
+</div>
 
 <% unless @stations.nil? %>
-  <% @stations.each do |station| %>
-    <%= station.id %>
-    <%= station.name %>
-    <%= station.type %>
-    <%= station.drainage_area %> <%= station.drainage_area_units %>
-    <%= station.latitude %>
-    <%= station.longitude %>
-  <% end %>
+  <div class="p2 bg-white border rounded my2 mx-auto filter-results">
+      Displaying <%= @stations.count %> stations in table below
+  </div>
+
+  <div class="overflow-scroll">
+    <table class="mx-auto bg-gray border rounded stations-index-table">
+      <thead class="stations-index-table-header">
+        <tr>
+          <th class="header-row">Station ID</th> <th>Name</th> <th>Type</th> <th>Description</th> <th>Latitude</th> <th>Longitude</th> <th>Drainage Area</th>
+        </tr>
+      </thead>
+      <tbody class="stations-index-table-body">
+        <% @stations.each do |station| %>
+          <tr class="station-index-table-rows">
+            <td align="center"><%= station.id %></td>
+            <td align="center"><%= station.name %></td>
+            <td align="center"><%= station.type %></td>
+            <td align="center"><%= station.description %></td>
+            <td align="center"><%= station.latitude %></td>
+            <td align="center"><%= station.longitude %></td>
+            <td align="center"><%= station.drainage_area %> <%= station.drainage_area_units %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>

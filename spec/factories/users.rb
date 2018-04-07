@@ -1,4 +1,4 @@
-FactoryBot.define do
+ FactoryBot.define do
   factory :user do
     first_name "Billy"
     last_name "Bob"

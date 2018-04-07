@@ -6,7 +6,7 @@ class WQPService
   end
 
   def station_by_huc
-    xml_response("/Station/search", params)
+    xml_response("/data/Station/search", params)
   end
 
   private

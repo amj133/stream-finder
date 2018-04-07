@@ -1,0 +1,40 @@
+.index-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(186, 179, 136);
+  height: 130px;
+  width: 400px;
+}
+
+.filter-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 300px;
+  background-color: rgb(131, 159, 159);
+}
+
+.stations-index-table {
+  border-collapse: collapse;
+  border: 2px solid black;
+  width: 70%;
+}
+
+.header-row {
+  height: 30px;
+}
+
+.stations-index-table-header {
+  background-color: rgb(133, 130, 98);
+  height: 10px;
+}
+
+.stations-index-table-body {
+  background-color: #A4AC96;
+  tr {
+    border-top: solid 1px black;
+  }
+}
