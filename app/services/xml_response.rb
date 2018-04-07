@@ -6,7 +6,7 @@ module XMLResponse
   end
 
   private
-    def conn
+    def conn # /data not part of home path
       Faraday.new(url: "https://www.waterqualitydata.us/data")
     end
 

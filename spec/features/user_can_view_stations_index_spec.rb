@@ -5,7 +5,7 @@ feature "user can view stations spec" do
     it "displays stations for given huc" do
       user = create(:user)
 
-      stations_stub
+      stations_by_huc_stub
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 

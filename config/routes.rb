@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get "/auth/google", as: :google_login
   get "/auth/google/callback", to: "sessions#create"
 
-  resources :stations, only: [:index]
+  resources :stations, only: [:index, :show]
 end
