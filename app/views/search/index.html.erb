@@ -1,0 +1,44 @@
+<div id='map' class='dark'></div>
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYW1qMTMzIiwiYSI6ImNqZmoyNDA1NzBkc3cycXFveTVxNDF6ZWkifQ.Qxx-FLv74uWIPQq1fmpwyA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/amj133/cjfqe1h7g4yr72rmyfgmexyde',
+    center: [-106, 39],
+    zoom: 6
+  });
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+  map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['co-stations-streams']
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.MonitoringLocationName
+             + '</h3><p> Type: ' + feature.properties.MonitoringLocationTypeName
+             + '</h3><p> Watershed: ' + feature.properties.HUCEightDigitCode
+             + '</h3><p> Organization: ' + feature.properties.OrganizationFormalName
+             + '</h3><p> Site ' + feature.properties.siteUrl.link(feature.properties.siteUrl)
+             + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+  });
+
+  map.on('mouseenter', 'co-stations-streams', function () {
+     map.getCanvas().style.cursor = 'pointer';
+  });
+
+  map.on('mouseleave', 'co-stations-streams', function () {
+      map.getCanvas().style.cursor = '';
+  });
+</script>
