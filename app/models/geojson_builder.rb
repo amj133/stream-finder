@@ -1,6 +1,6 @@
 class GeojsonBuilder
 
-  def self.build_stations(station)
+  def self.build_station(station)
     {
       type: "Feature",
       geometry: {

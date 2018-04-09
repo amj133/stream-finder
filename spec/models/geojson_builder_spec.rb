@@ -7,7 +7,7 @@ describe GeojsonBuilder do
         stations = build_list(:station, 5)
         geojson = []
         stations.each do |station|
-          geojson << GeojsonBuilder.build_stations(station)
+          geojson << GeojsonBuilder.build_station(station)
         end
 
         expect(geojson.count).to eq(5)
