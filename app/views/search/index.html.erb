@@ -1,0 +1,129 @@
+<div id='map' class='dark'></div>
+
+<style>
+    .filter-ctrl {
+        margin-left: 20px;
+        z-index: 1;
+        width: 150px;
+        border: 1px solid rgb(78, 70, 78);
+    }
+
+    .filter-ctrl input[type=text] {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        width: 140px;
+        border: 0;
+        height: 30px;
+        margin: 0;
+        color: rgba(0, 0, 0, 1);
+        padding: 5px;
+        border-radius: 0px;
+    }
+
+    .filter-container {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      background-color: rgb(171, 191, 183);
+      top: 280px;
+      left: 0px;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .filter-options {
+      margin-top: 15px;
+      color: rgb(66, 80, 80);
+      font-size: 14px;
+      height: 30px;
+    }
+</style>
+
+<div class="filter-container">
+  <div class='filter-ctrl'>
+    <input id='filter-input' type='text' name='filter' placeholder='Filter by HUC' />
+  </div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC code (e.g. 10190003)</div>
+</div>
+
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYW1qMTMzIiwiYSI6ImNqZmoyNDA1NzBkc3cycXFveTVxNDF6ZWkifQ.Qxx-FLv74uWIPQq1fmpwyA';
+
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/amj133/cjfrm7b812kpt2rqq2w1xm1v5',
+    center: [-106, 39],
+    zoom: 6
+  });
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+  getEvents(map)
+
+   function getEvents(map) {
+     $.ajax({
+       dataType: 'text',
+       url: '/stations.json?huc_code=14050003',
+       success:function(events) {
+         var stations = JSON.parse(events);
+         map.addLayer({
+           "id": "stations",
+           "type": "symbol",
+           "source": {
+             "type": "geojson",
+             "data": {
+               "type": "FeatureCollection",
+               "features": stations
+             }
+           },
+           "layout": {
+             "icon-image": "circle-11",
+             "icon-allow-overlap": true
+           }
+         });
+         // map.featureLayer.setGeoJSON({
+         //   type: "FeatureCollection",
+         //   features: stations
+         // });
+       },
+       error:function() {
+         alert("Could not load the events");
+       }
+     });
+   }
+
+
+  //------------------------------------------------
+
+  map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['stations']
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.name
+             + '</h3><p> ID: ' + feature.properties.id
+             + '</h3><p> Type: ' + feature.properties.type
+             + '</h3><p> Watershed: ' + feature.properties.drainage_area + " " + feature.properties.drainage_area_units
+             + '</h3><p> Coordinates: ' + feature.geometry.coordinates[1] + feature.geometry.coordinates[0]
+             + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+  });
+
+  map.on('mouseenter', 'stations', function () {
+     map.getCanvas().style.cursor = 'pointer';
+  });
+
+  map.on('mouseleave', 'stations', function () {
+      map.getCanvas().style.cursor = '';
+  });
+
+</script>
