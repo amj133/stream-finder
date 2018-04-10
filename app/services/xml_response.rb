@@ -6,8 +6,8 @@ module XMLResponse
   end
 
   private
-    def conn # /data not part of home path
-      Faraday.new(url: "https://www.waterqualitydata.us/data")
+    def conn
+      Faraday.new(url: "https://www.waterqualitydata.us/")
     end
 
     def send_get_request(uri, params)
