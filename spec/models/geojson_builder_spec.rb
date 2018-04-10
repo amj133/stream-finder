@@ -11,8 +11,8 @@ describe GeojsonBuilder do
         end
 
         expect(geojson.count).to eq(5)
-        expect(geojson[0][:properties][:name]).to eq("C29663")
-        expect(geojson[4][:properties][:drainage_area]).to eq("120")
+        expect(geojson[0]["properties"]["name"]).to eq("C29663")
+        expect(geojson[4]["properties"]["drainage_area"]).to eq(120)
       end
     end
   end
