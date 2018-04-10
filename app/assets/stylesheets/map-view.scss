@@ -3,9 +3,10 @@
   right: 0;
   height: 600px;
   width: 900px;
+  z-index: 5;
 }
 
 .mapboxgl-popup {
-  max-width: 400px;
+  max-width: 600px;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
