@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe WQPService do
   describe "instance methods" do
-    describe "#station_by_huc" do
+    describe "#stations_by_huc" do
       it "has a collection of raw_station data" do
         VCR.use_cassette("WQP service station by huc search") do
           params = {"huc_code" => "10190017"}
-          search = WQPService.new(params).station_by_huc
+          search = WQPService.new(params).stations_by_huc
 
           expect(search).to have_key("WQX")
           expect(search["WQX"]).to be_a(Hash)

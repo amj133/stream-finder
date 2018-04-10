@@ -16,6 +16,6 @@ class StationsByHUC
     attr_reader :huc_code
 
     def raw_stations
-      WQPService.new({"huc_code" => huc_code}).station_by_huc
+      WQPService.new({"huc_code" => huc_code}).stations_by_huc
     end
 end

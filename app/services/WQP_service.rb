@@ -6,7 +6,7 @@ class WQPService
     @station_id = attrs["station_id"]
   end
 
-  def station_by_huc #change to stations!!!
+  def stations_by_huc #change to stations!!!
     params = base_params.merge!({"huc" => huc_code})
     xml_response("/data/Station/search", params)
   end

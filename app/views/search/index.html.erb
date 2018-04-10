@@ -63,7 +63,7 @@
    function getEvents(map) {
      $.ajax({
        dataType: 'text',
-       url: '/stations.json?huc_code=14050003',
+       url: '/api/v1/stations?huc_code=14050003',
        success:function(events) {
          var stations = JSON.parse(events);
          map.addLayer({
