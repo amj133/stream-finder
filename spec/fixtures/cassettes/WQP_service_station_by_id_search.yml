@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.waterqualitydata.us/data/Station/search?siteid=USGS-09251500&state=US:08
+    uri: https://www.waterqualitydata.us/data/Station/search?siteid=USGS-09251500&statecode=US:08
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 10 Apr 2018 20:54:41 GMT
+      - Tue, 10 Apr 2018 22:18:38 GMT
       Content-Disposition:
       - attachment; filename=station.xml
       Total-Site-Count:
@@ -42,5 +42,5 @@ http_interactions:
         mi</MeasureUnitCode></DrainageAreaMeasure></MonitoringLocationIdentity><MonitoringLocationGeospatial><LatitudeMeasure>40.9905222</LatitudeMeasure><LongitudeMeasure>-107.0442186</LongitudeMeasure><HorizontalAccuracyMeasure><MeasureValue>5</MeasureValue><MeasureUnitCode>seconds</MeasureUnitCode></HorizontalAccuracyMeasure><HorizontalCollectionMethodName>Interpolated
         from MAP.</HorizontalCollectionMethodName><HorizontalCoordinateReferenceSystemDatumName>NAD83</HorizontalCoordinateReferenceSystemDatumName><VerticalMeasure><MeasureValue>7000.00</MeasureValue><MeasureUnitCode>feet</MeasureUnitCode></VerticalMeasure><VerticalAccuracyMeasure><MeasureValue>15</MeasureValue><MeasureUnitCode>feet</MeasureUnitCode></VerticalAccuracyMeasure><VerticalCollectionMethodName>Unknown.</VerticalCollectionMethodName><VerticalCoordinateReferenceSystemDatumName>NGVD29</VerticalCoordinateReferenceSystemDatumName><CountryCode>US</CountryCode><StateCode>08</StateCode><CountyCode>107</CountyCode></MonitoringLocationGeospatial></MonitoringLocation></Organization></WQX>
     http_version: 
-  recorded_at: Tue, 10 Apr 2018 20:54:45 GMT
+  recorded_at: Tue, 10 Apr 2018 22:18:41 GMT
 recorded_with: VCR 4.0.0
