@@ -7,6 +7,7 @@ describe WQPService do
         VCR.use_cassette("WQP service station by huc search") do
           params = {"huc" => "10190017", }
           # params need to return multiple orgs!!!
+          # otherwise assertions from block below will work here
           search = WQPService.new(params).stations
 
           expect(search).to have_key("WQX")

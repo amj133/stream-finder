@@ -1,48 +1,36 @@
 <div id='map' class='dark'></div>
 
-<style>
-    .filter-ctrl {
-        margin-left: 20px;
-        z-index: 1;
-        width: 150px;
-        border: 1px solid rgb(78, 70, 78);
-    }
-
-    .filter-ctrl input[type=text] {
-        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        width: 140px;
-        border: 0;
-        height: 30px;
-        margin: 0;
-        color: rgba(0, 0, 0, 1);
-        padding: 5px;
-        border-radius: 0px;
-    }
-
-    .filter-container {
-      display: flex;
-      align-items: center;
-      position: absolute;
-      background-color: rgb(171, 191, 183);
-      top: 280px;
-      left: 0px;
-      z-index: 1;
-      width: 100%;
-    }
-
-    .filter-options {
-      margin-top: 15px;
-      color: rgb(66, 80, 80);
-      font-size: 14px;
-      height: 30px;
-    }
-</style>
+<div class="filter-container">
+  <div class='filter-ctrl'>
+    <input class='filter-input' type='text' name='filter' placeholder='Filter by HUC' />
+  </div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC code, ex. 10190003</div>
+</div>
 
 <div class="filter-container">
   <div class='filter-ctrl'>
-    <input id='filter-input' type='text' name='filter' placeholder='Filter by HUC' />
+    <input class='filter-input' type='text' name='filter' placeholder='Filter by Station Type' />
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC code (e.g. 10190003)</div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. Stream - all options</div>
+</div>
+
+<div class="filter-container">
+  <div class='filter-ctrl'>
+    <input class='filter-input' type='text' name='filter' placeholder='Filter by 3-digit County Code' />
+  </div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 005 for Arapahoe County, list</div>
+  <!-- https://en.wikipedia.org/wiki/List_of_counties_in_Colorado -->
+</div>
+
+<div class="filter-container">
+  <div class='filter-ctrl'>
+    <input class='filter-input' type='text' name='filter' placeholder='Filter by Station ID' />
+  </div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;Agency Site ID ex. USGS-09251500</div>
+</div>
+
+<div class="search-button-container">
+  <button class="btn rounded">Search for Stations</button>
 </div>
 
 
@@ -58,7 +46,7 @@
 
   map.addControl(new mapboxgl.NavigationControl());
 
-  getEvents(map)
+  // getEvents(map)
 
    function getEvents(map) {
      $.ajax({
