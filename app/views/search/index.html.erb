@@ -83,13 +83,14 @@ function createURI(filterInput) {
   var i = 1;
 
    function getEvents(map) {
+     debugger;
      var uri = createURI(filterInput);
      $.ajax({
        dataType: 'text',
        url: '/api/v1/stations' + uri,
-       // url: '/api/v1/stations?huc_code=14050003',
        success:function(events) {
          var stations = JSON.parse(events);
+         map.flyTo({center: [-106.5, 39], zoom: 8.4});
          map.addLayer({
            "id": "stations" + i,
            "type": "symbol",

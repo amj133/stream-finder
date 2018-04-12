@@ -2,7 +2,6 @@ class Api::V1::StationsController < ApplicationController
 
   def index
     stations = StationsFromWQP.new(station_params).stations
-    # stations = StationsByHUC.new(params[:huc_code]).stations
     geo_stations = transform_to_geojson(stations)
     render json: geo_stations
   end
