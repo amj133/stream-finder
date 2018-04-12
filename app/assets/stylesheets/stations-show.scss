@@ -1,8 +1,8 @@
 .station-show-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: auto;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  height: 200px;
   width: 300px;
   background-color: rgb(131, 159, 159);
 }
@@ -12,7 +12,8 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  top: 360px;
+  top: 90px;
+  right: 35%;
   background-color: rgb(181, 213, 183);
   width: 500px;
   height: auto;
