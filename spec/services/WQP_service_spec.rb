@@ -3,23 +3,21 @@ require 'rails_helper'
 describe WQPService do
   describe "instance methods" do
     describe "#stations_by_huc" do
-      xit "has a collection of raw_station data" do
+      it "has a collection of raw_station data" do
         VCR.use_cassette("WQP service station by huc search") do
-          params = {"huc" => "10190017", }
-          # params need to return multiple orgs!!!
-          # otherwise assertions from block below will work here
-          search = WQPService.new(params).stations
+          params = {"huc" => "14080201", }
+          raw_stations = WQPService.new(params).stations
 
-          expect(search).to have_key("WQX")
-          expect(search["WQX"]).to be_a(Hash)
+          expect(raw_stations).to have_key("WQX")
+          expect(raw_stations["WQX"]).to be_a(Hash)
 
-          expect(search["WQX"]).to have_key("Organization")
-          expect(search["WQX"]["Organization"]).to be_a(Array)
+          expect(raw_stations["WQX"]).to have_key("Organization")
+          expect(raw_stations["WQX"]["Organization"]).to be_a(Array)
 
-          expect(search["WQX"]["Organization"][0]).to have_key("MonitoringLocation")
-          expect(search["WQX"]["Organization"][0]["MonitoringLocation"]).to be_a(Array)
+          expect(raw_stations["WQX"]["Organization"][0]).to have_key("MonitoringLocation")
+          expect(raw_stations["WQX"]["Organization"][0]["MonitoringLocation"]).to be_a(Array)
 
-          raw_station = search["WQX"]["Organization"][0]["MonitoringLocation"].first
+          raw_station = raw_stations["WQX"]["Organization"][0]["MonitoringLocation"].first
 
           expect(raw_station).to be_a(Hash)
           expect(raw_station).to have_key("MonitoringLocationIdentity")
