@@ -3,33 +3,18 @@ class StationsController < ApplicationController
 
   def index
     @co_watershed_hucs = CO_WATERSHED_HUCS
-    if params[:huc_code]
-      @stations = StationsByHUC.new(params[:huc_code]).stations
-      @geojson = []
-      @points = transform_to_geojson(@stations, @geojson)
-    end
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @geojson}
-    end
+    search_params = {"huc" => params[:huc_code]}
+    @stations = StationsFromWQP.new(search_params).stations if params[:huc_code]
   end
 
   def show
-    @station = StationByID.new(params[:id]).station
+    @station = StationsFromWQP.new({"siteid" => params[:id]}).stations
   end
 
 
   private
     def require_current_user
       render file: "public/404" unless current_user
-    end
-
-    def transform_to_geojson(stations, geojson)
-      stations.each do |station|
-        geojson << GeojsonBuilder.build_station(station)
-      end
-      geojson
     end
 
 end

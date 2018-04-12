@@ -2,11 +2,67 @@
   position: absolute;
   right: 0;
   height: 600px;
-  width: 900px;
+  width: 67%;
   z-index: 5;
+  border-left: 2px solid rgb(99, 96, 117);
 }
 
 .mapboxgl-popup {
   max-width: 600px;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  // position: absolute;
+  background-color: rgb(171, 191, 183);
+  top: 280px;
+  left: 0px;
+  z-index: 1;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.filter-ctrl {
+  margin-left: 20px;
+  margin: 5px;
+  z-index: 1;
+  width: 180px;
+  border: 1px solid rgb(78, 70, 78);
+}
+
+.filter-ctrl input[type=text] {
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  width: 169.5px;
+  border: 0;
+  height: 30px;
+  margin: 0;
+  color: rgba(0, 0, 0, 1);
+  padding: 5px;
+  border-radius: 0px;
+}
+
+.filter-options {
+  margin-top: 15px;
+  color: rgb(66, 80, 80);
+  font-size: 14px;
+  height: 30px;
+}
+
+.search-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  width: 33%;
+  // background-color: rgb(232, 188, 64);
+}
+
+.btn {
+  height: 30px;
+  background-color: #A4AC96;
+  color: #313628;
+  border: 1px solid black;
 }

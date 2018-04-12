@@ -1,27 +1,21 @@
 class WQPService
   include XMLResponse
 
-  def initialize(attrs = {})
-    @huc_code = attrs["huc_code"]
-    @station_id = attrs["station_id"]
+  def initialize(search_params = {})
+    @search_params = search_params
   end
 
-  def station_by_huc #change to stations!!!
-    params = base_params.merge!({"huc" => huc_code})
-    xml_response("/data/Station/search", params)
-  end
-
-  def station_by_id
-    params = base_params.merge!({"siteid" => station_id})
+  def raw_stations 
+    params = base_params.merge!(search_params)
     xml_response("/data/Station/search", params)
   end
 
   private
-    attr_reader :huc_code, :station_id
+    attr_reader :search_params
 
     def base_params
       {
-        "state" => "US:08"
+        "statecode" => "US:08"
       }
     end
 
