@@ -14,6 +14,11 @@ def stations_by_huc_stub
   get_WQP_stub("little_snake_stations", uri)
 end
 
+def stations_by_many_params
+  uri = "data/Station/search?huc=14080201&statecode=US:08&siteType=Stream"
+  get_WQP_stub("", uri)
+end
+
 def station_by_id_stub
   uri = "data/Station/search?siteid=USGS-09251500&statecode=US:08"
   get_WQP_stub("little_snake_river_station", uri)
