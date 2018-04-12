@@ -30,7 +30,7 @@
 </div>
 
 <div class="search-button-container">
-  <button class="btn rounded">Search for Stations</button>
+  <button onclick="getEvents(map)" class="btn rounded">Search for Stations</button>
 </div>
 
 
@@ -46,16 +46,52 @@
 
   map.addControl(new mapboxgl.NavigationControl());
 
+  var filterInput = document.getElementsByClassName('filter-input');
+
   // getEvents(map)
 
+//-----------CREATE URI FUNCTION-------------
+
+// arr.forEach(function(element) {
+//   console.log(element);
+// })
+
+function createURI(filterInput) {
+  var uri = "?";
+  if (filterInput[0].value != "") {
+    uri = uri + "huc=" + filterInput[0].value + " ";
+  }
+  if (filterInput[1].value != "") {
+    uri = uri + "siteType=" + filterInput[1].value + " ";
+  }
+  if (filterInput[2].value != "") {
+    uri = uri + "countycode=" + "US:08:" + filterInput[2].value + " ";
+  }
+  if (filterInput[3].value != "") {
+    uri = uri + "siteid=" + filterInput[3].value;
+  }
+  return uri.replace(/ /g, "&");
+}
+
+// function checkInput(index, param_key) {
+//   if(filterInput[index].value != "") {
+//     param_key + filterInput[index];
+//   }
+// }
+
+//-----------AJAX FUNCTION ------------------
+  var i = 1;
+
    function getEvents(map) {
+     var uri = createURI(filterInput);
      $.ajax({
        dataType: 'text',
-       url: '/api/v1/stations?huc_code=14050003',
+       url: '/api/v1/stations' + uri,
+       // url: '/api/v1/stations?huc_code=14050003',
        success:function(events) {
          var stations = JSON.parse(events);
          map.addLayer({
-           "id": "stations",
+           "id": "stations" + i,
            "type": "symbol",
            "source": {
              "type": "geojson",
@@ -69,24 +105,26 @@
              "icon-allow-overlap": true
            }
          });
-         // map.featureLayer.setGeoJSON({
-         //   type: "FeatureCollection",
-         //   features: stations
-         // });
        },
        error:function() {
          alert("Could not load the events");
        }
      });
+     i += 1;
+     map.on('mouseenter', 'stations' + i, function () {
+        map.getCanvas().style.cursor = 'pointer';
+     });
+
+     map.on('mouseleave', 'stations' + i, function () {
+         map.getCanvas().style.cursor = '';
+     });
    }
 
 
-  //------------------------------------------------
+  //------------------POPUP------------------------------
 
   map.on('click', function(e) {
-  var features = map.queryRenderedFeatures(e.point, {
-    layers: ['stations']
-  });
+  var features = map.queryRenderedFeatures(e.point);
 
   if (!features.length) {
     return;
@@ -105,13 +143,4 @@
     .setLngLat(feature.geometry.coordinates)
     .addTo(map);
   });
-
-  map.on('mouseenter', 'stations', function () {
-     map.getCanvas().style.cursor = 'pointer';
-  });
-
-  map.on('mouseleave', 'stations', function () {
-      map.getCanvas().style.cursor = '';
-  });
-
 </script>

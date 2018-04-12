@@ -1,17 +1,17 @@
 class WQPService
   include XMLResponse
 
-  def initialize(attrs = {})
-    @attrs = attrs
+  def initialize(search_params = {})
+    @search_params = search_params
   end
 
-  def stations
-    params = base_params.merge!(attrs)
+  def stations # change to raw_stations?
+    params = base_params.merge!(search_params)
     xml_response("/data/Station/search", params)
   end
 
   private
-    attr_reader :attrs
+    attr_reader :search_params
 
     def base_params
       {
