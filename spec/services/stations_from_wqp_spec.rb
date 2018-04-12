@@ -3,8 +3,8 @@ require "rails_helper"
 describe StationsFromWQP do
   context "instance methods" do
     describe "#stations" do
-      it "returns a collection of stations from multiple search params" do
-        stations_by_many_params_stub
+      it "returns a collection of stations from multiple organizations" do
+        stations_from_multiple_organizations_stub
 
         params = {
           "huc" => "14080201",
@@ -20,8 +20,8 @@ describe StationsFromWQP do
         expect(stations.last.id).to eq("UTEMTN-SJ-4C")
       end
 
-      it "returns a single station" do
-        station_by_id_stub
+      it "returns a single station from a single organization" do
+        one_station_from_single_organization_stub
 
         params = { "siteid" => "USGS-09251500" }
 
@@ -34,15 +34,15 @@ describe StationsFromWQP do
         expect(station.drainage_area_units).to eq("sq mi")
       end
 
-      it "returns collection of stations from single search param" do
-        stations_by_huc_stub
+      it "returns a collection of stations from a single organization" do
+        stations_from_single_organization_stub
 
-        stations = StationsFromWQP.new("huc" => "14050003").stations
+        stations = StationsFromWQP.new("huc" => "10190017").stations
 
-        expect(stations.count).to eq(433)
+        expect(stations.count).to eq(10)
         expect(stations.first).to be_a(Station)
-        expect(stations.first.id).to eq("USGS-09251500")
-        expect(stations.last.id).to eq("WYDEQ_WQX-WB14")
+        expect(stations.first.id).to eq("USGS-405432103591401")
+        expect(stations.last.id).to eq("USGS-410004103545601")
       end
     end
   end

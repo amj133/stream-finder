@@ -5,7 +5,7 @@ class WQPService
     @search_params = search_params
   end
 
-  def stations # change to raw_stations?
+  def raw_stations 
     params = base_params.merge!(search_params)
     xml_response("/data/Station/search", params)
   end

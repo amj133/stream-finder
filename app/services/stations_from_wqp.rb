@@ -18,7 +18,7 @@ class StationsFromWQP
     attr_reader :search_params
 
     def raw_stations
-      WQPService.new(search_params).stations
+      WQPService.new(search_params).raw_stations
     end
 
     def stations_from_multiple_organizations(response)
@@ -28,8 +28,11 @@ class StationsFromWQP
     end
 
     def stations_from_single_organization(response)
-      station_attrs = response["WQX"]["Organization"]["MonitoringLocation"]
-      Station.new(station_attrs)
+      raw_stations = response["WQX"]["Organization"]["MonitoringLocation"]
+      return Station.new(raw_stations) if raw_stations.class == Hash
+      stations = response["WQX"]["Organization"]["MonitoringLocation"].map do |raw_station|
+        Station.new(raw_station)
+      end
     end
 
 end

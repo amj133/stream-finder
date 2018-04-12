@@ -6,7 +6,7 @@ describe WQPService do
       it "has a collection of raw_station data" do
         VCR.use_cassette("WQP service station by huc search") do
           params = {"huc" => "14080201", }
-          raw_stations = WQPService.new(params).stations
+          raw_stations = WQPService.new(params).raw_stations
 
           expect(raw_stations).to have_key("WQX")
           expect(raw_stations["WQX"]).to be_a(Hash)
@@ -33,7 +33,7 @@ describe WQPService do
       it "returns a single raw station" do
         VCR.use_cassette("WQP service station by id search") do
           params = {"siteid" => "USGS-09251500"}
-          raw_station = WQPService.new(params).stations
+          raw_station = WQPService.new(params).raw_stations
 
           expect(raw_station).to have_key("WQX")
           expect(raw_station["WQX"]).to be_a(Hash)
@@ -68,7 +68,7 @@ describe WQPService do
             "siteType" => "Stream"
           }
 
-          search = WQPService.new(params).stations
+          search = WQPService.new(params).raw_stations
 
           expect(search).to have_key("WQX")
           expect(search["WQX"]).to be_a(Hash)

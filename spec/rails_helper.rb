@@ -9,19 +9,24 @@ require 'support/factory_bot'
 require 'webmock/rspec'
 require 'vcr'
 
-def stations_by_huc_stub
-  uri = "data/Station/search?huc=14050003&statecode=US:08"
-  get_WQP_stub("little_snake_stations", uri)
+def stations_from_single_organization_stub
+  uri = "data/Station/search?huc=10190017&statecode=US:08"
+  get_WQP_stub("sidney_draw_stations_fixture", uri)
 end
 
-def stations_by_many_params_stub
+def stations_from_multiple_organizations_stub
   uri = "data/Station/search?huc=14080201&statecode=US:08&siteType=Stream"
-  get_WQP_stub("stations_by_many_params_fixture", uri)
+  get_WQP_stub("lower_san_juan_four_corners_fixture", uri)
 end
 
-def station_by_id_stub
+def one_station_from_single_organization_stub
   uri = "data/Station/search?siteid=USGS-09251500&statecode=US:08"
-  get_WQP_stub("little_snake_river_station", uri)
+  get_WQP_stub("usgs_09251500_station_fixture", uri)
+end
+
+def usgs_405432103591401_station_stub
+  uri = "data/Station/search?siteid=USGS-405432103591401&statecode=US:08"
+  get_WQP_stub("usgs_405432103591401_station_fixture", uri)
 end
 
 def get_WQP_stub(filename, uri)
