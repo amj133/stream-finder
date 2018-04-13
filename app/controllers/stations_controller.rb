@@ -9,6 +9,22 @@ class StationsController < ApplicationController
 
   def show
     @station = StationsFromWQP.new({"siteid" => params[:id]}).stations
+
+    # TESTING FOR CHART
+    # attributes =
+    # {
+    #   "MonitoringLocationIdentity"=>
+    #     {"MonitoringLocationIdentifier"=>"11NPSWRD-GRSA_NURE_0145",
+    #      "MonitoringLocationName"=>"C29663",
+    #      "MonitoringLocationTypeName"=>"River/Stream",
+    #      "MonitoringLocationDescriptionText"=>"The station...",
+    #      "DrainageAreaMeasure"=>
+    #        {"MeasureValue"=>"120", "MeasureUnitCode"=>"sq mi"}},
+    #   "MonitoringLocationGeospatial"=>
+    #     {"LatitudeMeasure"=>"37.5636",
+    #      "LongitudeMeasure"=>"-105.4392"}
+    # }
+    # @station = Station.new(attributes)
   end
 
 

@@ -8,7 +8,7 @@
   </div>
 <div>
 
-<div class="p2 bg-white border rounded mx-auto streamflow-container">
+<div class="p2 bg-white border rounded my2 mx-auto streamflow-container">
   <div class="chart-title">
     Chart Title
   </div>
@@ -16,8 +16,10 @@
 </div>
 
 <script>
+  // x-axis data below
   var years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
-  // For drawing the lines
+
+  // y-axis data below
   var africa = [86,114,106,106,107,111,133,221,783,2478];
   var asia = [282,350,411,502,635,809,947,1402,3700,5267];
   var europe = [168,170,178,190,203,276,408,547,675,734];
@@ -28,10 +30,10 @@
   var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: years,
+      labels: years, //<--- X-AXIS GOES HERE
       datasets: [
         {
-          data: africa,
+          data: africa, //<--- Y-AXIS GOES HERE
           label: "Africa",
           borderColor: "#3e95cd",
           fill: false
