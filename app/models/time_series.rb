@@ -1,5 +1,5 @@
 class TimeSeries
-  attr_reader :time, :discharge
+  attr_reader :discharge
 
   def initialize(time_collection, discharge_collection)
     @time_as_string = time_collection
