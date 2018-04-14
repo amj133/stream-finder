@@ -90,7 +90,6 @@ function createURI(filterInput) {
          var stations = JSON.parse(events);
          var new_lat = stations[0].geometry.coordinates[0]
          var new_long = stations[0].geometry.coordinates[1]
-         debugger;
          map.flyTo({center: [new_lat, new_long], zoom: 8.4});
          map.addLayer({
            "id": "stations" + i,

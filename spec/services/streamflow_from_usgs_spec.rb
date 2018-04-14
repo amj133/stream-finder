@@ -16,7 +16,7 @@ describe StreamflowFromUSGS do
 
         expect(time_series.discharge).to be_a(Array)
         expect(time_series.discharge.first).to eq(10.3)
-        expect(time_series.discharge.last).to eq(264)
+        expect(time_series.discharge.last).to eq(11.8)
       end
     end
   end

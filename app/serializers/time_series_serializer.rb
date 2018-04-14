@@ -3,7 +3,7 @@ class TimeSeriesSerializer < ActiveModel::Serializer
 
   def time
     object.time.map do |datetime|
-      datetime.strftime('%m/%d/%Y-%H:%M')
+      datetime.strftime('%Y %m %d %H %M')
     end
   end
 
