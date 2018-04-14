@@ -16,6 +16,10 @@ feature "user sees list of projects" do
       expect(page).to have_content("Watershed HUC: 01234567")
       expect(page).to have_link("Project 2")
       expect(page).to have_content("Watershed HUC: 01234567")
+
+      click_on("Project 1")
+
+      expect(current_path).to eq('/projects/project-1')
     end
   end
 end
