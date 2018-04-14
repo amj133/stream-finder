@@ -4,7 +4,7 @@ Welcome to StreamFinder <%= @user.first_name %><br>
 Current Projects
 <ul>
 <% @user.projects.each do |project| %>
-  <li>Name: <%= link_to project.name, project_path(project.name) %></li>
+  <li>Name: <%= link_to project.name, project_path(project.slug) %></li>
   <li>Watershed HUC: <%= project.huc %></li><br><br>
   <% end %>
 </ul>
