@@ -12,5 +12,7 @@ describe Project do
 
   describe "relationships" do
     it { should belong_to(:user) }
+    it { should have_many(:favorite_station_projects) }
+    it { should have_many(:favorite_stations).through(:favorite_station_projects) }
   end
 end
