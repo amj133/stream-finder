@@ -8,6 +8,10 @@ describe User do
     it { should have_secure_password }
   end
 
+  describe "relationships" do
+    it { should have_many(:projects) }
+  end
+
   it "creates or updates info from omniauth hash" do
     auth = {
       :provider => "google",
