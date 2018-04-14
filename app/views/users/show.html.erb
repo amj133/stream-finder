@@ -1,2 +1,10 @@
 Welcome to StreamFinder <%= @user.first_name %><br>
 <%= link_to "logout", logout_path %>
+
+Current Projects
+<ul>
+<% @user.projects.each do |project| %>
+  <li>Name: <%= link_to project.name, project_path(project.name) %></li>
+  <li>Watershed HUC: <%= project.huc %></li><br><br>
+  <% end %>
+</ul>
