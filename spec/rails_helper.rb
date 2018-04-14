@@ -29,6 +29,16 @@ def usgs_405432103591401_station_stub
   get_WQP_stub("usgs_405432103591401_station_fixture", uri)
 end
 
+def usgs_01646500_streamflow_stub
+  uri = "nwis/iv?format=json&period=P1D&site=01646500"
+  get_usgs_streamflow_stub("station_01646500_streamflow_fixture", uri)
+end
+
+def get_usgs_streamflow_stub(filename, uri)
+  json_response = File.open("./spec/fixtures/#{filename}.json")
+  stub_request(:get, "http://waterservices.usgs.gov/#{uri}").to_return(status: 200, body: json_response)
+end
+
 def get_WQP_stub(filename, uri)
   xml_response = File.open("./spec/fixtures/#{filename}.xml")
   stub_request(:get, "https://www.waterqualitydata.us/#{uri}").to_return(status: 200, body: xml_response)

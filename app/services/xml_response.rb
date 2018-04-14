@@ -1,4 +1,5 @@
 module XMLResponse
+  # add WQP to module name
 
   def xml_response(uri, params)
     response = send_get_request(uri, params)

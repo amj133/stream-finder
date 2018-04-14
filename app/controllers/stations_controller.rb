@@ -9,6 +9,7 @@ class StationsController < ApplicationController
 
   def show
     @station = StationsFromWQP.new({"siteid" => params[:id]}).stations
+    @station_id = @station.id.split("-")[1]
   end
 
 
