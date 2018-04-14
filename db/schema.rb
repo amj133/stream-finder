@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414205629) do
+ActiveRecord::Schema.define(version: 20180414210812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorite_station_projects", force: :cascade do |t|
+    t.bigint "favorite_station_id"
+    t.bigint "project_id"
+    t.index ["favorite_station_id"], name: "index_favorite_station_projects_on_favorite_station_id"
+    t.index ["project_id"], name: "index_favorite_station_projects_on_project_id"
+  end
 
   create_table "favorite_stations", force: :cascade do |t|
     t.string "org_id"
@@ -48,5 +55,7 @@ ActiveRecord::Schema.define(version: 20180414205629) do
     t.string "token"
   end
 
+  add_foreign_key "favorite_station_projects", "favorite_stations"
+  add_foreign_key "favorite_station_projects", "projects"
   add_foreign_key "projects", "users"
 end
