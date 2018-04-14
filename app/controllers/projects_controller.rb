@@ -2,7 +2,6 @@ class ProjectsController < ApplicationController
   before_action :require_current_user
 
   def show
-    binding.pry
     @project = Project.find_by_slug(params[:slug])
   end
 
