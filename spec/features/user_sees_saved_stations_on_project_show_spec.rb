@@ -15,7 +15,7 @@ describe "user visits project show page" do
 
     expect(current_path).to eq("/projects/project-1")
     expect(page).to have_content("Saved Stations")
-    expect(page).to have_link("Station-1")
-    expect(page).to have_link("Station-2")
+    expect(page).to have_link("USGS-1")
+    expect(page).to have_link("USGS-2")
   end
 end

@@ -1,2 +1,14 @@
 <%= @project.name %>
 <%= @project.huc %>
+
+Saved Stations
+
+<ul>
+  <% @project.favorite_stations.each do |station| %>
+    <li><%= link_to station.org_id, station_path(station.org_id) %></li>
+    <li><%= station.type_of %></li>
+    <% if station.drainage_area %>
+      <li><%= station.drainage_area %> <%= station.drainage_area_units %></li>
+    <% end %>
+  <% end %>
+</ul>
