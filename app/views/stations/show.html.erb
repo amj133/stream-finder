@@ -49,10 +49,6 @@ fetch(`/api/v1/streamflow?station_id=${station_id.substr(0-8)}`)
       options : {
        scales: {
          yAxes: [{
-           // ticks: {
-           //   min: 9,
-           //   max: 13,
-           // },
            scaleLabel: {
              display: true,
              labelString: 'Discharge (cfs)'
@@ -77,69 +73,4 @@ fetch(`/api/v1/streamflow?station_id=${station_id.substr(0-8)}`)
      }
     });
   })
-
-  var time = [
-              new Date(2008, 1, 2, 5, 15),
-              new Date(2008, 1, 2, 5, 30),
-              new Date(2008, 1, 2, 5, 45),
-              new Date(2008, 1, 2, 6, 00),
-              new Date(2008, 1, 2, 6, 15),
-              new Date(2008, 1, 2, 6, 30),
-              new Date(2008, 1, 2, 6, 45),
-              new Date(2008, 1, 2, 7, 00),
-              new Date(2008, 1, 2, 7, 15),
-              new Date(2008, 1, 2, 7, 30)
-              ];
-
-  // y-axis data below
-  // var africa = [86,114,106,106,107,111,133,221,783,2478];
-  // var asia = [282,350,411,502,635,809,947,1402,3700,5267];
-  // var europe = [168,170,178,190,203,276,408,547,675,734];
-  // var latinAmerica = [40,20,10,16,24,38,74,167,508,784];
-  // var northAmerica = [6,3,2,2,7,26,82,172,312,433];
-
-  // var ctx = document.getElementById("myChart");
-  // var myChart = new Chart(ctx, {
-  //   type: 'line',
-  //   data: {
-  //     labels: time, //<--- X-AXIS GOES HERE
-  //     datasets: [
-  //       {
-  //         data: <%= @discharge %>, //<--- Y-AXIS GOES HERE
-  //         label: "Discharge",
-  //         borderColor: "#3e95cd",
-  //         fill: false
-  //       }
-  //     ]
-  //   },
-  //   options : {
-  //    scales: {
-  //      yAxes: [{
-  //        ticks: {
-  //          min: 9,
-  //          max: 13,
-  //        },
-  //        scaleLabel: {
-  //          display: true,
-  //          labelString: 'Discharge (cfs)'
-  //        }
-  //      }],
-  //      xAxes: [{
-  //        bounds: 'ticks',
-  //        type: 'time',
-  //        time: {
-  //               displayFormats: {
-  //                 hour: 'MMM D h:mm'
-  //             }
-  //        },
-  //        distribution: 'linear',
-  //        scaleLabel: {
-  //          display: true,
-  //          labelString: 'Time',
-  //          unit: 'hour'
-  //        }
-  //      }],
-  //    }
-  //  }
-  // });
 </script>
