@@ -6,5 +6,6 @@
     password "password"
     password_confirmation "password"
     company "Turing"
+    slug "billy"
   end
 end

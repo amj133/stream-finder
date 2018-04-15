@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root to: "welcome#index"
 
   resources :users, only: [:create, :show], param: :slug
-  get "/register", to: "users#new"
+  resources :projects, only: [:show, :new, :create], param: :slug
 
+  get "/register", to: "users#new"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#delete"

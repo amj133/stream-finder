@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404132222) do
+ActiveRecord::Schema.define(version: 20180414231951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorite_station_projects", force: :cascade do |t|
+    t.bigint "favorite_station_id"
+    t.bigint "project_id"
+    t.index ["favorite_station_id"], name: "index_favorite_station_projects_on_favorite_station_id"
+    t.index ["project_id"], name: "index_favorite_station_projects_on_project_id"
+  end
+
+  create_table "favorite_stations", force: :cascade do |t|
+    t.string "org_id"
+    t.string "type_of"
+    t.text "description"
+    t.float "latitude"
+    t.float "longitude"
+    t.float "drainage_area"
+    t.string "drainage_area_units"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "huc"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -28,4 +55,7 @@ ActiveRecord::Schema.define(version: 20180404132222) do
     t.string "token"
   end
 
+  add_foreign_key "favorite_station_projects", "favorite_stations"
+  add_foreign_key "favorite_station_projects", "projects"
+  add_foreign_key "projects", "users"
 end
