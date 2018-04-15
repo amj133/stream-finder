@@ -80,11 +80,9 @@ function createURI(filterInput) {
   var i = 1;
 
    function getEvents(map) {
-     debugger;
      var uri = createURI(filterInput);
      $.ajax({
        dataType: 'text',
-       async: false,
        url: '/api/v1/stations' + uri,
        success:function(events) {
          var stations = JSON.parse(events);
@@ -107,7 +105,13 @@ function createURI(filterInput) {
            }
          });
          //-----------CREATE LI FOR EACH STATION-----------
-         $(".search-results-container").append(
+         if ($(".search-results-container")[0].innerHTML < 10){
+           $(".search-results-container").append(
+             `<input type="submit" value="Submit">
+             </form>`
+           );
+         }
+         $(".search-results-container").prepend(
            printStations(stations)
          );
        },
@@ -127,10 +131,14 @@ function createURI(filterInput) {
    }
 
    function printStations(stations) {
-     return stations.map(function(station) {
-       return `<li class='station-search-results'>${station.properties.id}</li>`;
+     return `<form action="/favorite_stations" method="post">` +
+      stations.map(function(station) {
+       return `<input type="checkbox" name="station_id" value="${station.properties.id}">${station.properties.id}<br>`
      })
    }
+
+
+
 
 
   //------------------POPUP------------------------------
