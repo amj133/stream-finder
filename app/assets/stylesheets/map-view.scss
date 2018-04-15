@@ -5,6 +5,7 @@
   width: 67%;
   z-index: 5;
   border-left: 2px solid rgb(99, 96, 117);
+  border-bottom: 2px solid rgb(99, 96, 117);
 }
 
 .mapboxgl-popup {
@@ -57,7 +58,6 @@
   justify-content: center;
   height: 55px;
   width: 33%;
-  // background-color: rgb(232, 188, 64);
 }
 
 .btn {
@@ -65,4 +65,14 @@
   background-color: #A4AC96;
   color: #313628;
   border: 1px solid black;
+}
+
+.search-results-container {
+  height: 500px;
+  width: 33%;
+  background-color: rgb(203, 64, 60);
+}
+
+.station-search-results {
+  margin-left: 15px;
 }

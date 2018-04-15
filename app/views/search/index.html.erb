@@ -33,6 +33,9 @@
   <button onclick="getEvents(map)" class="btn rounded">Search for Stations</button>
 </div>
 
+<div class="search-results-container">
+</div>
+
 
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoiYW1qMTMzIiwiYSI6ImNqZmoyNDA1NzBkc3cycXFveTVxNDF6ZWkifQ.Qxx-FLv74uWIPQq1fmpwyA';
@@ -81,6 +84,7 @@ function createURI(filterInput) {
      var uri = createURI(filterInput);
      $.ajax({
        dataType: 'text',
+       async: false,
        url: '/api/v1/stations' + uri,
        success:function(events) {
          var stations = JSON.parse(events);
@@ -102,7 +106,12 @@ function createURI(filterInput) {
              "icon-allow-overlap": true
            }
          });
+         //-----------CREATE LI FOR EACH STATION-----------
+         $(".search-results-container").append(
+           printStations(stations)
+         );
        },
+
        error:function() {
          alert("Could not load the events");
        }
@@ -115,6 +124,12 @@ function createURI(filterInput) {
      map.on('mouseleave', 'stations' + i, function () {
          map.getCanvas().style.cursor = '';
      });
+   }
+
+   function printStations(stations) {
+     return stations.map(function(station) {
+       return `<li class='station-search-results'>${station.properties.id}</li>`;
+     })
    }
 
 

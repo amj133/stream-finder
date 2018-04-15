@@ -10,10 +10,6 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  def new
-    @project = Project.new
-  end
-
   def create
     project = current_user.projects.new(project_params)
     if project.save!
