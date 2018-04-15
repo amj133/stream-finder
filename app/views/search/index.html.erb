@@ -163,7 +163,7 @@ function createURI(filterInput) {
 
    //--------------------SEND POST TO /api/v1/projects
    // var stationsToAdd = FILL ME IN
-   
+
    const postPayload = (body) => {
      return {
        method: 'POST',
@@ -175,10 +175,22 @@ function createURI(filterInput) {
    };
 
   function addFavoriteStations() {
+    var selected = $(".project")
+    var selected_project = selected[0][selected[0].options.selectedIndex].value
+
+    var fav_stations = []
+    $('.station-results:checked').each(function() {
+        fav_stations.push(this.value);
+    })
+
+    var payload = {}
+    payload["project"] = selected_project
+    payload["fav_stations"] = fav_stations
+
     $.ajax({
       type: "POST",
       url: "/api/v1/projects",
-      data: {project_name: "Frank"}
+      data: payload
     });
     // fetch would not POST - was trying GET
     // fetch(`/api/v1/projects`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: {project_name: "Frank"} })
@@ -192,7 +204,7 @@ function createURI(filterInput) {
    function printStations(stations) {
      return `<form action="/favorite_stations" method="post">` +
       stations.map(function(station) {
-       return `<input type="checkbox" name="station_id" value="${station.properties.id}">${station.properties.id}<br>`
+       return `<input class="station-results" type="checkbox" name="station_id" value="${station.properties.id}">${station.properties.id}<br>`
      })
    }
 
