@@ -10,7 +10,7 @@ describe "POST /api/v1/projects" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     params = {
-      "project" => "Project 1",
+      "project" => project.name,
       "fav_stations" => [station_1.org_id, station_2.org_id]
     }
 
