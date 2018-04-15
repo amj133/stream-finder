@@ -9,7 +9,7 @@ describe "user visits project show page" do
     FavoriteStationProject.create(project: project, favorite_station: station_1)
     FavoriteStationProject.create(project: project, favorite_station: station_2)
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(:user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit project_path(project.slug)
 
