@@ -114,8 +114,8 @@ function createURI(filterInput) {
          //-----------CREATE LI FOR EACH STATION-----------
          if ($(".search-results-container")[0].innerHTML < 10){
            $(".search-results-container").append(
-             `<input type="submit" value="Submit">
-             </form>`
+             `<button onclick="addFavoriteStations(map)" class="btn rounded">Add Stations</button>
+              </form>`
            );
          }
 
@@ -160,6 +160,34 @@ function createURI(filterInput) {
          map.getCanvas().style.cursor = '';
      });
    }
+
+   //--------------------SEND POST TO /api/v1/projects
+   // var stationsToAdd = FILL ME IN
+   
+   const postPayload = (body) => {
+     return {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(body)
+     };
+   };
+
+  function addFavoriteStations() {
+    $.ajax({
+      type: "POST",
+      url: "/api/v1/projects",
+      data: {project_name: "Frank"}
+    });
+    // fetch would not POST - was trying GET
+    // fetch(`/api/v1/projects`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: {project_name: "Frank"} })
+    //   .catch((error) => { throw error });
+  }
+
+
+
+   //---------------------printStations (search results list)
 
    function printStations(stations) {
      return `<form action="/favorite_stations" method="post">` +
