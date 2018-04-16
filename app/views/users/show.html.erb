@@ -6,6 +6,7 @@ Current Projects
 <% @user.projects.each do |project| %>
   <li>Name: <%= link_to project.name, project_path(project.slug) %></li>
   <li>Watershed HUC: <%= project.huc %></li><br><br>
+  <%= button_to "delete", project_path(project.slug, user: @user.slug), method: :delete %>
   <% end %>
 </ul>
 

@@ -19,6 +19,15 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find_by_slug(params[:user])
+    project = Project.find_by_slug(params[:slug])
+    binding.pry
+    project.destroy
+
+    redirect_to user_path(user.slug)
+  end
+
   private
     def project_params
       params.require(:project).permit(:name, :huc)
