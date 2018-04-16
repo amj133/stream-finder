@@ -16,11 +16,7 @@ feature "user can delete project" do
         expect(page).to have_content("Project 1")
         expect(project.favorite_stations.count).to eq(1)
 
-        click_on("delete")
-
-        # expect(page).to have_content("Delete project and all associated stations?")
-        #
-        # click_on("Ok")
+        page.driver.submit :delete, "/projects/#{project.slug}", {user: user.slug}
 
         expect(current_path).to eq(user_path(user.slug))
         expect(page).to_not have_content("Project 1")
