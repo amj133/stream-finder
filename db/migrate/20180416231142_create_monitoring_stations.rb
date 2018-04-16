@@ -3,7 +3,7 @@ class CreateMonitoringStations < ActiveRecord::Migration[5.1]
     create_table :monitoring_stations do |t|
       t.string :org_id
       t.string :name
-      t.string :type
+      t.string :type_of
       t.text :description
       t.float :latitude
       t.float :longitude
