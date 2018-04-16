@@ -9,7 +9,6 @@ before_script:
 
 install:
   - bundle install
-  - rake db:setup
-  
+
 rvm:
  - 2.4.2
