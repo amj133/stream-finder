@@ -7,6 +7,10 @@ class Project < ApplicationRecord
   validates_uniqueness_of :name
   before_save :generate_slug
 
+  def to_param
+    slug
+  end
+
   private
     def generate_slug
       self.slug = name.parameterize unless name.nil?

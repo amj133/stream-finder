@@ -12,3 +12,6 @@ Saved Stations
     <% end %>
   <% end %>
 </ul>
+
+<%= button_to "edit", edit_project_path(@project.slug, user: @project.user.slug), method: :get %><br><br>
+<%= button_to "delete", project_path(@project.slug, user: @project.user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"} %><br><br>

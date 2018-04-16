@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
   before_action :require_current_user
   before_action :require_users_project, only: [:show]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def show
-    @project = Project.find_by_slug(params[:slug])
   end
 
   def new
@@ -19,17 +19,28 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def destroy
-    user = User.find_by_slug(params[:user])
-    project = Project.find_by_slug(params[:slug])
-    project.destroy
+  def edit
+  end
 
-    redirect_to user_path(user.slug)
+  def update
+    @project.update(project_params)
+
+    redirect_to user_path(current_user.slug)
+  end
+
+  def destroy
+    @project.destroy
+
+    redirect_to user_path(current_user.slug)
   end
 
   private
     def project_params
       params.require(:project).permit(:name, :huc)
+    end
+
+    def set_project
+      @project = Project.find_by_slug(params[:slug])
     end
 
     def require_current_user

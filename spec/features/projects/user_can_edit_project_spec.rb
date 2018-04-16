@@ -13,15 +13,17 @@ feature "user can edit project" do
 
         visit project_path(project.slug)
 
-        click_on("Edit Project")
+        click_on("edit")
 
-        expect(current_path).to eq("/#{project.name.parameterize}/edit")
+        expect(current_path).to eq("/projects/#{project.name.parameterize}/edit")
 
         fill_in("Name", with: "New Project Name")
-        click_on("Edit Project")
+        fill_in("Huc", with: "012345")
+        click_on("Update Project")
 
         expect(current_path).to eq(user_path(user.slug))
         expect(page).to have_content("New Project Name")
+        expect(page).to have_content("012345")
       end
     end
   end
