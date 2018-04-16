@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :stations, only: [:index]
       resources :streamflow, only: [:index]
+      resources :projects, only: [:create]
     end
   end
 end

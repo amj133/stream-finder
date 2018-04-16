@@ -1,5 +1,6 @@
 class StationsFromWQP
   include WqpXmlParser
+  include StationToFavoriteStation
 
   def initialize(search_params = {})
     @search_params = search_params
@@ -12,6 +13,10 @@ class StationsFromWQP
     elsif response["WQX"]["Organization"].class == Hash
       stations_from_single_organization(response)
     end
+  end
+
+  def favorite_station
+    add_to_favorite_stations(stations)
   end
 
   private

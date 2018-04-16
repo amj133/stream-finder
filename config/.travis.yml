@@ -1,0 +1,8 @@
+language: ruby
+install:
+ - bundle install
+ - rake db:setup
+services:
+ - postgresql
+rvm:
+ - 2.4.2
