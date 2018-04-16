@@ -1,4 +1,7 @@
 language: ruby
+install:
+ - bundle install
+ - rake db:setup
 services:
  - postgresql
 rvm:
