@@ -20,7 +20,8 @@ feature "user can delete project" do
 
         expect(current_path).to eq(user_path(user.slug))
         expect(page).to_not have_content("Project 1")
-        expect(project.favorite_stations.count).to eq(0)
+        expect(user.projects.count).to eq(0)
+        expect(FavoriteStation.count).to eq(1)
       end
     end
   end
