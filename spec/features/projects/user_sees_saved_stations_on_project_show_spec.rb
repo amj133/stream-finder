@@ -16,7 +16,7 @@ describe "user visits project show page" do
     expect(current_path).to eq("/projects/#{project.slug}")
     expect(page).to have_content("Saved Stations")
     expect(page).to have_link("USGS-405432103591401")
-    expect(page).to have_link("USGS-1")
+    expect(page).to have_link(station_2.org_id)
 
     usgs_405432103591401_station_stub
 

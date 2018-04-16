@@ -12,14 +12,14 @@ feature "user sees list of projects" do
       visit user_path(user.slug)
 
       expect(page).to have_content("Current Projects")
-      expect(page).to have_link("Project 1")
+      expect(page).to have_link(project_1.name)
       expect(page).to have_content("Watershed HUC: 01234567")
-      expect(page).to have_link("Project 2")
+      expect(page).to have_link(project_2.name)
       expect(page).to have_content("Watershed HUC: 01234567")
 
-      click_on("Project 1")
+      click_on(project_1.name)
 
-      expect(current_path).to eq('/projects/project-1')
+      expect(current_path).to eq("/projects/#{project_1.name.parameterize}")
     end
   end
 end

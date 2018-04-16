@@ -10,5 +10,9 @@ Saved Stations
     <% if station.drainage_area %>
       <li><%= station.drainage_area %> <%= station.drainage_area_units %></li>
     <% end %>
+    <%= button_to "remove", favorite_station_path(station, project: @project.slug), method: :delete %>
   <% end %>
 </ul>
+
+<%= button_to "edit", edit_project_path(@project.slug, user: @project.user.slug), method: :get %><br><br>
+<%= button_to "delete", project_path(@project.slug, user: @project.user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"} %><br><br>
