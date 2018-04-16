@@ -3,11 +3,13 @@ Welcome to StreamFinder <%= @user.first_name %><br>
 
 Current Projects
 <ul>
-<% @user.projects.each do |project| %>
-  <li>Name: <%= link_to project.name, project_path(project.slug) %></li>
-  <li>Watershed HUC: <%= project.huc %></li>
-  <%= button_to "delete", project_path(project.slug, user: @user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"} %><br><br>
-  <% end %>
-</ul>
+<% unless @user.projects.nil? %>
+  <% @user.projects.each do |project| %>
+    <li>Name: <%= link_to project.name, project_path(project.slug) %></li>
+    <li>Watershed HUC: <%= project.huc %></li>
+    <%= button_to "delete", project_path(project.slug, user: @user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"} %><br><br>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= link_to "Create New Project", new_project_path %>
