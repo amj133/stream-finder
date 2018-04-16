@@ -1,8 +1,15 @@
-language: ruby
-install:
- - bundle install
- - rake db:setup
+language:
+  - ruby
+
 services:
- - postgresql
+  - postgresql
+
+before_script:
+  - psql -c 'create database stream_finder_test;' -U postgres
+
+install:
+  - bundle install
+  - rake db:setup
+  
 rvm:
  - 2.4.2
