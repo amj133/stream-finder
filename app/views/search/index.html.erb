@@ -33,8 +33,17 @@
   <button onclick="getEvents(map)" class="btn rounded">Search for Stations</button>
 </div>
 
+<div class="select-project">
+  <select class="project" name="project_name"></select>
+</div>
+
+<div class="search-results-container">
+</div>
+
 
 <script>
+  $("select:empty").hide();
+
   mapboxgl.accessToken = 'pk.eyJ1IjoiYW1qMTMzIiwiYSI6ImNqZmoyNDA1NzBkc3cycXFveTVxNDF6ZWkifQ.Qxx-FLv74uWIPQq1fmpwyA';
 
   var map = new mapboxgl.Map({
@@ -77,13 +86,13 @@ function createURI(filterInput) {
   var i = 1;
 
    function getEvents(map) {
-     debugger;
      var uri = createURI(filterInput);
      $.ajax({
        dataType: 'text',
        url: '/api/v1/stations' + uri,
        success:function(events) {
          var stations = JSON.parse(events);
+         debugger;
          var new_lat = stations[0].geometry.coordinates[0]
          var new_long = stations[0].geometry.coordinates[1]
          map.flyTo({center: [new_lat, new_long], zoom: 8.4});
@@ -102,7 +111,42 @@ function createURI(filterInput) {
              "icon-allow-overlap": true
            }
          });
-       },
+         //-----------CREATE LI FOR EACH STATION-----------
+         if ($(".search-results-container")[0].innerHTML < 10){
+           $(".search-results-container").append(
+             `<button onclick="addFavoriteStations(map)" class="btn rounded">Add Stations</button>
+              </form>`
+           );
+         }
+
+         $("select").show();
+
+         $(".search-results-container").prepend(
+           printStations(stations)
+         );
+
+         //-----------------ADD DROPDOWN-----------------------
+         var projects = <%= raw @projects %>; // vulnerability
+         debugger;
+
+         if ($(".select-project")[0].innerHTML.includes("<option value=")) {
+           } else {
+             projects.forEach(function(project) {
+               $(".project").append(
+                 `<option value="${project.name}">${project.name}</option>`
+             )})
+             // $(".select-project").append(
+             //   `<select>
+             //      <option value="volvo">Volvo</option>
+             //      <option value="saab">Saab</option>
+             //      <option value="opel">Opel</option>
+             //      <option value="audi">Audi</option>
+             //   </select>`
+             // );
+           }
+       }, // <----- END OF AJAX SUCCESS
+
+
        error:function() {
          alert("Could not load the events");
        }
@@ -117,6 +161,52 @@ function createURI(filterInput) {
      });
    }
 
+   //--------------------SEND POST TO /api/v1/projects
+   // var stationsToAdd = FILL ME IN
+
+   const postPayload = (body) => {
+     return {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(body)
+     };
+   };
+
+  function addFavoriteStations() {
+    var selected = $(".project")
+    var selected_project = selected[0][selected[0].options.selectedIndex].value
+
+    var fav_stations = []
+    $('.station-results:checked').each(function() {
+        fav_stations.push(this.value);
+    })
+
+    var payload = {}
+    payload["project"] = selected_project
+    payload["fav_stations"] = fav_stations
+
+    $.ajax({
+      type: "POST",
+      url: "/api/v1/projects",
+      data: payload
+    });
+    // fetch would not POST - was trying GET
+    // fetch(`/api/v1/projects`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: {project_name: "Frank"} })
+    //   .catch((error) => { throw error });
+  }
+
+
+
+   //---------------------printStations (search results list)
+
+   function printStations(stations) {
+     return `<form action="/favorite_stations" method="post">` +
+      stations.map(function(station) {
+       return `<input class="station-results" type="checkbox" name="station_id" value="${station.properties.id}">${station.properties.id}<br>`
+     })
+   }
 
   //------------------POPUP------------------------------
 
