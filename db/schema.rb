@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180416231142) do
   create_table "monitoring_stations", force: :cascade do |t|
     t.string "org_id"
     t.string "name"
+    t.string "huc"
     t.string "type_of"
     t.text "description"
     t.float "latitude"
