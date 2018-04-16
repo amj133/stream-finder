@@ -20,7 +20,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     user = User.find_by_slug(params[:user])
     project = Project.find_by_slug(params[:slug])
     project.destroy
