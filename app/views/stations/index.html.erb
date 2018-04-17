@@ -12,23 +12,29 @@
       Displaying <%= @stations.count %> stations in table below
   </div>
 
-  <div class="overflow-scroll">
-    <table class="mx-auto bg-gray border rounded stations-index-table">
-      <thead class="stations-index-table-header">
+  <div class='stations-index-table-container'>
+    <table>
+      <thead class=stations-index-table-header>
         <tr>
-          <th class="header-row">Station ID</th> <th>Name</th> <th>Type</th> <th>Description</th> <th>Latitude</th> <th>Longitude</th> <th>Drainage Area</th>
+          <th>Name</th> <th>Station ID</th> <th>Type</th> <th>Description</th> <th>Latitude</th> <th>Longitude</th> <th>Drainage Area</th>
         </tr>
       </thead>
       <tbody class="stations-index-table-body">
         <% @stations.each do |station| %>
           <tr class="station-index-table-rows">
-            <td align="center"><%= link_to station.id, station_path(station.id) %></td>
-            <td align="center"><%= station.name %></td>
-            <td align="center"><%= station.type %></td>
-            <td align="center"><%= station.description %></td>
+            <td class="station-name" align="center"><%= station.name %></td>
+            <% unless station.class == Station %>
+              <td align="center"><%= link_to station.org_id, station_path(station.org_id) %></td>
+              <td align="center"><%= station.type_of %></td>
+            <% end %>
+            <% unless station.class == StreamStation %>
+              <td align="center"><%= link_to station.id, station_path(station.id) %></td>
+              <td align="center"><%= station.type %></td>
+            <% end %>
+            <td class="station-description" align="center"><%= station.description %></td>
             <td align="center"><%= station.latitude %></td>
             <td align="center"><%= station.longitude %></td>
-            <td align="center"><%= station.drainage_area %> <%= station.drainage_area_units %></td>
+            <td class="stations-index-drainage" align="center">&nbsp;&nbsp;<%= station.drainage_area %><%= station.drainage_area_units %>&nbsp;&nbsp;</td>
           </tr>
         <% end %>
       </tbody>

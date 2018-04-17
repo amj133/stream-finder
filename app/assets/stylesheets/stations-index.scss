@@ -17,24 +17,29 @@
   background-color: rgb(131, 159, 159);
 }
 
-.stations-index-table {
-  border-collapse: collapse;
-  border: 2px solid black;
-  width: 70%;
+.stations-index-table-container {
+  width: 85%;
+  margin-left: 8%;
 }
 
-.header-row {
-  height: 30px;
+.station-name {
+  width: 125px;
+  overflow: scroll;
 }
 
 .stations-index-table-header {
   background-color: rgb(133, 130, 98);
-  height: 10px;
+}
+
+.station-description {
+  max-width: 300px;
+  overflow: scroll;
 }
 
 .stations-index-table-body {
   background-color: #A4AC96;
-  tr {
-    border-top: solid 1px black;
-  }
+}
+
+.stations-index-drainage {
+  width: 125px;
 }

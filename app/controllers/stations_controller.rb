@@ -3,13 +3,14 @@ class StationsController < ApplicationController
 
   def index
     @co_watershed_hucs = CO_WATERSHED_HUCS
-    search_params = {"huc" => params[:huc_code]}
-    @stations = StationsFromWQP.new(search_params).stations if params[:huc_code]
+    if params[:huc_code]
+      @stations = StationsPresenter.new(huc: params[:huc_code]).stations_by_huc
+    end
   end
 
   def show
-    @station = StationsFromWQP.new({"siteid" => params[:id]}).stations
-    @station_id = @station.id.split("-")[1]
+    station = StationsPresenter.new(site_id: params[:id]).station_by_id
+    @station = station
   end
 
 
