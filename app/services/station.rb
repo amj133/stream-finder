@@ -4,11 +4,9 @@ class Station
 
   def initialize(attrs)
     @org_id = attrs["MonitoringLocationIdentity"]["MonitoringLocationIdentifier"]
-    # @id = attrs["MonitoringLocationIdentity"]["MonitoringLocationIdentifier"]
     @name = attrs["MonitoringLocationIdentity"]["MonitoringLocationName"]
     @huc = attrs["MonitoringLocationIdentity"]["HUCEightDigitCode"]
     @type_of = attrs["MonitoringLocationIdentity"]["MonitoringLocationTypeName"]
-    # @type = attrs["MonitoringLocationIdentity"]["MonitoringLocationTypeName"]
     @description = attrs["MonitoringLocationIdentity"]["MonitoringLocationDescriptionText"]
     @latitude = attrs["MonitoringLocationGeospatial"]["LatitudeMeasure"]
     @longitude = attrs["MonitoringLocationGeospatial"]["LongitudeMeasure"]
