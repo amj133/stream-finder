@@ -40,7 +40,7 @@ gem 'faraday'
 gem 'mapbox-gl-rails'
 gem 'jquery-rails'
 gem 'faraday_middleware'
-# gem 'newrelic_rpm', '4.0.0.332'
+# gem 'newrelic_rpm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

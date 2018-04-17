@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416231142) do
+ActiveRecord::Schema.define(version: 20180417191018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 20180416231142) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "stream_station_projects", force: :cascade do |t|
+    t.bigint "stream_station_id"
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_stream_station_projects_on_project_id"
+    t.index ["stream_station_id"], name: "index_stream_station_projects_on_stream_station_id"
   end
 
   create_table "stream_stations", force: :cascade do |t|
@@ -72,4 +79,6 @@ ActiveRecord::Schema.define(version: 20180416231142) do
   add_foreign_key "favorite_station_projects", "favorite_stations"
   add_foreign_key "favorite_station_projects", "projects"
   add_foreign_key "projects", "users"
+  add_foreign_key "stream_station_projects", "projects"
+  add_foreign_key "stream_station_projects", "stream_stations"
 end
