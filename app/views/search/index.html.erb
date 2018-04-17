@@ -76,12 +76,6 @@ function createURI(filterInput) {
   return uri.replace(/ /g, "&");
 }
 
-// function checkInput(index, param_key) {
-//   if(filterInput[index].value != "") {
-//     param_key + filterInput[index];
-//   }
-// }
-
 //-----------AJAX FUNCTION ------------------
   var i = 1;
 
@@ -154,7 +148,6 @@ function createURI(filterInput) {
    }
 
    //--------------------SEND POST TO /api/v1/projects
-   // var stationsToAdd = FILL ME IN
 
    const postPayload = (body) => {
      return {
@@ -184,9 +177,6 @@ function createURI(filterInput) {
       url: "/api/v1/projects",
       data: payload
     });
-    // fetch would not POST - was trying GET
-    // fetch(`/api/v1/projects`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: {project_name: "Frank"} })
-    //   .catch((error) => { throw error });
   }
 
 
