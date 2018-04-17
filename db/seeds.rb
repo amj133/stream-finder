@@ -37,6 +37,7 @@ hucs = [
           org_id: station.id,
           name: station.name,
           type_of: station.type,
+          huc: station.huc,
           description: station.description,
           latitude: station.latitude,
           longitude: station.longitude,
