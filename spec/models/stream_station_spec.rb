@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe StreamStation do
+  describe "validations" do
+    it { should validate_presence_of(:org_id) }
+    it { should validate_presence_of(:type_of) }
+    it { should validate_presence_of(:latitude) }
+    it { should validate_presence_of(:longitude) }
+  end
+
   describe "class methods" do
     context "#by_huc" do
       it "returns stream stations by huc" do
