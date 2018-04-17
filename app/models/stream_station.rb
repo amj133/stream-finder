@@ -21,12 +21,15 @@ class StreamStation < ApplicationRecord
   def self.map_search(search_params)
     huc = search_params["huc"]
     type = search_params["siteType"]
+    id = search_params["siteid"]
     if huc && type
       where("huc = ? AND type_of = ?", huc, type)
     elsif huc
       by_huc(huc)
     elsif type
       by_type(type)
+    elsif id
+      [by_id(id)]
     end
   end
 end

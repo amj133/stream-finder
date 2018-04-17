@@ -2,7 +2,6 @@ class Api::V1::StationsController < ApplicationController
 
   def index
     stations = StationsPresenter.new(station_params).stations_by_map_search
-    # stations = StationsFromWQP.new(station_params).stations
     geo_stations = transform_to_geojson(stations)
     render json: geo_stations
   end
