@@ -11,7 +11,7 @@ class WqpService
   end
 
   private
-  
+
     attr_reader :search_params
 
     def base_params
