@@ -16,12 +16,12 @@ class StationsPresenter
   private
     attr_reader :huc, :site_id
 
-    def check_db_or_fetch(method, search_key)
-      stations = StreamStation.send(method, search_params[search_key])
-      unless stations[0].nil?
-        stations
-      else
+    def check_db_or_fetch(search_method, search_key)
+      stations = StreamStation.send(search_method, search_params[search_key])
+      if stations.nil? || (stations[0].nil? && stations.class != StreamStation)
         StationsFromWQP.new(search_params).stations
+      else
+        stations
       end
     end
 

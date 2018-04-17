@@ -1,76 +1,91 @@
 <div class="p2 bg-white border rounded my2 mx-auto station-show-info">
-  <div class="">
-    Station: <%= @station.id %><br><br>
-    Type: <%= @station.type %><br><br>
+  <div>
+    <% unless @station.class == Station %>
+      Station ID: <%= @station.org_id %><br><br>
+      Type: <%= @station.type_of %><br><br>
+    <% end %>
+    <% unless @station.class == StreamStation %>
+      Station ID: <%= @station.id %><br><br>
+      Type: <%= @station.type %><br><br>
+    <% end %>
+    Name: <%= @station.name %><br><br>
     Description: <%= @station.description %><br><br>
     Coordinates: <%= @station.latitude %>, <%= @station.longitude %><br><br>
     Drainage Area: <%= @station.drainage_area %> <%= @station.drainage_area_units %>.
   </div>
 <div>
 
-
-  <div class="p2 bg-white border rounded my2 mx-auto streamflow-container">
-    <div class="chart-title">
-      Stream Discharge(cfs) in Past 24 Hours
-    </div>
-    <canvas id="myChart" width="1600" height="900"></canvas>
+<div class="p2 bg-white border rounded my2 mx-auto streamflow-container">
+  <div class="chart-title">
+    Stream Discharge(cfs) in Past 24 Hours
   </div>
+  <canvas id="myChart" width="1600" height="900"></canvas>
+</div>
 
 <script>
+$("streamflow-container").hide();
+
 // ---------------- FETCHING THE STREAMFLOW INFO -------------------
-var station_id = `${5<%= @station.id.split("-")[1] %>}`;
-debugger;
-fetch(`/api/v1/streamflow?station_id=${station_id.substr(0-8)}`)
-  .then((response) => response.json())
-  .then((streamflow) => {
-    var time = streamflow.time.map(function(time) {
-      return new Date(time.split(" ")[0],
-                      time.split(" ")[1] - 1,
-                      time.split(" ")[2],
-                      time.split(" ")[3],
-                      time.split(" ")[4])
-    }).sort();
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: time, //<--- X-AXIS GOES HERE
-        datasets: [
-          {
-            data: streamflow.discharge, //<--- Y-AXIS GOES HERE
-            label: "Discharge",
-            borderColor: "#3e95cd",
-            fill: false,
-            backgroundColor: 'rgb(106, 157, 164)',
-            borderColor: 'rgb(9, 23, 74)',
-          }
-        ]
-      },
-      options : {
-       scales: {
-         yAxes: [{
-           scaleLabel: {
-             display: true,
-             labelString: 'Discharge (cfs)'
-           }
-         }],
-         xAxes: [{
-           bounds: 'ticks',
-           type: 'time',
-           time: {
-                  displayFormats: {
-                    hour: 'MMM D, h:mm a'
-                }
-           },
-           distribution: 'linear',
-           scaleLabel: {
-             display: true,
-             labelString: 'Time',
-             unit: 'hour'
-           }
-         }],
+<% if @station.class == Station %>
+  var station_id = `${5<%= @station.id.split("-")[1] %>}`;
+<% else %>
+  var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
+<% end %>
+
+$(document).ready(function(){
+  fetch(`/api/v1/streamflow?station_id=${station_id.substr(0-8)}`)
+    .then((response) => response.json())
+    .then((streamflow) => {
+      var time = streamflow.time.map(function(time) {
+        return new Date(time.split(" ")[0],
+                        time.split(" ")[1] - 1,
+                        time.split(" ")[2],
+                        time.split(" ")[3],
+                        time.split(" ")[4])
+      }).sort();
+      var ctx = document.getElementById("myChart");
+      $("streamflow-container").show();
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: time, //<--- X-AXIS GOES HERE
+          datasets: [
+            {
+              data: streamflow.discharge, //<--- Y-AXIS GOES HERE
+              label: "Discharge",
+              borderColor: "#3e95cd",
+              fill: false,
+              backgroundColor: 'rgb(106, 157, 164)',
+              borderColor: 'rgb(9, 23, 74)',
+            }
+          ]
+        },
+        options : {
+         scales: {
+           yAxes: [{
+             scaleLabel: {
+               display: true,
+               labelString: 'Discharge (cfs)'
+             }
+           }],
+           xAxes: [{
+             bounds: 'ticks',
+             type: 'time',
+             time: {
+                    displayFormats: {
+                      hour: 'MMM D, h:mm a'
+                  }
+             },
+             distribution: 'linear',
+             scaleLabel: {
+               display: true,
+               labelString: 'Time',
+               unit: 'hour'
+             }
+           }],
+         }
        }
-     }
-    });
+      });
+    })
   })
 </script>

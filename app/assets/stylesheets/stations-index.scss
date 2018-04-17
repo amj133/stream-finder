@@ -18,8 +18,13 @@
 }
 
 .stations-index-table-container {
-  width: 80%;
+  width: 85%;
   margin-left: 8%;
+}
+
+.station-name {
+  width: 125px;
+  overflow: scroll;
 }
 
 .stations-index-table-header {
@@ -33,4 +38,8 @@
 
 .stations-index-table-body {
   background-color: #A4AC96;
+}
+
+.stations-index-drainage {
+  width: 125px;
 }

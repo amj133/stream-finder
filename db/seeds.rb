@@ -21,8 +21,6 @@ hucs = [
   "14010003"
 ]
 
-# desc "Loading all stations along urban front range"
-#   task load_urban_stations: :environment do
     StreamStation.destroy_all
     puts 'Loading front range stream stations'
 
@@ -48,4 +46,3 @@ hucs = [
     end
 
     puts "All front range stations loaded\n"
-  # end
