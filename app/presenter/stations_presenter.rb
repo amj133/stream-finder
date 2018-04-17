@@ -2,7 +2,9 @@ class StationsPresenter
 
   def initialize(attrs = {})
     @huc = attrs[:huc]
-    @site_id = attrs[:site_id]
+    @site_type = attrs[:siteType]
+    @site_id = attrs[:siteid]
+    @county_code = attrs[:countycode]
   end
 
   def stations_by_huc
@@ -14,7 +16,7 @@ class StationsPresenter
   end
 
   private
-    attr_reader :huc, :site_id
+    attr_reader :huc, :site_id, :siteType, :countycode
 
     def check_db_or_fetch(search_method, search_key)
       stations = StreamStation.send(search_method, search_params[search_key])
@@ -28,7 +30,9 @@ class StationsPresenter
     def search_params
       {
         "huc" => huc,
-        "siteid" => site_id
+        "siteid" => site_id,
+        "siteType" => site_type,
+        "countycode" => countycode
       }.compact
     end
 
