@@ -23,7 +23,7 @@ class StationsFromWQP
     attr_reader :search_params
 
     def raw_stations
-      WQPService.new(search_params).raw_stations
+      WqpService.new(search_params).raw_stations
     end
 
     def stations_from_multiple_organizations(response)
