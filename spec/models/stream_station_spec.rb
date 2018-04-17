@@ -15,5 +15,17 @@ describe StreamStation do
         expect(stations[1].org_id).to eq("USGS-3")
       end
     end
+
+    context "#by_org_id" do
+      it "returns stream station by id" do
+        create(:stream_station, org_id: "USGS-1", huc: "1")
+        create(:stream_station, org_id: "USGS-2", huc: "2")
+        create(:stream_station, org_id: "USGS-3", huc: "1")
+
+        station = StreamStation.by_id("USGS-2")
+
+        expect(station.org_id).to eq("USGS-2")
+      end
+    end
   end
 end
