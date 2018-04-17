@@ -21,7 +21,7 @@
       </thead>
       <tbody class="stations-index-table-body">
         <% @stations.each do |station| %>
-          <tr>
+          <tr class="station-index-table-rows">
             <td class="station-name" align="center"><%= station.name %></td>
             <% unless station.class == Station %>
               <td align="center"><%= link_to station.org_id, station_path(station.org_id) %></td>

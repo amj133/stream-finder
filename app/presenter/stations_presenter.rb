@@ -29,7 +29,7 @@ class StationsPresenter
       {
         "huc" => huc,
         "siteid" => site_id
-      }
+      }.compact
     end
 
 end

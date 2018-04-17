@@ -17,7 +17,7 @@ feature "user can view station information" do
         click_on('USGS-405432103591401')
 
         expect(current_path).to eq('/stations/USGS-405432103591401')
-        expect(page).to have_content("Station: USGS-405432103591401")
+        expect(page).to have_content("Station ID: USGS-405432103591401")
         expect(page).to have_content("Type: Well")
         expect(page).to have_content("Description: ")
         expect(page).to have_content("Coordinates: 40.9088743, -103.9877258")
