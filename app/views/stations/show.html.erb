@@ -5,8 +5,8 @@
       Type: <%= @station.type_of %><br><br>
     <% end %>
     <% unless @station.class == StreamStation %>
-      Station ID: <%= @station.id %><br><br>
-      Type: <%= @station.type %><br><br>
+      Station ID: <%= @station.org_id %><br><br>
+      Type: <%= @station.type_of %><br><br>
     <% end %>
     Name: <%= @station.name %><br><br>
     Description: <%= @station.description %><br><br>
@@ -27,7 +27,7 @@ $("streamflow-container").hide();
 
 // ---------------- FETCHING THE STREAMFLOW INFO -------------------
 <% if @station.class == Station %>
-  var station_id = `${5<%= @station.id.split("-")[1] %>}`;
+  var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
 <% else %>
   var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
 <% end %>

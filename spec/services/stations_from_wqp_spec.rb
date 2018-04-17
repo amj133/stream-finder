@@ -28,7 +28,7 @@ describe StationsFromWQP do
         station = StationsFromWQP.new(params).stations
 
         expect(station).to be_a(Station)
-        expect(station.id).to eq("USGS-09251500")
+        expect(station.org_id).to eq("USGS-09251500")
         expect(station.name).to eq("MF LITTLE SNAKE RIVER NEAR BATTLE CREEK, CO.")
         expect(station.drainage_area).to eq("120")
         expect(station.drainage_area_units).to eq("sq mi")

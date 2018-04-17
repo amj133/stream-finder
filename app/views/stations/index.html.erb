@@ -8,11 +8,9 @@
 </div>
 
 <% unless @stations.nil? %>
-  <% cache(cache_key_for("count", StreamStation)) do %>
   <div class="p2 bg-white border rounded my2 mx-auto filter-results">
       Displaying <%= @stations.count %> stations in table below
   </div>
-  <% end %>
 
   <div class='stations-index-table-container'>
     <table>
@@ -30,8 +28,8 @@
               <td align="center"><%= station.type_of %></td>
             <% end %>
             <% unless station.class == StreamStation %>
-              <td align="center"><%= link_to station.id, station_path(station.id) %></td>
-              <td align="center"><%= station.type %></td>
+              <td align="center"><%= link_to station.org_id, station_path(station.org_id) %></td>
+              <td align="center"><%= station.type_of %></td>
             <% end %>
             <td class="station-description" align="center"><%= station.description %></td>
             <td align="center"><%= station.latitude %></td>

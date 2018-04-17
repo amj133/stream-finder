@@ -32,9 +32,9 @@ hucs = [
       stations = StationsFromWQP.new(search_params).stations
       stations.each do |station|
         StreamStation.create!(
-          org_id: station.id,
+          org_id: station.org_id,
           name: station.name,
-          type_of: station.type,
+          type_of: station.type_of,
           huc: station.huc,
           description: station.description,
           latitude: station.latitude,
