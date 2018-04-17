@@ -1,0 +1,2 @@
+class StreamStation < ApplicationRecord
+end

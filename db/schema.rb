@@ -32,7 +32,17 @@ ActiveRecord::Schema.define(version: 20180416231142) do
     t.string "drainage_area_units"
   end
 
-  create_table "monitoring_stations", force: :cascade do |t|
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "huc"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "stream_stations", force: :cascade do |t|
     t.string "org_id"
     t.string "name"
     t.string "huc"
@@ -44,16 +54,6 @@ ActiveRecord::Schema.define(version: 20180416231142) do
     t.string "drainage_area_units"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string "name"
-    t.string "huc"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

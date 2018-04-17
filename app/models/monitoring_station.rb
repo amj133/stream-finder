@@ -1,2 +1,0 @@
-class MonitoringStation < ApplicationRecord
-end
