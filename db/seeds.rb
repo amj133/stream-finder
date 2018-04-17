@@ -7,6 +7,7 @@ hucs = [
   "10190006",
   "10190007",
   "10190008",
+  "10190009",
   "10190010",
   "10190014",
   "11020001",
@@ -20,15 +21,19 @@ hucs = [
   "14010003"
 ]
 
-desc "Loading all stations along urban front range"
-  task load_urban_stations: :environment do
-    MonitoringStation.destroy_all
-    puts 'Loading urban stations'
+# desc "Loading all stations along urban front range"
+#   task load_urban_stations: :environment do
+    StreamStation.destroy_all
+    puts 'Loading front range stream stations'
 
     hucs.each do |huc|
-      stations = StationsFromWQP.new({"huc" => huc})
+      search_params = {
+        "huc" => huc,
+        "siteType" => "Stream"
+      }
+      stations = StationsFromWQP.new(search_params).stations
       stations.each do |station|
-        MonitoringStation.create!(
+        StreamStation.create!(
           org_id: station.id,
           name: station.name,
           type_of: station.type,
@@ -41,5 +46,5 @@ desc "Loading all stations along urban front range"
       end
     end
 
-    puts "All urban stations loaded\n"
-  end
+    puts "All front range stations loaded\n"
+  # end
