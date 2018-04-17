@@ -24,7 +24,9 @@
           <tr class="station-index-table-rows">
             <td align="center"><%= link_to station.id, station_path(station.id) %></td>
             <td align="center"><%= station.name %></td>
-            <td align="center"><%= station.type %></td>
+            <td align="center"><%= station.type_of unless station.class == Station %></td>
+            <td align="center"><%= station.type unless station.class == StreamStation %></td>
+            <td align="center"><%= station.huc %></td>
             <td align="center"><%= station.description %></td>
             <td align="center"><%= station.latitude %></td>
             <td align="center"><%= station.longitude %></td>
