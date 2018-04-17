@@ -8,6 +8,11 @@ describe StreamStation do
     it { should validate_presence_of(:longitude) }
   end
 
+  describe "relationships" do
+    it { should have_many(:stream_station_projects) }
+    it { should have_many(:projects).through(:stream_station_projects) }
+  end
+
   describe "class methods" do
     context "#by_huc" do
       it "returns stream stations by huc" do
