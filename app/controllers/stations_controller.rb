@@ -9,8 +9,10 @@ class StationsController < ApplicationController
   end
 
   def show
-    @station = StationsFromWQP.new({"siteid" => params[:id]}).stations
-    @station_id = @station.id.split("-")[1]
+    # @station = StationsFromWQP.new({"siteid" => params[:id]}).stations
+    # @station_id = @station.id.split("-")[1]
+    binding.pry
+    @station = StationsPresenter.new(site_id: params[:id]).station_by_id
   end
 
 
