@@ -24,13 +24,16 @@ class StationsPresenter
     attr_reader :huc, :site_id, :site_type, :county_code
 
     def check_db_or_fetch(search_method, search_key = nil)
-      search_key.nil? ? params = search_params : params = search_params[search_key]
-      stations = StreamStation.send(search_method, params)
+      stations = StreamStation.send(search_method, stream_params(search_key))
       if stations.nil? || (stations[0].nil? && stations.class != StreamStation)
         [StationsFromWQP.new(search_params).stations].flatten
       else
         stations
       end
+    end
+
+    def stream_params(search_key)
+      search_key.nil? ? search_params : search_params[search_key]
     end
 
     def search_params
