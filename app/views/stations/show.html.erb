@@ -21,7 +21,6 @@
 <script>
 $("streamflow-container").hide();
 
-// ---------------- FETCHING THE STREAMFLOW INFO -------------------
 var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
 
 $(document).ready(function(){
@@ -40,10 +39,10 @@ $(document).ready(function(){
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: time, //<--- X-AXIS GOES HERE
+          labels: time,
           datasets: [
             {
-              data: streamflow.discharge, //<--- Y-AXIS GOES HERE
+              data: streamflow.discharge,
               label: "Discharge",
               borderColor: "#3e95cd",
               fill: false,
