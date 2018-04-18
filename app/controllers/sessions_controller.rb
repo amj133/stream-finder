@@ -11,13 +11,13 @@ class SessionsController < ApplicationController
       redirect_to user_path(user.slug)
     elsif user && user.password_digest.nil?
       flash[:notice] = "Must login through Google!"
-      render :new
+      redirect_to login_path
     elsif user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to user_path(user.slug)
     else
       flash[:notice] = "Incorrect credentials"
-      render :new
+      redirect_to login_path
     end
   end
 
