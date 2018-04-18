@@ -1,20 +1,32 @@
 <div class="p2 bg-white border rounded my2 mx-auto sign-up">
   <%= form_for(@user) do |f| %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %><br><br>
+    <div class="new-user-entry">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div><br>
 
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %><br><br>
+    <div class="new-user-entry">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div><br>
 
-    <%= f.label :email %>
-    <%= f.email_field :email %><br><br>
+    <div class="new-user-entry">
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div><br>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %><br><br>
+    <div class="new-user-entry">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div><br>
 
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %><br><br>
+    <div class="new-user-entry">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div><br>
 
-    <%= f.submit "Sign up"%>
+    <div class="sign-in-button">
+      <%= f.submit "Sign up"%>
+    </div>
   <% end %>
 </div>
