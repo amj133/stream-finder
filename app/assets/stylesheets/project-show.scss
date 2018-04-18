@@ -1,14 +1,7 @@
 .project-header {
-  margin-left: 40%;
-  h4 {
-    margin-left: 4%;
-  }
-  input {
-    margin-left: 12%;
-  }
-  .delete-button {
-    margin-left: 11.3%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .delete-project {
