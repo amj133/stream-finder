@@ -9,6 +9,11 @@
   <% end %>
 </div>
 
+<% if @stations.nil? %>
+  <div class="co-huc-map">
+  </div>
+<% end %>
+
 <% unless @stations.nil? %>
   <div class="p2 bg-white border rounded my2 mx-auto filter-results">
       Displaying <%= @stations.count %> stations in table below
