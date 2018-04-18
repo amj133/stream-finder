@@ -21,8 +21,7 @@ class StreamStationUpdateJob < ApplicationJob
           latitude: station.latitude,
           longitude: station.longitude,
           drainage_area: station.drainage_area,
-          drainage_area_units: station.drainage_area_units
-        )
+          drainage_area_units: station.drainage_area_units)
       end
     end
   end
