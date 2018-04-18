@@ -50,7 +50,6 @@
 <div class="search-results-container">
 </div>
 
-
 <script>
   $(".select-project").hide();
 
@@ -67,26 +66,23 @@
 
   var filterInput = document.getElementsByClassName('filter-input');
 
-//-----------CREATE URI FUNCTION-------------
+  function createURI(filterInput) {
+    var uri = "?";
+    if (filterInput[0].value != "") {
+      uri = uri + "huc=" + filterInput[0].value + " ";
+    }
+    if (filterInput[1].value != "") {
+      uri = uri + "siteType=" + filterInput[1].value + " ";
+    }
+    if (filterInput[2].value != "") {
+      uri = uri + "countycode=" + "US:08:" + filterInput[2].value + " ";
+    }
+    if (filterInput[3].value != "") {
+      uri = uri + "siteid=" + filterInput[3].value;
+    }
+    return uri.replace(/ /g, "&");
+  }
 
-function createURI(filterInput) {
-  var uri = "?";
-  if (filterInput[0].value != "") {
-    uri = uri + "huc=" + filterInput[0].value + " ";
-  }
-  if (filterInput[1].value != "") {
-    uri = uri + "siteType=" + filterInput[1].value + " ";
-  }
-  if (filterInput[2].value != "") {
-    uri = uri + "countycode=" + "US:08:" + filterInput[2].value + " ";
-  }
-  if (filterInput[3].value != "") {
-    uri = uri + "siteid=" + filterInput[3].value;
-  }
-  return uri.replace(/ /g, "&");
-}
-
-//-----------AJAX FUNCTION ------------------
   var i = 1;
 
    function getStations(map) {
@@ -114,7 +110,6 @@ function createURI(filterInput) {
              "icon-allow-overlap": true
            }
          });
-         //-----------CREATE LI FOR EACH STATION-----------
          if ($(".search-results-container")[0].innerHTML < 10){
            $(".search-results-container").append(
              `<button onclick="addFavoriteStations(map)" class="btn rounded">Add Stations</button>
@@ -130,7 +125,6 @@ function createURI(filterInput) {
            ${printStations(stations).join().replace(/,/g, '')}`
          );
 
-         //-----------------ADD DROPDOWN-----------------------
          var projects = <%= raw @projects %>;
 
          if ($(".select-project")[0].innerHTML.includes("<option value=")) {
@@ -140,7 +134,7 @@ function createURI(filterInput) {
                  `<option value="${project.name}">${project.name}</option>`
              )})
            }
-       }, // <----- END OF AJAX SUCCESS
+       },
 
 
        error:function() {
@@ -156,18 +150,6 @@ function createURI(filterInput) {
          map.getCanvas().style.cursor = '';
      });
    }
-
-   //--------------------SEND POST TO /api/v1/projects
-
-   const postPayload = (body) => {
-     return {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       body: JSON.stringify(body)
-     };
-   };
 
   function clearLayer(map) {
     map.removeLayer('stations' + i);
@@ -194,15 +176,11 @@ function createURI(filterInput) {
     });
   }
 
-   //---------------------printStations (search results list)
-
    function printStations(stations) {
       return stations.map(function(station) {
         return `<input class="station-results" type="checkbox" name="station_id" value="${station.properties.id}">${station.properties.id}<br>`
      })
    }
-
-  //------------------POPUP------------------------------
 
   map.on('click', function(e) {
   var features = map.queryRenderedFeatures(e.point);
