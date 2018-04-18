@@ -41,7 +41,7 @@ gem 'mapbox-gl-rails'
 gem 'jquery-rails'
 gem 'faraday_middleware'
 gem 'sidekiq'
-# gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
