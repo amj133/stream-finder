@@ -118,6 +118,7 @@ function createURI(filterInput) {
          if ($(".search-results-container")[0].innerHTML < 10){
            $(".search-results-container").append(
              `<button onclick="addFavoriteStations(map)" class="btn rounded">Add Stations</button>
+              <button onclick="clearLayer(map)" class="btn rounded">Clear Recent Search</button>
               </form>`
            );
          }
@@ -167,6 +168,10 @@ function createURI(filterInput) {
        body: JSON.stringify(body)
      };
    };
+
+  function clearLayer(map) {
+    map.removeLayer('stations' + i);
+  }
 
   function addFavoriteStations() {
     var selected = $(".project");
