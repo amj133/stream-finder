@@ -1,7 +1,5 @@
 # StreamFinder
 
-This application is built to help environe
-
 StreamFinder is an application geared towards environmental consultants and scientists looking to find water quality monitoring stations throughout Colorado.  The monitoring station data is retrieved from the Water Quality Portal Web Service and made available in an easy to navigate map interface.  Due to heroku record limitations, monitoring stations within the colorado front range (Colorado Springs to Fort Collins) are the only stations stored within the postgresql database.  This database is refreshed weekly by a background worker.  If the user performs a search for stations outside of this range, an api call is made.  
 
 The map interface was built using the Mapbox GL JS library, and allows users to search for monitoring stations based on watershed, type of station, county, or by a particluar station id.  I plan to build on this to allow users to search by drainage area, a common characterstic used by water resource engineers to find reference reaches for stream restoration projects.  Users can view stream discharge from the past 24 hours for a particular stream station.  I would like to add another feature that allows users to query historical data for a particular station and have it retrieved as a csv.  
