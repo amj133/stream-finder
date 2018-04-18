@@ -40,6 +40,7 @@ gem 'faraday'
 gem 'mapbox-gl-rails'
 gem 'jquery-rails'
 gem 'faraday_middleware'
+gem 'sidekiq'
 # gem 'newrelic_rpm'
 
 group :development, :test do
