@@ -20,9 +20,9 @@ describe Station do
   end
 
   it "assings attributes to reader methods" do
-    expect(subject.id).to eq("USGS-09251500")
+    expect(subject.org_id).to eq("USGS-09251500")
     expect(subject.name).to eq("MF LITTLE SNAKE RIVER NEAR BATTLE CREEK, CO.")
-    expect(subject.type).to eq("Stream")
+    expect(subject.type_of).to eq("Stream")
     expect(subject.description).to eq("Nice stream near a good wetland")
     expect(subject.drainage_area).to eq("120")
     expect(subject.drainage_area_units).to eq("sq mi")

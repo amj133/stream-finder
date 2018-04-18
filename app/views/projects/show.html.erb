@@ -1,20 +1,29 @@
-<%= @project.name %>
-<%= @project.huc %>
+<%= render partial: 'layouts/banner_3' %>
 
-Saved Stations
+<div class="project-header border rounded mx-auto">
+  <h4>Project: <%= @project.name %></h4>
+  <h5>Watershed: <%= @project.huc %></h5>
+  <%= button_to "edit", edit_project_path(@project.slug, user: @project.user.slug), method: :get %><br>
+  <%= button_to "delete", project_path(@project.slug, user: @project.user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"} %><br><br>
+</div>
 
-<ul>
-  <% unless @project.favorite_stations.nil? %>
-    <% @project.favorite_stations.each do |station| %>
-      <li><%= link_to station.org_id, station_path(station.org_id) %></li>
-      <li><%= station.type_of %></li>
-      <% if station.drainage_area %>
-        <li><%= station.drainage_area %> <%= station.drainage_area_units %></li>
+<div class="show-container">
+  <div class="p2 bg-white border rounded my2 mx-auto current-saved-stations">
+    <div class="saved-stations-header">
+      <h4>Saved Monitoring Stations</h4>
+    </div>
+
+    <div class="saved-station-info-container">
+      <% @project.favorite_stations.each do |station| %>
+        <div class="border rounded saved-station-info-details">
+          <%= link_to station.org_id, station_path(station.org_id) %>
+          <%= station.type_of %><br>
+          <% if station.drainage_area %>
+          <%= station.drainage_area %> <%= station.drainage_area_units %>
+          <% end %>
+          <%= button_to "remove", favorite_station_path(station, project: @project.slug), method: :delete %>
+        </div>
       <% end %>
-      <%= button_to "remove", favorite_station_path(station, project: @project.slug), method: :delete %>
-    <% end %>
-  <% end %>
-</ul>
-
-<%= button_to "edit", edit_project_path(@project.slug, user: @project.user.slug), method: :get %><br><br>
-<%= button_to "delete", project_path(@project.slug, user: @project.user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"} %><br><br>
+    </div>
+  </div>
+</div>

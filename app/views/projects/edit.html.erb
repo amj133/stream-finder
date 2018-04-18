@@ -1,9 +1,20 @@
-<%= form_for @project do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= render partial: 'layouts/banner_3' %>
 
-  <%= f.label :huc %>
-  <%= f.text_field :huc %>
+<div class="p2 bg-white border rounded my2 mx-auto edit-project">
+  <%= form_for @project do |f| %>
 
-  <%= f.submit %>
-<% end %>
+    <div class="session-entry">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div><br>
+
+    <div class="session-entry">
+      <%= f.label :huc %>
+      <%= f.text_field :huc %>
+    </div><br>
+
+    <div class="sign-in-button">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

@@ -1,13 +1,9 @@
+<%= render partial: 'layouts/banner_3' %>
+
 <div class="p2 bg-white border rounded my2 mx-auto station-show-info">
   <div>
-    <% unless @station.class == Station %>
-      Station ID: <%= @station.org_id %><br><br>
-      Type: <%= @station.type_of %><br><br>
-    <% end %>
-    <% unless @station.class == StreamStation %>
-      Station ID: <%= @station.id %><br><br>
-      Type: <%= @station.type %><br><br>
-    <% end %>
+    Station ID: <%= @station.org_id %><br><br>
+    Type: <%= @station.type_of %><br><br>
     Name: <%= @station.name %><br><br>
     Description: <%= @station.description %><br><br>
     Coordinates: <%= @station.latitude %>, <%= @station.longitude %><br><br>
@@ -26,11 +22,7 @@
 $("streamflow-container").hide();
 
 // ---------------- FETCHING THE STREAMFLOW INFO -------------------
-<% if @station.class == Station %>
-  var station_id = `${5<%= @station.id.split("-")[1] %>}`;
-<% else %>
-  var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
-<% end %>
+var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
 
 $(document).ready(function(){
   fetch(`/api/v1/streamflow?station_id=${station_id.substr(0-8)}`)

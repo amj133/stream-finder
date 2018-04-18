@@ -16,8 +16,8 @@ describe StationsFromWQP do
         expect(stations.first).to be_a(Station)
         expect(stations.last).to be_a(Station)
 
-        expect(stations.first.id).to eq("USGS-09371010")
-        expect(stations.last.id).to eq("UTEMTN-SJ-4C")
+        expect(stations.first.org_id).to eq("USGS-09371010")
+        expect(stations.last.org_id).to eq("UTEMTN-SJ-4C")
       end
 
       it "returns a single station from a single organization" do
@@ -28,7 +28,7 @@ describe StationsFromWQP do
         station = StationsFromWQP.new(params).stations
 
         expect(station).to be_a(Station)
-        expect(station.id).to eq("USGS-09251500")
+        expect(station.org_id).to eq("USGS-09251500")
         expect(station.name).to eq("MF LITTLE SNAKE RIVER NEAR BATTLE CREEK, CO.")
         expect(station.drainage_area).to eq("120")
         expect(station.drainage_area_units).to eq("sq mi")
@@ -41,8 +41,8 @@ describe StationsFromWQP do
 
         expect(stations.count).to eq(10)
         expect(stations.first).to be_a(Station)
-        expect(stations.first.id).to eq("USGS-405432103591401")
-        expect(stations.last.id).to eq("USGS-410004103545601")
+        expect(stations.first.org_id).to eq("USGS-405432103591401")
+        expect(stations.last.org_id).to eq("USGS-410004103545601")
       end
     end
   end

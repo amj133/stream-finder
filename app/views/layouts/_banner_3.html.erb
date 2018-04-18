@@ -1,0 +1,12 @@
+<%= render partial: 'layouts/base_banner' %>
+
+<div class="max-width-5 mx-auto top-90 mid-nav-stream">
+  <div class="clearfix">
+    <%= image_tag 'logo.png' %>
+  </div>
+</div>
+
+<% unless current_user %>
+  <div class="bottom-banner">
+  </div>
+<% end %>

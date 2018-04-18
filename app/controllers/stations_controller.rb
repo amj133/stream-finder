@@ -9,8 +9,7 @@ class StationsController < ApplicationController
   end
 
   def show
-    station = StationsPresenter.new(siteid: params[:id]).station_by_id
-    @station = station
+    @station = StationsPresenter.new(siteid: params[:id]).station_by_id
   end
 
 

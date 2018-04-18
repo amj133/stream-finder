@@ -7,6 +7,13 @@
   background-color: rgb(131, 159, 159);
 }
 
+.mid-nav-2 {
+  background-image: image-url('stream-painting.jpg');
+  background-position: 40%80.5%;
+  height: 200px;
+  border-bottom: rgb(63, 71, 74) solid 2px;
+}
+
 .streamflow-container {
   display: flex;
   flex-direction: column;

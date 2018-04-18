@@ -12,7 +12,8 @@ class StationsPresenter
   end
 
   def station_by_id
-    check_db_or_fetch(:by_id, "siteid")
+    station = check_db_or_fetch(:by_id, "siteid")
+    station.class == Array ? station.first : station
   end
 
   def stations_by_map_search
@@ -20,16 +21,19 @@ class StationsPresenter
   end
 
   private
-    attr_reader :huc, :site_id, :site_type, :countycode
+    attr_reader :huc, :site_id, :site_type, :county_code
 
     def check_db_or_fetch(search_method, search_key = nil)
-      search_key.nil? ? params = search_params : params = search_params[search_key]
-      stations = StreamStation.send(search_method, params)
+      stations = StreamStation.send(search_method, stream_params(search_key))
       if stations.nil? || (stations[0].nil? && stations.class != StreamStation)
-        StationsFromWQP.new(search_params).stations
+        [StationsFromWQP.new(search_params).stations].flatten
       else
         stations
       end
+    end
+
+    def stream_params(search_key)
+      search_key.nil? ? search_params : search_params[search_key]
     end
 
     def search_params
@@ -37,7 +41,7 @@ class StationsPresenter
         "huc" => huc,
         "siteid" => site_id,
         "siteType" => site_type,
-        "countycode" => countycode
+        "countycode" => county_code
       }.compact
     end
 

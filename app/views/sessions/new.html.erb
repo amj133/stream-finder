@@ -1,11 +1,20 @@
+<%= render partial: 'layouts/banner_1' %>
+
 <div class="p2 bg-white border rounded my2 mx-auto sign-in">
   <%= form_tag login_path do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %><br><br>
 
-  <%= label_tag :password %>
-  <%= password_field_tag :password %><br><br>
+    <div class="session-entry">
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </div><br>
 
-  <%= submit_tag "Sign in" %>
+    <div class="session-entry">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div><br>
+
+    <div class="sign-in-button">
+      <%= submit_tag "Sign in" %>
+    </div>
   <% end %>
 </div>

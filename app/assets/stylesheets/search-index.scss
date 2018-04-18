@@ -1,7 +1,15 @@
+.mid-nav-3 {
+  position: absolute;
+  top: -250px;
+  background-image: image-url('stream-painting.jpg');
+  background-position: 40%82.5%;
+  height: 200px;
+}
+
 #map {
   position: absolute;
   right: 0;
-  height: 600px;
+  height: 700px;
   width: 67%;
   z-index: 5;
   border-left: 2px solid rgb(99, 96, 117);
@@ -17,7 +25,6 @@
 .filter-container {
   display: flex;
   align-items: center;
-  // position: absolute;
   background-color: rgb(171, 191, 183);
   top: 280px;
   left: 0px;
@@ -50,6 +57,9 @@
   color: rgb(66, 80, 80);
   font-size: 14px;
   height: 30px;
+  a {
+    text-decoration: none;
+  }
 }
 
 .search-button-container {
@@ -68,11 +78,28 @@
 }
 
 .search-results-container {
-  height: 500px;
-  width: 33%;
-  background-color: rgb(203, 64, 60);
+  height: 490px;
+  width: 31.3%;
+  background-color: rgb(135, 158, 150);
+  overflow: scroll;
+  border-bottom: 2px solid rgb(99, 96, 117);
+  border-right: 2px solid rgb(99, 96, 117);
+  padding: 10px;
+  padding-bottom: 20px;
 }
 
 .station-search-results {
-  margin-left: 15px;
+  padding-top: 15px;
+  margin-left: 25px;
+}
+
+.select-project {
+  padding-left: 10px;
+  padding-top: 10px;
+  width: 100%;
+  height: 30px;
+  background-color: rgb(120, 118, 100);
+  border-top: 2px solid rgb(99, 96, 117);
+  border-bottom: 2px solid rgb(99, 96, 117);
+  font-size: 15px;
 }

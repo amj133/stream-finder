@@ -13,6 +13,7 @@ body {
   background-image: image-url('stream-painting.jpg');
   background-position: 40%42.5%;
   height: 200px;
+  border-bottom: rgb(63, 71, 74) solid 2px;
 }
 
 .bottom-nav {
@@ -32,9 +33,17 @@ body {
   }
 }
 
-.sign-in {
-  width: 400px;
-  background-color: rgb(186, 179, 136);
+.logout-link {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 25px;
+  margin-top: 8px;
+  a {
+    text-decoration: none;
+    color: #595358;
+    font-style: normal;
+    font-size: 13px;
+  }
 }
 
 .sign-up {

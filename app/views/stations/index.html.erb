@@ -1,3 +1,5 @@
+<%= render partial: 'layouts/banner_2' %>
+
 <div class="p2 bg-white border rounded my2 mx-auto index-filter">
   Select from options below to view stations by Colorado Watershed (HUC 8-digit)<br><br>
   <%= form_tag("/stations", method: "get") do %>
@@ -23,14 +25,8 @@
         <% @stations.each do |station| %>
           <tr class="station-index-table-rows">
             <td class="station-name" align="center"><%= station.name %></td>
-            <% unless station.class == Station %>
-              <td align="center"><%= link_to station.org_id, station_path(station.org_id) %></td>
-              <td align="center"><%= station.type_of %></td>
-            <% end %>
-            <% unless station.class == StreamStation %>
-              <td align="center"><%= link_to station.id, station_path(station.id) %></td>
-              <td align="center"><%= station.type %></td>
-            <% end %>
+            <td align="center"><%= link_to station.org_id, station_path(station.org_id) %></td>
+            <td align="center"><%= station.type_of %></td>
             <td class="station-description" align="center"><%= station.description %></td>
             <td align="center"><%= station.latitude %></td>
             <td align="center"><%= station.longitude %></td>
