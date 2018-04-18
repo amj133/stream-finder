@@ -1,4 +1,5 @@
 class StationsController < ApplicationController
+  include COWatersheds
   before_action :require_current_user
 
   def index
@@ -11,11 +12,5 @@ class StationsController < ApplicationController
   def show
     @station = StationsPresenter.new(siteid: params[:id]).station_by_id
   end
-
-
-  private
-    def require_current_user
-      render file: "public/404" unless current_user
-    end
 
 end

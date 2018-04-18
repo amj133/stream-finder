@@ -28,8 +28,4 @@ class UsersController < ApplicationController
       params[:user][:password] == params[:user][:password_confirmation]
     end
 
-    def require_current_user
-      render file: "/public/404" unless current_user
-    end
-
 end

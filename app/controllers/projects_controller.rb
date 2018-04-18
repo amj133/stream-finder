@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :require_current_user
-  before_action :require_users_project, only: [:show]
+  before_action :require_users_project, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -41,10 +41,6 @@ class ProjectsController < ApplicationController
 
     def set_project
       @project = Project.find_by_slug(params[:slug])
-    end
-
-    def require_current_user
-      render file: "/public/404" unless current_user
     end
 
     def require_users_project
