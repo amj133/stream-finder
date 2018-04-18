@@ -1,25 +1,33 @@
+<div class="max-width-5 mx-auto top-90 mid-nav-3">
+  <div class="clearfix">
+    <%= image_tag 'logo.png' %>
+  </div>
+</div>
+
 <div id='map' class='dark'></div>
 
 <div class="filter-container">
   <div class='filter-ctrl'>
     <input class='filter-input' type='text' name='filter' placeholder='Filter by HUC' />
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC code, ex. 10190003</div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC code,
+    <%= link_to "CO Watershed HUCS", "https://cfpub.epa.gov/surf/state.cfm?statepostal=CO", target: '_blank'%></div>
 </div>
 
 <div class="filter-container">
   <div class='filter-ctrl'>
     <input class='filter-input' type='text' name='filter' placeholder='Filter by Station Type' />
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. Stream - all options</div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. Stream -
+    <%= link_to "all options", "https://www.waterqualitydata.us/Codes/siteType?mimeType=json", target: '_blank'%></div>
 </div>
 
 <div class="filter-container">
   <div class='filter-ctrl'>
     <input class='filter-input' type='text' name='filter' placeholder='Filter by 3-digit County Code' />
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 005 for Arapahoe County, list</div>
-  <!-- https://en.wikipedia.org/wiki/List_of_counties_in_Colorado -->
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 005 for Arapahoe County,
+    <%= link_to "list", "https://en.wikipedia.org/wiki/List_of_counties_in_Colorado", target: '_blank'%></div>
 </div>
 
 <div class="filter-container">
@@ -34,7 +42,9 @@
 </div>
 
 <div class="select-project">
-  <select class="project" name="project_name"></select>
+  Select Project:&nbsp;&nbsp;&nbsp;
+  <select class="project" name="project_name">
+  </select>
 </div>
 
 <div class="search-results-container">
@@ -42,7 +52,7 @@
 
 
 <script>
-  $("select:empty").hide();
+  $(".select-project").hide();
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiYW1qMTMzIiwiYSI6ImNqZmoyNDA1NzBkc3cycXFveTVxNDF6ZWkifQ.Qxx-FLv74uWIPQq1fmpwyA';
 
@@ -112,7 +122,7 @@ function createURI(filterInput) {
            );
          }
 
-         $("select").show();
+         $(".select-project").show();
 
          $(".search-results-container").prepend(
            `<form action="/favorite_stations" method="post">

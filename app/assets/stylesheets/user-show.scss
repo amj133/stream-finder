@@ -1,0 +1,46 @@
+.mid-nav-2 {
+  background-image: image-url('stream-painting.jpg');
+  background-position: 40%80.5%;
+  height: 200px;
+  border-bottom: rgb(63, 71, 74) solid 2px;
+}
+
+.mid-nav-stream {
+  background-image: image-url('stream-painting.jpg');
+  background-position: 40%92.5%;
+  height: 200px;
+  border-bottom: rgb(63, 71, 74) solid 2px;
+}
+
+.show-info {
+  width: 80%;
+  background-color: rgb(108, 158, 155);
+}
+
+.current-projects {
+  width: 80%;
+  background-color: rgb(142, 189, 186);
+}
+
+.projects-header {
+  display: flex;
+  justify-content: center;
+}
+
+.project-info-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.project-details {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: #A4AC96;
+  padding: 10px;
+}
+
+.project-details:hover {
+  transform: scale(1.05);
+}
