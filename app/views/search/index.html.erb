@@ -38,7 +38,7 @@
 </div>
 
 <div class="search-button-container">
-  <button onclick="getEvents(map)" class="btn rounded">Search for Stations</button>
+  <button onclick="getStations(map)" class="btn rounded">Search for Stations</button>
 </div>
 
 <div class="select-project">
@@ -89,7 +89,7 @@ function createURI(filterInput) {
 //-----------AJAX FUNCTION ------------------
   var i = 1;
 
-   function getEvents(map) {
+   function getStations(map) {
      var uri = createURI(filterInput);
      $.ajax({
        dataType: 'text',
@@ -169,8 +169,9 @@ function createURI(filterInput) {
    };
 
   function addFavoriteStations() {
-    var selected = $(".project")
-    var selected_project = selected[0][selected[0].options.selectedIndex].value
+    var selected = $(".project");
+    var selected_project = selected[0][selected[0].options.selectedIndex].value;
+    alert(`Stations being added to ${selected_project}!`);
 
     var fav_stations = []
     $('.station-results:checked').each(function() {
@@ -187,8 +188,6 @@ function createURI(filterInput) {
       data: payload
     });
   }
-
-
 
    //---------------------printStations (search results list)
 
