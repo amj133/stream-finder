@@ -1,11 +1,14 @@
 .project-header {
-  margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  height: 189px;
-  background-color: rgb(108, 158, 155);
+  margin-left: 40%;
+  h4 {
+    margin-left: 4%;
+  }
+  input {
+    margin-left: 12%;
+  }
+  .delete-button {
+    margin-left: 11.3%;
+  }
 }
 
 .delete-project {
@@ -20,6 +23,7 @@
 .current-saved-stations {
   width: 80%;
   background-color: rgb(142, 189, 186);
+  margin-top: 0;
 }
 
 .saved-station-info-container {

@@ -1,10 +1,10 @@
 <%= render partial: 'layouts/banner_3' %>
 
-<div class="project-header border rounded mx-auto">
-  <h4>Project: <%= @project.name %></h4>
-  <h5>Watershed: <%= @project.huc %></h5>
-  <%= button_to "edit", edit_project_path(@project.slug, user: @project.user.slug), method: :get %><br>
-  <%= button_to "delete", project_path(@project.slug, user: @project.user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"} %><br><br>
+<div class="project-header">
+  <h3>Project: <%= @project.name %></h3>
+  <h4>Watershed: <%= @project.huc %></h4>
+  <%= button_to "edit", edit_project_path(@project.slug, user: @project.user.slug), method: :get %>
+  <%= button_to "delete", project_path(@project.slug, user: @project.user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"}, class: "delete-button"%><br><br>
 </div>
 
 <div class="show-container">
