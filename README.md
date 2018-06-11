@@ -38,13 +38,13 @@ To run the tests, follow the instructions in [Getting Started](#getting-started)
 ```
 rspec
 ```
-#####Our tests include: 
+##### Tests include: 
 * feature tests for logging in, creating and editing projects, and adding monitoring stations to a project
 * model tests of all ActiveRecord and PORO models
 * service tests of all PORO services
 * request tests of all API request endpoints
 
-#####Tools and gems used for testing:
+##### Tools and gems used for testing:
 * [capybara](https://github.com/teamcapybara/capybara)
 * [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
 * [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers)
