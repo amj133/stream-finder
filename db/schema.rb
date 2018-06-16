@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417191018) do
+ActiveRecord::Schema.define(version: 20180616210340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "app_credentials", force: :cascade do |t|
+    t.string "password_digest"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_app_credentials_on_user_id"
+  end
 
   create_table "favorite_station_projects", force: :cascade do |t|
     t.bigint "favorite_station_id"
@@ -30,6 +38,17 @@ ActiveRecord::Schema.define(version: 20180417191018) do
     t.float "longitude"
     t.float "drainage_area"
     t.string "drainage_area_units"
+  end
+
+  create_table "google_credentials", force: :cascade do |t|
+    t.string "uid"
+    t.string "token"
+    t.string "refresh_token"
+    t.string "expires_at"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_google_credentials_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -65,19 +84,18 @@ ActiveRecord::Schema.define(version: 20180417191018) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.string "password_digest"
     t.string "company"
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "uid"
     t.string "first_name"
     t.string "last_name"
-    t.string "token"
   end
 
+  add_foreign_key "app_credentials", "users"
   add_foreign_key "favorite_station_projects", "favorite_stations"
   add_foreign_key "favorite_station_projects", "projects"
+  add_foreign_key "google_credentials", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "stream_station_projects", "projects"
   add_foreign_key "stream_station_projects", "stream_stations"

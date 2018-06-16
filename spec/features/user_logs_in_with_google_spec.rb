@@ -15,6 +15,7 @@ def stub_omniauth
       "credentials" => {"token"=>
                         "ya29.GluTBeTjXUBAVhdQvj_itydUpV1f9t-yZV0HuHV5Dx8hXq46CH6kIt-ULKlvCzJKEEECDdAKAv3kuRDepP--hCxjr_WbJG-kevtlvIR96yDHiZz3u7N4J-MT32QI",
                         "expires_at"=>1522848529,
+                        "refresh_token"=>"abc123",
                         "expires"=>true}
     }
   )
@@ -39,7 +40,7 @@ feature "user logs in with Google Oauth" do
     it "and user info is updated" do
       stub_omniauth
 
-      create(:user, uid: "12345", email: "monkeysRock@example.com")
+      create(:user, email: "monkeysRock@example.com")
 
       stub_omniauth
       visit root_path

@@ -10,8 +10,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(email: user_params[:email], first_name: user_params[:first_name], last_name: user_params[:last_name])
     if password_confirmed? && @user.save
+      app_credential = AppCredential.create(password: user_params[:password])
+      @user.app_credential = app_credential
       session[:user_id] = @user.id
       redirect_to user_path(@user.slug)
     else
@@ -21,7 +23,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :slug, :email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
     end
 
     def password_confirmed?
