@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature "user can log in" do
+  let(:user) { create(:user) }
+
   context "visits root" do
     describe "clicks on sign in" do
-      let(:user) { create(:user) }
-
       it "fills out information, clicks sign in, brought to their dashboard" do
         user
 
@@ -56,7 +56,7 @@ feature "user can log in" do
 
   context "user can logout" do
     it "allows signed in user to logout" do
-      create(:user)
+      user
 
       visit "/"
       click_on("Sign in")
