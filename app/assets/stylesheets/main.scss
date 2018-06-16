@@ -1,8 +1,53 @@
 body {
   margin: 0;
   font-family: 'Ubuntu', sans-serif;
-  background-color: rgb(104, 134, 120);
+  background-image: image-url('topography.png');
 }
+
+.register {
+  background-color: #93cbb3;
+  border: none;
+  color: white;
+  padding: 13px 32px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.register:hover {
+  background-color: #348285;
+  color: white;
+}
+
+.login-options {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 80px;
+}
+
+.map-search-container {
+  margin-top: 3em;
+  display: flex;
+  justify-content: center;
+}
+
+.map-search-gif {
+  width: 800px;
+  height: 420px;
+  background-image: url('search-gif.gif');
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+///////
 
 .flash-container {
   width: 220px;
@@ -16,15 +61,18 @@ body {
   background-color: #ffffff;
 }
 
-.top-nav {
-  background-color: #A4AC96;
-  height: 30px;
-}
+// .top-nav {
+//   background-color: #A4AC96;
+//   height: 55px;
+// }
 
 .mid-nav {
-  background-image: image-url('stream-painting.jpg');
-  background-position: 40%42.5%;
-  height: 200px;
+  // background-image: image-url('stream-painting.jpg');
+  // background-position: 40%42.5%;
+  background-image: url("https://images.unsplash.com/photo-1492461662041-632aa92d5586?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5785a687fe6688440dceb5eb528d193d&auto=format&fit=crop&w=2089&q=80");
+  background-position: 40%60%;
+  background-size: cover;
+  height: 240px;
   border-bottom: rgb(63, 71, 74) solid 2px;
 }
 

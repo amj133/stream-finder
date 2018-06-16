@@ -1,14 +1,19 @@
+.welcome-header {
+  margin-left: 25%;
+}
+
 .welcome-container {
   width: 100%;
   display: flex;
 }
 
 .welcome-text {
+  margin-top: 5em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: rgba(227, 203, 121, 0.6);
-  height: 400px;
+  height: auto;
   width: 600px;
 }
 
