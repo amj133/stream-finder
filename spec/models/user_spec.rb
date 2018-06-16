@@ -5,11 +5,12 @@ describe User do
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email) }
     it { should validate_presence_of(:first_name) }
-    it { should have_secure_password }
   end
 
   describe "relationships" do
     it { should have_many(:projects) }
+    it { should have_one(:app_credential) }
+    it { should have_one(:google_credential) }
   end
 
   it "creates or updates info from omniauth hash" do
@@ -29,10 +30,11 @@ describe User do
 
     user = User.create_or_update(auth)
 
-    expect(user.uid).to eq("12345")
     expect(user.email).to eq("billy@example.com")
     expect(user.first_name).to eq("Billy")
     expect(user.last_name).to eq("Bob")
-    expect(user.token).to eq("jfs.124jk--sff9")
+    expect(user.google_credential.uid).to eq("12345")
+    expect(user.google_credential.token).to eq("jfs.124jk--sff9")
+    expect(user.google_credential.expires_at).to eq("1522848529")
   end
 end
