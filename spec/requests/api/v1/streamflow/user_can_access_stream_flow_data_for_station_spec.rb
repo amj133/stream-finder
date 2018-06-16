@@ -13,11 +13,11 @@ describe "GET /api/v1/streamflow" do
       x_axis_data = time_series["time"]
       y_axis_data = time_series["discharge"]
 
-      expect(x_axis_data.first).to eq("2018 04 11 18 45")
-      expect(x_axis_data.last).to eq("2018 04 12 17 45")
+      expect(x_axis_data.first.split[0]).to eq("2018")
+      expect(x_axis_data.last.split[0]).to eq("2018")
 
-      expect(y_axis_data.first).to eq(10.4)
-      expect(y_axis_data.last).to eq(11.7)
+      expect(y_axis_data.first.class).to eq(Float)
+      expect(y_axis_data.last.class).to eq(Float)
     end
   end
 end
