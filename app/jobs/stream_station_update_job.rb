@@ -17,6 +17,7 @@ class StreamStationUpdateJob < ApplicationJob
           name: station.name,
           type_of: station.type_of,
           huc: station.huc,
+          county_code: station.county_code,
           description: station.description,
           latitude: station.latitude,
           longitude: station.longitude,

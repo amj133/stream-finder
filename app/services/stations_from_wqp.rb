@@ -1,6 +1,5 @@
 class StationsFromWQP
   include WqpXmlParser
-  include StationToFavoriteStation
 
   def initialize(search_params = {})
     @search_params = search_params
@@ -38,6 +37,21 @@ class StationsFromWQP
       stations = response["WQX"]["Organization"]["MonitoringLocation"].map do |raw_station|
         Station.new(raw_station)
       end
+    end
+
+    def add_to_favorite_stations(station)
+      FavoriteStation.new({
+        org_id: station.org_id,
+        name: station.name,
+        huc: station.huc,
+        county_code: station.county_code,
+        type_of: station.type_of,
+        description: station.description,
+        latitude: station.latitude,
+        longitude: station.longitude,
+        drainage_area: station.drainage_area,
+        drainage_area_units: station.drainage_area_units
+      })
     end
 
 end

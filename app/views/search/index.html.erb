@@ -37,6 +37,13 @@
   <div class='filter-options'>&nbsp;&nbsp;&nbsp;Agency Site ID ex. USGS-09251500</div>
 </div>
 
+<div class="filter-container">
+  <div class='filter-ctrl'>
+    <input class='filter-input' type='text' name='filter' placeholder='Filter by Drainage Area Range' />
+  </div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 100-200 (units are sq. mi.)</div>
+</div>
+
 <div class="search-button-container">
   <button onclick="getStations(map)" class="btn rounded">Search for Stations</button>
 </div>
@@ -79,6 +86,9 @@
     }
     if (filterInput[3].value != "") {
       uri = uri + "siteid=" + filterInput[3].value;
+    }
+    if (filterInput[4].value != "") {
+      uri = uri + "drainageArea=" + filterInput[4].value;
     }
     return uri.replace(/ /g, "&");
   }
@@ -191,13 +201,22 @@
 
   var feature = features[0];
 
+  const createDrainageAreaText = (feature) => {
+    if(feature.properties.drainage_area == 0) {
+      return "Not provided"
+    } else {
+      return (feature.properties.drainage_area + " " + feature.properties.drainage_area_units)
+    }
+  }
+
   var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .setLngLat(feature.geometry.coordinates)
     .setHTML('<h3>' + feature.properties.name
              + '</h3><p> ID: ' + feature.properties.id
              + '</h3><p> Type: ' + feature.properties.type
-             + '</h3><p> Watershed: ' + feature.properties.drainage_area + " " + feature.properties.drainage_area_units
-             + '</h3><p> Coordinates: ' + feature.geometry.coordinates[1] + feature.geometry.coordinates[0]
+             + '</h3><p> Watershed: ' + createDrainageAreaText(feature)
+             + '</h3><p> Latitude: ' + feature.geometry.coordinates[1]
+             + '</h3><p> Longitude: ' + feature.geometry.coordinates[0]
              + '</p>')
     .setLngLat(feature.geometry.coordinates)
     .addTo(map);
