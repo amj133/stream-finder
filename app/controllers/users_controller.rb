@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_slug(params[:slug])
+    return render :show  if @user == current_user
+
+    flash[:notice] = "Cannot access"
+    redirect_to user_path(current_user.slug)
   end
 
   def new
