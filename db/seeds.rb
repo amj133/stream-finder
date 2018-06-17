@@ -43,6 +43,7 @@ hucs = [
           drainage_area_units: station.drainage_area_units
         )
       end
+      puts "HUC #{huc} stream stations loaded"
     end
 
     puts "All front range stations loaded\n"
