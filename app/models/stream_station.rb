@@ -32,14 +32,14 @@ class StreamStation < ApplicationRecord
     county_search = "county_code = '#{search_params['countycode'].split(':')[2]}'" if search_params["countycode"] != nil
 
     if search_params["drainage_area"].nil?
-      da_search = "drainage_area IS NOT NULL"
+      da_search = ""
     else
       min = search_params['drainage_area'].split('-')[0]
       max = search_params['drainage_area'].split('-')[1]
-      da_search = "drainage_area >= #{min} AND drainage_area <= #{max}"
+      da_search = "AND drainage_area >= #{min} AND drainage_area <= #{max}"
     end
 
-    query = "#{huc_search} AND #{type_search} AND #{id_search} AND #{county_search} AND #{da_search}"
+    query = "#{huc_search} AND #{type_search} AND #{id_search} AND #{county_search} #{da_search}"
     where(query)
   end
 end
