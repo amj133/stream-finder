@@ -44,6 +44,7 @@ class StationsFromWQP
         org_id: station.org_id,
         name: station.name,
         huc: station.huc,
+        county_code: station.county_code,
         type_of: station.type_of,
         description: station.description,
         latitude: station.latitude,

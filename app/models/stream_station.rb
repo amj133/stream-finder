@@ -18,18 +18,28 @@ class StreamStation < ApplicationRecord
     where(type_of: type)
   end
 
-  def self.map_search(search_params)
-    huc = search_params["huc"]
-    type = search_params["siteType"]
-    id = search_params["siteid"]
-    if huc && type
-      where("huc = ? AND type_of = ?", huc, type)
-    elsif huc
-      by_huc(huc)
-    elsif type
-      by_type(type)
-    elsif id
-      [by_id(id)]
+  def self.by_multiple_params(search_params)
+    huc_search = "huc IS NOT NULL" if search_params["huc"].nil?
+    huc_search = "huc = '#{search_params['huc']}'" if search_params["huc"] != nil
+
+    type_search = "type_of IS NOT NULL" if search_params["siteType"].nil?
+    type_search = "type_of = '#{search_params['siteType']}'" if search_params["siteType"] != nil
+
+    id_search = "org_id IS NOT NULL" if search_params["siteid"].nil?
+    id_search = "org_id = '#{search_params['siteid']}'" if search_params["siteid"] != nil
+
+    county_search = "county_code IS NOT NULL" if search_params["countycode"].nil?
+    county_search = "county_code = '#{search_params['countycode'].split(':')[2]}'" if search_params["countycode"] != nil
+
+    if search_params["drainage_area"].nil?
+      da_search = "drainage_area IS NOT NULL"
+    else
+      min = search_params['drainage_area'].split('-')[0]
+      max = search_params['drainage_area'].split('-')[1]
+      da_search = "drainage_area >= #{min} AND drainage_area <= #{max}"
     end
+
+    query = "#{huc_search} AND #{type_search} AND #{id_search} AND #{county_search} AND #{da_search}"
+    where(query)
   end
 end
