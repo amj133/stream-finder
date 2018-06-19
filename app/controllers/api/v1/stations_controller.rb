@@ -1,7 +1,7 @@
 class Api::V1::StationsController < ApplicationController
 
   def index
-    stations = StationsPresenter.new(station_params).stations_by_map_search
+    stations = StationsPresenter.new(station_params).stations_by_multiple_params
     geo_stations = transform_to_geojson(stations)
     render json: geo_stations
   end
@@ -14,7 +14,7 @@ class Api::V1::StationsController < ApplicationController
     end
 
     def station_params
-      params.permit(:huc, :siteType, :countycode, :siteid)
+      params.permit(:huc, :siteType, :countycode, :siteid, :drainageArea)
     end
 
 end

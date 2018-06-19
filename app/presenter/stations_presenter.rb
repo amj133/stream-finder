@@ -5,6 +5,7 @@ class StationsPresenter
     @site_type = attrs[:siteType]
     @site_id = attrs[:siteid]
     @county_code = attrs[:countycode]
+    @drainage_area = attrs[:drainageArea]
   end
 
   def stations_by_huc
@@ -16,12 +17,12 @@ class StationsPresenter
     station.class == Array ? station.first : station
   end
 
-  def stations_by_map_search
-    check_db_or_fetch(:map_search)
+  def stations_by_multiple_params
+    check_db_or_fetch(:by_multiple_params)
   end
 
   private
-    attr_reader :huc, :site_id, :site_type, :county_code
+    attr_reader :huc, :site_id, :site_type, :county_code, :drainage_area
 
     def check_db_or_fetch(search_method, search_key = nil)
       stations = StreamStation.send(search_method, stream_params(search_key))
@@ -41,7 +42,8 @@ class StationsPresenter
         "huc" => huc,
         "siteid" => site_id,
         "siteType" => site_type,
-        "countycode" => county_code
+        "countycode" => county_code,
+        "drainage_area" => drainage_area
       }.compact
     end
 

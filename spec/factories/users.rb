@@ -1,11 +1,12 @@
- FactoryBot.define do
+FactoryBot.define do
   factory :user do
     first_name "Billy"
     last_name "Bob"
     email "billy@example.com"
-    password "password"
-    password_confirmation "password"
     company "Turing"
     slug "billy"
+    before(:create) do |user|
+      user.create_app_credential(password: "password")
+    end
   end
 end

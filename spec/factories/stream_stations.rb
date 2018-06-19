@@ -6,7 +6,8 @@ FactoryBot.define do
     type_of "Stream"
     latitude "1.234567"
     longitude "2.12345"
-    drainage_area "1.2"
+    drainage_area 1.2
     drainage_area_units "sq mi"
+    county_code "012"
   end
 end

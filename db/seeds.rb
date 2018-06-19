@@ -36,6 +36,7 @@ hucs = [
           name: station.name,
           type_of: station.type_of,
           huc: station.huc,
+          county_code: station.county_code,
           description: station.description,
           latitude: station.latitude,
           longitude: station.longitude,
@@ -43,6 +44,7 @@ hucs = [
           drainage_area_units: station.drainage_area_units
         )
       end
+      puts "HUC #{huc} stream stations loaded"
     end
 
     puts "All front range stations loaded\n"
