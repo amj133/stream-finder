@@ -1,7 +1,7 @@
 <%= render partial: 'layouts/banner_3' %>
 
-<div class="p2 bg-white border rounded my2 mx-auto station-show-info">
-  <div>
+<div class="">
+  <div class="p2 bg-white border rounded my2 mx-auto station-show-info">
     Station ID: <%= @station.org_id %><br><br>
     Type: <%= @station.type_of %><br><br>
     Name: <%= @station.name %><br><br>
@@ -18,65 +18,152 @@
   <canvas id="myChart" width="1600" height="900"></canvas>
 </div>
 
-<script>
-$("streamflow-container").hide();
+<div class="p2 bg-white border rounded my2 mx-auto historical-discharge-search">
+  <h3>Enter dates to search for historic streamflow</h3>
+  <div class="search-container">
+    <div class='filter-ctrl'>
+      <input class='filter-input' type='text' name='filter' placeholder='Start Date' />
+    </div>
+    <div class='filter-options'>&nbsp;&nbsp;&nbsp;(YYYY-MM-DD)</div>
+  </div>
+  <div class="search-container">
+    <div class='filter-ctrl'>
+      <input class='filter-input' type='text' name='filter' placeholder='End Date' />
+    </div>
+    <div class='filter-options'>&nbsp;&nbsp;&nbsp;(YYYY-MM-DD)</div>
+  </div>
+  <div class="get-historic-container">
+    <button onclick="getHistoricalStreamflow()" class="btn rounded get-historic">View Historical Streamflow</button>
+  </div>
+  <div class="get-historic-container">
+    <button onclick="emailStreamflow()" class="btn rounded email-streamflow">Email Me Streamflow Data</button>
+  </div>
+</div>
 
+<script>
+// $(".streamflow-container").hide();
 var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
+
+let ctx = document.getElementById("myChart");
+let streamChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        label: "Discharge",
+        borderColor: "#3e95cd",
+        fill: false,
+        backgroundColor: 'rgb(106, 157, 164)',
+        borderColor: 'rgb(9, 23, 74)',
+      }
+    ]
+  },
+  options : {
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Discharge (cfs)'
+        }
+      }],
+      xAxes: [{
+        bounds: 'ticks',
+        type: 'time',
+        time: {
+               displayFormats: {
+                 hour: 'MMM D, h:mm a'
+             }
+        },
+        distribution: 'linear',
+        scaleLabel: {
+          display: true,
+          labelString: 'Time',
+          unit: 'hour'
+        }
+      }],
+    }
+ }
+});
+
+function removeData(chart) {
+  chart.data.labels = [];
+  chart.data.datasets[0].data = []
+  chart.update();
+}
+
+function addData(chart, label, data) {
+  chart.data.labels = label;
+  chart.data.datasets[0].data = data
+  chart.update();
+}
+
+const updateStreamChart = (time, streamflow) => {
+  removeData(streamChart)
+  addData(streamChart, time, streamflow.discharge)
+  streamChart.options.scales.yAxes[0].scaleLabel.min = Math.min(...streamflow.discharge) - 1;
+  streamChart.options.scales.yAxes[0].scaleLabel.max = Math.max(...streamflow.discharge) + 1;
+  streamChart.options.scales.xAxes[0].scaleLabel.min = Math.min(...time);
+  streamChart.options.scales.xAxes[0].scaleLabel.max = Math.max(...time);
+  streamChart.update()
+}
+
+const convertStringToDatetime = (time) => {
+  return new Date(time.split(" ")[0],
+                  time.split(" ")[1] - 1,
+                  time.split(" ")[2],
+                  time.split(" ")[3],
+                  time.split(" ")[4])
+}
 
 $(document).ready(function(){
   fetch(`/api/v1/streamflow?station_id=${station_id.substr(0-8)}`)
     .then((response) => response.json())
     .then((streamflow) => {
       var time = streamflow.time.map(function(time) {
-        return new Date(time.split(" ")[0],
-                        time.split(" ")[1] - 1,
-                        time.split(" ")[2],
-                        time.split(" ")[3],
-                        time.split(" ")[4])
+        return convertStringToDatetime(time)
       }).sort();
-      var ctx = document.getElementById("myChart");
-      $("streamflow-container").show();
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: time,
-          datasets: [
-            {
-              data: streamflow.discharge,
-              label: "Discharge",
-              borderColor: "#3e95cd",
-              fill: false,
-              backgroundColor: 'rgb(106, 157, 164)',
-              borderColor: 'rgb(9, 23, 74)',
-            }
-          ]
-        },
-        options : {
-         scales: {
-           yAxes: [{
-             scaleLabel: {
-               display: true,
-               labelString: 'Discharge (cfs)'
-             }
-           }],
-           xAxes: [{
-             bounds: 'ticks',
-             type: 'time',
-             time: {
-                    displayFormats: {
-                      hour: 'MMM D, h:mm a'
-                  }
-             },
-             distribution: 'linear',
-             scaleLabel: {
-               display: true,
-               labelString: 'Time',
-               unit: 'hour'
-             }
-           }],
-         }
-       }
-      });
+      updateStreamChart(time, streamflow)
     })
-  })
+})
+
+const getStartDate = (dateInput) => {
+  return dateInput[0].value
+}
+
+const getEndDate = (dateInput) => {
+  return dateInput[1].value
+}
+
+const getStationName = () => {
+  return window.location.pathname.split("/")[2].split("-")[1]
+}
+
+const getHistoricalStreamflow = () => {
+  let dates = $('.filter-input')
+  let startDate = getStartDate(dates)
+  let endDate = getEndDate(dates)
+  let stationId = getStationName()
+  let params = `?startDate=${startDate}&endDate=${endDate}`
+  fetch(`/api/v1/date_range_streamflow/${stationId}` + params)
+    .then((response) => response.json())
+    .then((streamflow) => {
+      var time = streamflow.time.map(function(time) {
+        return convertStringToDatetime(time)
+      }).sort();
+      updateStreamChart(time, streamflow)
+    })
+}
+
+const emailStreamflow = () => {
+  let dates = $('.filter-input')
+  let startDate = getStartDate(dates)
+  let endDate = getEndDate(dates)
+  let stationId = getStationName()
+  let params = `?startDate=${startDate}&endDate=${endDate}`
+  fetch(`/api/v1/email_streamflow/${stationId}` + params, {credentials: "same-origin"})
+    .then((response) => response.json())
+}
+
 </script>
