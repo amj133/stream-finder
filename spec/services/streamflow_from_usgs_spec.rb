@@ -6,7 +6,7 @@ describe StreamflowFromUSGS do
       it "returns Timeseries object" do
         usgs_01646500_streamflow_stub
 
-        time_series = StreamflowFromUSGS.new({"site" => "01646500"}).streamflow
+        time_series = StreamflowFromUSGS.new({"period" => "P1D", "site" => "01646500"}).streamflow
 
         expect(time_series).to be_a(TimeSeries)
 

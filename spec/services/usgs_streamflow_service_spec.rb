@@ -5,7 +5,7 @@ describe USGSStreamflowService do
     context "#raw_streamflow" do
       it "returns a raw collection of times and streamflow" do
         VCR.use_cassette("USGS Streamflow by Station") do
-          search_params = {"site" => "01646500"}
+          search_params = {"period" => "P1D", "site" => "01646500"}
           raw_streamflow = USGSStreamflowService.new(search_params).raw_streamflow
 
           expect(raw_streamflow).to be_a(Hash)
