@@ -2,13 +2,13 @@
   <div class="max-width-5 mx-auto top-90 bottom-nav">
       <div class="nav-buttons-container">
         <div>
-          <%= link_to 'Dashboard', user_path(current_user.slug) %>
+          <%= link_to 'Dashboard', user_path(current_user.slug) if current_user %>
         </div>
         <div>
-          <%= link_to "Stations Index", stations_path %>
+          <%= link_to "Stations Index", stations_path if current_user %>
         </div>
         <div>
-          <%= link_to "Station Search", search_index_path %>
+          <%= link_to "Station Search", search_index_path if current_user %>
         </div>
         <div>
           Providers

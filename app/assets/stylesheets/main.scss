@@ -42,12 +42,10 @@ body {
 .map-search-gif {
   width: 800px;
   height: 420px;
-  background-image: url('search-gif.gif');
+  background-image: image-url('search-gif.gif');
   background-size: auto;
   background-repeat: no-repeat;
 }
-
-///////
 
 .flash-container {
   width: 220px;
@@ -66,7 +64,8 @@ body {
   background-position: 40%60%;
   background-size: cover;
   height: 240px;
-  border-bottom: rgb(63, 71, 74) solid 2px;
+  border-top: 2px solid gray;
+  border-bottom: 1px solid gray;
 }
 
 .bottom-nav {
@@ -110,6 +109,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-bottom: 2px solid darkgray;
   height: 50px;
   a {
     text-decoration: none;
