@@ -26,3 +26,5 @@
 
 # Ignore compiled assets
 public/assets
+
+dump.rdb
