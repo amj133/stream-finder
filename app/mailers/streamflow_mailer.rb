@@ -1,10 +1,11 @@
 class StreamflowMailer < ApplicationMailer
-  default from: 'frankyrocksallday@gmail.com'
+  default from: 'app93362195@heroku.com'
 
-  def historical_streamflow(user, streamflow)
-    @streamflow = streamflow
+  def historical_streamflow(email, time, discharge)
+    @time = time
+    @discharge = discharge
 
-    mail to: 'amj@vt.edu', subject: 'Historical Streamflow'
+    mail to: email, subject: 'Historical Streamflow'
   end
 
 end

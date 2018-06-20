@@ -1,6 +1,6 @@
 This is only a test
 
 Datetime(YYYY-MM-DDTHH+MM:SS+UTC-OFFSET),Discharge(cfs)\r\n
-<% @streamflow.time.each_with_index do |time, index| %>
-  <%= "#{time.to_s},#{@streamflow.discharge[index]}\r\n"%>
+<% @time.each_with_index do |time, index| %>
+  <%= "#{time.to_s},#{@discharge[index]}\r\n"%>
 <% end %>

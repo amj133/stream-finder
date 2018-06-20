@@ -25,4 +25,7 @@ Rails.application.routes.draw do
       resources :email_streamflow, only: [:show]
     end
   end
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

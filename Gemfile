@@ -41,9 +41,11 @@ gem 'mapbox-gl-rails'
 gem 'jquery-rails'
 gem 'faraday_middleware'
 gem 'sidekiq'
+gem 'redis'
 gem 'newrelic_rpm'
 gem 'simple_scheduler'
 gem 'sendgrid-ruby'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
