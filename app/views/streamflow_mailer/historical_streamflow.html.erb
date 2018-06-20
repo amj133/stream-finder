@@ -1,4 +1,4 @@
-<p>This is only a test</p>
+<p>Historical Streamflow for Station <%= @site_id %> from <%= @time.first %> to <%= @time.last %></p>
 
 Datetime(YYYY-MM-DDTHH+MM:SS+UTC-OFFSET),Discharge(cfs)<br>
 <% @time.each_with_index do |time, index| %>
