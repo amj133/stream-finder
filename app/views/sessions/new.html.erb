@@ -1,20 +1,21 @@
 <%= render partial: 'layouts/banner_1' %>
 
-<div class="p2 bg-white border rounded my2 mx-auto sign-in">
+<div class="p2 bg-white border my2 mx-auto sign-in">
+  <h3>Sign in to find stations near you</h3>
+
   <%= form_tag login_path do %>
+    <div class="session-entry">
+      <p>Email</p>
+      <%= text_field_tag :email, "Email", class: 'sign-in-input' %>
+    </div><br><br><br>
 
     <div class="session-entry">
-      <%= label_tag :email %>
-      <%= text_field_tag :email %>
-    </div><br>
-
-    <div class="session-entry">
-      <%= label_tag :password %>
-      <%= password_field_tag :password %>
-    </div><br>
+      <p>Password</p>
+      <%= password_field_tag :password, "Password", class: 'sign-in-input' %>
+    </div><br><br><br><br>
 
     <div class="sign-in-button">
-      <%= submit_tag "Sign in" %>
+      <%= submit_tag "Sign in", class: 'register' %>
     </div>
   <% end %>
 </div>

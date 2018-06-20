@@ -1,10 +1,39 @@
 <%= render partial: 'layouts/banner_1' %>
 
+<div class="welcome-header">
+  <h1>Welcome to StreamFinder</h1>
+</div>
+
 <div class="welcome-container">
-  <div class="p2 bg-white border rounded my2 mx-auto welcome-text">
-    <h3>Welcome to StreamFinder</h3>
-    <p>StreamFinder is an application geared towards environmental consultants and scientists looking to find water quality monitoring stations throughout Colorado.  The water quality monitoring station data is retrieved from the Water Quality Portal Web Service and made available in an easy to navigate map interface.  By adding monitoring stations to a particular project, users can view recent data from the station (streamflow, water quality results, etc.) and search for specific historical data.  Historical data is provided by way of the USGS Water Data Web Service.</p>
-    <p>The map to the right shows the major western water distrcits identified by John Wesley Powell in 1890.  Powell was a civil war veteran and early American explorer of the western territories (led the first documented passage through the Grand Canyon).  Powell argued to congress that future western states should be divided by these districts, stating: "Gentlemen, you are piling up a heritage of conflict and litigation over water rights, for there is not sufficient water to supply the land."  This impressive foresight provides an interesting thought experiment about well planned environmental regulation and what it means to be a citizen of a state.</p>
+  <div class="p2 bg-white rounded my2 mx-auto welcome-text">
+    <h3>An application geared towards environmental consultants and scientists looking to:</h3>
+      <li>Find reference reaches for environmental restoration projects</li><br>
+      <li>Find stream, wetland, and subsurface monitoring stations throughout Colorado</li><br>
+      <li>Search for stations by watershed (HUC 8)</li><br>
+      <li>Search for stream stations by drainage area</li><br>
+      <li>Obtain historic streamflow data</li>
+  </div>
+</div>
+
+<div class="p2 bg-white rounded my2 mx-auto welcome-text">
+  <p>The station data is retrieved from the <a href="https://www.waterqualitydata.us/webservices_documentation/" target="_blank">Water Quality Portal Web Service</a> and made available in an easy to navigate map interface.</p>
+  <p>By adding monitoring stations to a particular project, users can:</p>
+     <li>View recent (24-hr) streamflow</li>
+     <li>Perform a query for historical streamflow</li>
+     <li>Have streamflow data emailed for further analysis</li>
+  <p>Historical data is provided by way of the USGS Water Data Web Service.</p>
+</div>
+
+<div class="map-search-container">
+  <div class="map-search-gif">
+  </div>
+</div>
+
+<div class="historical-section">
+  <div class="p2 rounded my2 mx-auto historical-summary">
+    <p>The map to the right shows the major western water districts identified by John Wesley Powell in 1890.</p><br>
+    <p>Powell was a civil war veteran and early American explorer of the western territories (led the first documented passage through the Grand Canyon).  Powell argued to congress in 1877 that future western states should be divided by these districts, stating: "Gentlemen, you are piling up a heritage of conflict and litigation over water rights, for there is not sufficient water to supply the land."</p><br>
+    <p>This impressive foresight provides an interesting thought experiment about well planned environmental regulation and what it means to be a citizen of a state.</p>
   </div>
 
   <div class="p2 bg-white border rounded my2 mx-auto welcome-image">

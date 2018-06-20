@@ -1,0 +1,52 @@
+.welcome-header {
+  margin-left: 25%;
+}
+
+.welcome-container {
+  width: 100%;
+  display: flex;
+}
+
+.welcome-text {
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(129, 164, 118, 0.4);
+  height: auto;
+  width: 60%;
+  a {
+    text-decoration: none;
+    color: rgb(35, 61, 97);
+    font-weight: bold;
+  }
+}
+
+.welcome-image {
+  display: inline-block;
+  background-color: rgb(184, 249, 142);
+  background-image: image-url("powell-watersheds.jpg");
+  height: 610px;
+  width: 450px;
+  margin-bottom: 30px;
+}
+
+.mid-nav {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.historical-section {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3em;
+  margin-left: 7em;
+  margin-right: 7em;
+  align-items: center;
+}
+
+.historical-summary {
+  width: 500px;
+  height: 350px;
+  background-color: rgba(158, 147, 107, 0.2);
+}

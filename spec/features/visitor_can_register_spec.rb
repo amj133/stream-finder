@@ -6,14 +6,14 @@ feature "visitor can register" do
       it "fills out info, clicks sign up, and is brough to dashboard" do
         visit root_path
 
-        click_on("Sign up!")
+        click_on("Register")
 
         expect(current_path).to eq("/register")
 
-        fill_in("First name", with: "Billy")
-        fill_in("Email", with: "Billy@example.com")
-        fill_in("Password", with: "password")
-        fill_in("Password confirmation", with: "password")
+        fill_in(id: "user_first_name", with: "Billy")
+        fill_in(id: "user_email", with: "Billy@example.com")
+        fill_in(id: "user_password", with: "password")
+        fill_in(id: "user_password_confirmation", with: "password")
         click_on("Sign up")
 
         expect(current_path).to eq("/users/billy")
@@ -23,14 +23,14 @@ feature "visitor can register" do
       it "does not register without valid password confirmation" do
         visit root_path
 
-        click_on("Sign up!")
+        click_on("Register")
 
         expect(current_path).to eq("/register")
 
-        fill_in("First name", with: "Billy")
-        fill_in("Email", with: "Billy@example.com")
-        fill_in("Password", with: "password")
-        fill_in("Password confirmation", with: "wrong")
+        fill_in(id: "user_first_name", with: "Billy")
+        fill_in(id: "user_email", with: "Billy@example.com")
+        fill_in(id: "user_password", with: "password")
+        fill_in(id: "user_password_confirmation", with: "wrong")
         click_on("Sign up")
 
         expect(current_path).to_not eq("/users/billy")
@@ -42,14 +42,14 @@ feature "visitor can register" do
         create(:user)
         visit root_path
 
-        click_on("Sign up!")
+        click_on("Register")
 
         expect(current_path).to eq("/register")
 
-        fill_in("First name", with: "Billy123")
-        fill_in("Email", with: "billy@example.com")
-        fill_in("Password", with: "password")
-        fill_in("Password confirmation", with: "password")
+        fill_in(id: "user_first_name", with: "Billy123")
+        fill_in(id: "user_email", with: "billy@example.com")
+        fill_in(id: "user_password", with: "password")
+        fill_in(id: "user_password_confirmation", with: "password")
         click_on("Sign up")
 
         expect(current_path).to_not eq("/users/billy")

@@ -1,6 +1,18 @@
 .sign-in {
-  width: 260px;
-  background-color: rgb(186, 179, 136);
+  margin-top: 3em;
+  width: 320px;
+  background-color: rgba(118, 143, 106, 0.3);
+  border: 10px solid gray;
+  h3 {
+    margin-bottom: 30px;
+  }
+  .register {
+    font-size: 14px;
+    background-color: rgb(51, 51, 51);
+  }
+  .register:hover {
+    background-color: #5b5e5e;
+  }
 }
 
 .edit-project {
@@ -10,13 +22,27 @@
 }
 
 .session-entry {
-  display: flex;
-  justify-content: space-between;
   width: 210px;
   height: 20px;
+  font-size: 14px;
+}
+
+.sign-in-input {
+  height: 30px;
+  width: 180px;
+  background-color: rgb(236,237,238);
 }
 
 .sign-in-button {
-  display: flex;
-  justify-content: center;
+  .login-links {
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 4px;
+    margin-left: 30px;
+    a {
+      text-decoration: none;
+      color: #595358;
+      font-style: normal;
+      font-size: 12px;
+    }
+  }
 }

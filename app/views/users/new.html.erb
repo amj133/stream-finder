@@ -1,34 +1,36 @@
 <%= render partial: 'layouts/banner_1' %>
 
-<div class="p2 bg-white border rounded my2 mx-auto sign-up">
+<div class="p2 bg-white border my2 mx-auto sign-in register-form">
   <%= form_for(@user) do |f| %>
-    <div class="new-user-entry">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </div><br>
+    <h3>Sign up below to begin finding stations</h3>
 
-    <div class="new-user-entry">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </div><br>
+    <div class="session-entry">
+      <p class='register-labels'>First Name</p>
+      <%= f.text_field :first_name, class: 'sign-in-input' %>
+    </div><br><br>
 
-    <div class="new-user-entry">
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-    </div><br>
+    <div class="session-entry">
+      <p class='register-labels'>Last Name</p>
+      <%= f.text_field :last_name, class: 'sign-in-input' %>
+    </div><br><br>
 
-    <div class="new-user-entry">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div><br>
+    <div class="session-entry">
+      <p class='register-labels'>Email</p>
+      <%= f.email_field :email, class: 'sign-in-input' %>
+    </div><br><br>
 
-    <div class="new-user-entry">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </div><br>
+    <div class="session-entry">
+      <p class='register-labels'>Password</p>
+      <%= f.password_field :password, class: 'sign-in-input' %>
+    </div><br><br>
+
+    <div class="session-entry">
+      <p class='register-labels'>Password confirmation</p>
+      <%= f.password_field :password_confirmation, class: 'sign-in-input' %>
+    </div><br><br><br><br>
 
     <div class="sign-in-button">
-      <%= f.submit "Sign up"%>
+      <%= f.submit "Sign up", class: 'register'%>
     </div>
   <% end %>
 </div>

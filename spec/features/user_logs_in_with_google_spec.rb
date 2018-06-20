@@ -27,7 +27,7 @@ feature "user logs in with Google Oauth" do
       stub_omniauth
 
       visit root_path
-      click_on("Sign in with Google")
+      click_on(class: 'google')
 
       expect(current_path).to eq("/users/billy")
       expect(page).to have_content("Welcome to StreamFinder Billy")
@@ -44,7 +44,7 @@ feature "user logs in with Google Oauth" do
 
       stub_omniauth
       visit root_path
-      click_on("Sign in with Google")
+      click_on(class: 'google')
 
       expect(User.last.email).to eq("billy@example.com")
       expect(User.last.slug).to eq("billy")

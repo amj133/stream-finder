@@ -9,12 +9,12 @@ feature "user can log in" do
         user
 
         visit "/"
-        click_on("Sign in")
+        click_on("Log in")
 
         expect(current_path).to eq("/login")
 
-        fill_in("email", with: "billy@example.com")
-        fill_in("password", with: "password")
+        fill_in(id: "email", with: "billy@example.com")
+        fill_in(id: "password", with: "password")
         click_button("Sign in")
 
         expect(current_path).to eq("/users/billy")
@@ -24,12 +24,12 @@ feature "user can log in" do
         user
 
         visit "/"
-        click_on("Sign in")
+        click_on("Log in")
 
         expect(current_path).to eq("/login")
 
-        fill_in("email", with: "Billy123@example.com")
-        fill_in("password", with: "password")
+        fill_in(id: "email", with: "Billy123@example.com")
+        fill_in(id: "password", with: "password")
         click_button("Sign in")
 
         expect(current_path).to_not eq("/users/billy")
@@ -40,12 +40,12 @@ feature "user can log in" do
         user
 
         visit "/"
-        click_on("Sign in")
+        click_on("Log in")
 
         expect(current_path).to eq("/login")
 
-        fill_in("email", with: "billy@example.com")
-        fill_in("password", with: "wrong")
+        fill_in(id: "email", with: "billy@example.com")
+        fill_in(id: "password", with: "wrong")
         click_button("Sign in")
 
         expect(current_path).to_not eq("/users/billy")
@@ -59,12 +59,12 @@ feature "user can log in" do
       user
 
       visit "/"
-      click_on("Sign in")
+      click_on("Log in")
 
       expect(current_path).to eq("/login")
 
-      fill_in("email", with: "billy@example.com")
-      fill_in("password", with: "password")
+      fill_in(id: "email", with: "billy@example.com")
+      fill_in(id: "password", with: "password")
       click_button("Sign in")
 
       click_on('logout')
