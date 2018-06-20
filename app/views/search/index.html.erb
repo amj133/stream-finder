@@ -1,8 +1,4 @@
-<div class="max-width-5 mx-auto top-90 mid-nav-3">
-  <div class="clearfix">
-    <%= image_tag 'logo.png' %>
-  </div>
-</div>
+<%= render partial: 'layouts/navbar' if current_user %>
 
 <div id='map' class='dark'></div>
 
