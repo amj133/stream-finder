@@ -6,7 +6,7 @@ class Api::V1::EmailStreamflowController < ApplicationController
     streamflow = StreamflowFromUSGS.new(search_params).streamflow
     time = streamflow.time.map(&:to_s)
 
-    SendStreamflowEmailJob.perform_later(email, time, streamflow.discharge)
+    SendStreamflowEmailJob.perform_later(email, time, streamflow.discharge, params[:id])
   end
 
 end
