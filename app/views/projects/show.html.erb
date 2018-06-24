@@ -1,34 +1,6 @@
 <%= render partial: 'layouts/banner_1' %>
 <%= render partial: 'layouts/navbar' %>
 
-<!-- <div class="project-header">
-  <h3>Project: <%= @project.name %></h3>
-  <h4>Watershed: <%= @project.huc %></h4>
-  <%= button_to "edit", edit_project_path(@project.slug, user: @project.user.slug), method: :get %>
-  <%= button_to "delete", project_path(@project.slug, user: @project.user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"}, class: "delete-button"%><br><br>
-</div>
-
-<div class="show-container">
-  <div class="p2 bg-white border rounded my2 mx-auto current-saved-stations">
-    <div class="saved-stations-header">
-      <h4>Saved Monitoring Stations</h4>
-    </div>
-
-    <div class="saved-station-info-container">
-      <% @project.favorite_stations.each do |station| %>
-        <div class="border rounded saved-station-info-details">
-          <%= link_to station.org_id, station_path(station.org_id) %>
-          <%= station.type_of %><br>
-          <% if station.drainage_area %>
-          <%= station.drainage_area %> <%= station.drainage_area_units %>
-          <% end %>
-          <%= button_to "remove", favorite_station_path(station, project: @project.slug), method: :delete %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div> -->
-
 <div class="show-container">
   <div class="p2 bg-white rounded my2 mx-auto station-show-info">
     <div class="project-show-info">
