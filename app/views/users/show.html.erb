@@ -2,24 +2,26 @@
 <%= render partial: 'layouts/navbar' if current_user %>
 
 <div class="show-container">
-  <div class="p2 bg-white border rounded my2 mx-auto show-info">
+  <div class="p2 bg-white rounded my2 mx-auto show-info">
     <h2>Welcome to StreamFinder <%= @user.first_name %><br></h2>
-    <p>Find a list of your existing projects below.  Click on the projects to view the saved monitoring stations associated with that project.</p>
-    <%= link_to "Create New Project", new_project_path %>
+    <p>Find a list of your existing projects below.</p>
+    <p>Click on the projects to view the saved monitoring stations associated with that project.</p>
+    <%= link_to "Create New Project", new_project_path, class: "register" %>
   </div>
 
-  <div class="p2 bg-white border rounded my2 mx-auto current-projects">
+  <div class="p2 bg-white rounded my2 mx-auto current-projects">
     <div class="projects-header">
       <h2>Current Projects</h2>
     </div>
 
     <% unless @user.projects.nil? %>
-      <div class="rounded project-info-container">
+      <div class="project-info-container">
         <% @user.projects.each do |project| %>
-          <div class="border rounded project-details">
+          <div class="rounded project-details">
             <p>Name: <%= link_to project.name, project_path(project.slug) %></p>
             <p>Watershed HUC: <%= project.huc %></p>
-            <%= button_to "delete", project_path(project.slug, user: @user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"} %><br><br>
+            <%= button_to "  edit  ", edit_project_path(project.slug, user: @user.slug), method: :get, class: "delete-project edit" %>
+            <%= button_to "delete", project_path(project.slug, user: @user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"}, class: "delete-project" %><br><br>
           </div>
           <% end %>
       </div>
