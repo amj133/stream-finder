@@ -1,6 +1,7 @@
-<%= render partial: 'layouts/banner_3' %>
+<%= render partial: 'layouts/banner_1' %>
+<%= render partial: 'layouts/navbar' %>
 
-<div class="project-header">
+<!-- <div class="project-header">
   <h3>Project: <%= @project.name %></h3>
   <h4>Watershed: <%= @project.huc %></h4>
   <%= button_to "edit", edit_project_path(@project.slug, user: @project.user.slug), method: :get %>
@@ -22,6 +23,42 @@
           <%= station.drainage_area %> <%= station.drainage_area_units %>
           <% end %>
           <%= button_to "remove", favorite_station_path(station, project: @project.slug), method: :delete %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> -->
+
+<div class="show-container">
+  <div class="p2 bg-white rounded my2 mx-auto station-show-info">
+    <div class="project-show-info">
+        <h1 style="inline">Project: <%= @project.name %></h1>
+        <div class="edit-project-container">
+          <%= button_to "  edit  ", edit_project_path(@project.slug, user: @project.user.slug), method: :get, class: 'delete-project ' %>
+        </div>
+        <div class="edit-project-container">
+          <%= button_to "delete", project_path(@project.slug, user: @project.user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"}, class: "delete-project"%>
+        </div>
+    </div>
+    <h4>Watershed: <%= @project.huc %></h4>
+  </div>
+
+  <div class="p2 bg-white rounded my2 mx-auto current-projects">
+    <div class="projects-header">
+      <h2>Saved Monitoring Stations</h2>
+    </div>
+
+    <div class="project-info-container">
+      <% @project.favorite_stations.each do |station| %>
+        <div class="rounded project-details">
+          <%= link_to station.org_id, station_path(station.org_id) %><br>
+          Type:&nbsp;&nbsp;<%= station.type_of %><br><br>
+          <% if station.drainage_area %>
+            <%= station.drainage_area %> <%= station.drainage_area_units %><br><br>
+          <% else %>
+            <%= "    " %><br><br>
+          <% end %>
+          <%= button_to "remove", favorite_station_path(station, project: @project.slug), method: :delete, class: 'remove-station' %>
         </div>
       <% end %>
     </div>
