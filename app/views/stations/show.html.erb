@@ -119,7 +119,7 @@ const convertStringToDatetime = (time) => {
 }
 
 $(document).ready(function(){
-  fetch(`/api/v1/streamflow?station_id=${station_id.substr(0-8)}`)
+  fetch(`/api/v1/recent_streamflow?station_id=${station_id.substr(0-8)}`)
     .then((response) => response.json())
     .then((streamflow) => {
       var time = streamflow.time.map(function(time) {
