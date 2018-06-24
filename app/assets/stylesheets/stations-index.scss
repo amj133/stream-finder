@@ -1,3 +1,33 @@
+.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.stations-index-title {
+  margin-top: 2em;
+}
+
+.index-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(186, 179, 136, 0.4);
+  height: 130px;
+  width: 380px;
+  margin-top: 2em;
+}
+
+.filter-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 300px;
+  background-color: rgba(131, 159, 159, 0.35);
+  margin-top: 2.5em;
+}
+
 .co-huc-map {
   margin-left: 23%;
   margin-top: 5%;
@@ -9,38 +39,34 @@
   background-size: 720px 700px;
 }
 
-.index-filter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(186, 179, 136);
-  height: 130px;
-  width: 400px;
-  margin-top: 3em;
-}
-
-.filter-results {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 45px;
-  width: 300px;
-  background-color: rgb(131, 159, 159);
-}
-
 .stations-index-table-container {
   width: 85%;
   margin-left: 8%;
+  margin-top: 3em;
+  table td, table th {
+    border: 1px solid rgb(110, 110, 117);
+  }
+  table {
+    border: 3px solid gray;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  a {
+    color: rgb(60, 79, 130);
+    text-decoration: none;
+  }
+}
+
+.stations-index-table-header {
+  background-color: rgba(133, 130, 98, 0.5);
+  th {
+    height: 40px;
+  }
 }
 
 .station-name {
   width: 125px;
   overflow: scroll;
-}
-
-.stations-index-table-header {
-  background-color: rgb(133, 130, 98);
 }
 
 .station-description {
@@ -49,7 +75,7 @@
 }
 
 .stations-index-table-body {
-  background-color: #A4AC96;
+  background-color: rgba(164, 172, 150, 0.55);
 }
 
 .stations-index-drainage {

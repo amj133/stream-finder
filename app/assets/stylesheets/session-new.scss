@@ -3,6 +3,9 @@
   width: 320px;
   background-color: rgba(118, 143, 106, 0.3);
   border: 10px solid gray;
+  &.edit {
+    border: 7px solid gray;
+  }
   h3 {
     margin-bottom: 30px;
   }
@@ -13,12 +16,6 @@
   .register:hover {
     background-color: #5b5e5e;
   }
-}
-
-.edit-project {
-  width: 200px;
-  height: 100px;
-  background-color: rgb(186, 179, 136);
 }
 
 .session-entry {
