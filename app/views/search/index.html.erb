@@ -118,7 +118,7 @@
          });
          if ($(".search-results-container")[0].innerHTML < 10){
            $(".search-results-container").append(
-             `<button onclick="addFavoriteStations(map)" class="register station-search">Add Stations</button>
+             `<button onclick="addFavoriteStations(map)" class="register station-search">Add Stations To Project</button>
               </form>`
            );
            $(".search-button-container").append(
@@ -129,7 +129,7 @@
          $(".select-project").show();
 
          $(".search-results-container").prepend(
-           `<form action="/favorite_stations" method="post">
+           `<form action="/favorite_stations" method="post" id="station-search-results">
            ${printStations(stations).join().replace(/,/g, '')}`
          );
 
@@ -191,39 +191,51 @@
     });
   }
 
-   function printStations(stations) {
-      return stations.map(function(station) {
-        return `<input class="station-results" type="checkbox" name="station_id" value="${station.properties.id}">${station.properties.id}<br>`
-     })
-   }
+  function printStations(stations) {
+    return stations.map(function(station) {
+      return `<input class="station-results ${station.properties.id}" type="checkbox" name="station_id" value="${station.properties.id}">${station.properties.id}<br>`
+    })
+  }
+
+  function scrollToStation(feature, distanceToResultsContainer) {
+    $('.search-results-container').animate({
+        scrollTop: $(`.${feature.properties.id}`).offset().top - 1.5 - distanceToResultsContainer
+    }, 2000);
+  }
 
   map.on('click', function(e) {
-  var features = map.queryRenderedFeatures(e.point);
+    var features = map.queryRenderedFeatures(e.point);
 
-  if (!features.length) {
-    return;
-  }
-
-  var feature = features[0];
-
-  const createDrainageAreaText = (feature) => {
-    if(feature.properties.drainage_area == 0) {
-      return "Not provided"
-    } else {
-      return (feature.properties.drainage_area + " " + feature.properties.drainage_area_units)
+    if (!features.length) {
+      return;
     }
-  }
+    var feature = features[0];
 
-  var popup = new mapboxgl.Popup({ offset: [0, -15] })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.name
-             + '</h3><p> ID: ' + feature.properties.id
-             + '</h3><p> Type: ' + feature.properties.type
-             + '</h3><p> Watershed: ' + createDrainageAreaText(feature)
-             + '</h3><p> Latitude: ' + feature.geometry.coordinates[1]
-             + '</h3><p> Longitude: ' + feature.geometry.coordinates[0]
-             + '</p>')
-    .setLngLat(feature.geometry.coordinates)
-    .addTo(map);
+    var distanceToResultsContainer = $('.search-results-container').offset().top
+    scrollToStation(feature, distanceToResultsContainer)
+
+    const createDrainageAreaText = (feature) => {
+      if(feature.properties.drainage_area == 0) {
+        return "Not provided"
+      } else {
+        return (feature.properties.drainage_area + " " + feature.properties.drainage_area_units)
+      }
+    }
+
+    var popup = new mapboxgl.Popup({ offset: [0, -1] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.name + '</h3>'
+               + `<a href='/stations/${feature.properties.id}' target='_blank'> ID: ` + feature.properties.id + '</a>'
+               + '<p> Type: ' + feature.properties.type
+               + '<p> Watershed: ' + createDrainageAreaText(feature)
+               + '<p> Latitude: ' + feature.geometry.coordinates[1]
+               + '<p> Longitude: ' + feature.geometry.coordinates[0]
+               + '</p>')
+      .setLngLat(feature.geometry.coordinates)
+      .addTo(map);
+
+    popup.on('close', function(e) {
+      $('.search-results-container').animate({scrollTop: 0}, 500);
+    })
   });
 </script>

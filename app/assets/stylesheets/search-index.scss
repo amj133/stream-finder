@@ -19,6 +19,10 @@
 .mapboxgl-popup {
   max-width: 600px;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  a {
+    text-decoration: none;
+    color: rgb(60, 79, 130);
+  }
 }
 
 .filter-container {
@@ -29,7 +33,6 @@
   left: 0px;
   z-index: 1;
   width: 100%;
-  // border-bottom: 1px solid black;
   a {
     text-decoration: none;
     color: rgb(35, 52, 99);
@@ -90,7 +93,7 @@
 
 .search-results-container {
   height: 490px;
-  width: 31.3%;
+  width: 31.6%;
   background-color: rgb(135, 158, 150);
   overflow: scroll;
   border-bottom: 2px solid rgb(99, 96, 117);
