@@ -6,15 +6,15 @@
   <div class='filter-ctrl'>
     <input class='filter-input' type='text' name='filter' placeholder='Filter by HUC' />
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC code,
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC,
     <%= link_to "CO Watershed HUCS", "https://cfpub.epa.gov/surf/state.cfm?statepostal=CO", target: '_blank'%></div>
 </div>
 
-<div class="filter-container">
+<div class="filter-container station-type">
   <div class='filter-ctrl'>
     <input class='filter-input' type='text' name='filter' placeholder='Filter by Station Type' />
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. Stream -
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. Stream,
     <%= link_to "all options", "https://www.waterqualitydata.us/Codes/siteType?mimeType=json", target: '_blank'%></div>
 </div>
 
@@ -26,22 +26,22 @@
     <%= link_to "list", "https://en.wikipedia.org/wiki/List_of_counties_in_Colorado", target: '_blank'%></div>
 </div>
 
-<div class="filter-container">
+<div class="filter-container station-type">
   <div class='filter-ctrl'>
     <input class='filter-input' type='text' name='filter' placeholder='Filter by Station ID' />
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;Agency Site ID ex. USGS-09251500</div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. USGS-09251500</div>
 </div>
 
-<div class="filter-container">
+<div class="filter-container" style="border: none">
   <div class='filter-ctrl'>
     <input class='filter-input' type='text' name='filter' placeholder='Filter by Drainage Area Range' />
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 100-200 (units are sq. mi.)</div>
+  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 100-200 (sq. mi.)</div>
 </div>
 
 <div class="search-button-container">
-  <button onclick="getStations(map)" class="btn rounded">Search for Stations</button>
+  <button onclick="getStations(map)" class="register station-search">Search for Stations</button>
 </div>
 
 <div class="select-project">
@@ -118,10 +118,12 @@
          });
          if ($(".search-results-container")[0].innerHTML < 10){
            $(".search-results-container").append(
-             `<button onclick="addFavoriteStations(map)" class="btn rounded">Add Stations</button>
-              <button onclick="clearLayer(map)" class="btn rounded">Clear Recent Search</button>
+             `<button onclick="addFavoriteStations(map)" class="register station-search">Add Stations</button>
               </form>`
            );
+           $(".search-button-container").append(
+             '<button onclick="clearSearch(map)" class="register station-search clear-search">Clear Recent Search</button>'
+           )
          }
 
          $(".select-project").show();
@@ -157,8 +159,15 @@
      });
    }
 
-  function clearLayer(map) {
-    map.removeLayer('stations' + i);
+  function clearSearch(map) {
+    map.getStyle().layers.forEach((layer) => {
+      if(layer.id.substring(0, 7) == 'station') {
+          map.removeLayer(layer.id)
+      }
+    })
+    $(".search-results-container")[0].innerHTML = '';
+    $(".select-project").hide();
+    $(".clear-search").hide();
   }
 
   function addFavoriteStations() {

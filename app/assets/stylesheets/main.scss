@@ -20,11 +20,20 @@ body {
   cursor: pointer;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
+  &.station-search {
+    background-color: rgb(77, 159, 126);
+    padding: 10px 27px;
+    font-size: 14px;
+    margin-right: 15px;
+  }
 }
 
 .register:hover {
   background-color: #348285;
   color: white;
+  &.station-search {
+    background-color: rgb(51, 101, 81);
+  }
 }
 
 .login-options {
