@@ -1,11 +1,21 @@
+.project-show-info {
+  display: flex;
+}
+
 .project-header {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.delete-project {
-  display: inline-block;
+.project-show-id {
+  display: flex;
+  justify-content: column;
+}
+
+.edit-project-container {
+  margin-left: 1.5em;
+  margin-top: 1.2em;
 }
 
 .saved-stations-header {
@@ -35,4 +45,27 @@
 
 .saved-station-info-details:hover {
   transform: scale(1.05);
+}
+
+.remove-station {
+  background-color: rgb(217, 137, 124);
+  border: none;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.remove-station:hover {
+  background-color: rgb(135, 45, 30);
+  color: white;
 }

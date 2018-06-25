@@ -1,12 +1,16 @@
 <%= render partial: 'layouts/banner_1' %>
-<%= render partial: 'layouts/navbar' if current_user %>
+<%= render partial: 'layouts/navbar' %>
 
-<div class="p2 bg-white border rounded my2 mx-auto index-filter">
-  Select from options below to view stations by Colorado Watershed (HUC 8-digit)<br><br>
+<div class="title-container">
+  <h2 class='stations-index-title'>Stations by Colorado Watershed</h2>
+</div>
+
+<div class="p2 bg-white rounded my2 mx-auto index-filter">
+  Select the Colorado Watershed (HUC 8)<br><br>
   <%= form_tag("/stations", method: "get") do %>
     <%= select_tag(:huc_code, options_for_select(@co_watershed_hucs)) %><br><br>
 
-    <%= submit_tag("Find Stations") %>
+    <%= submit_tag "Find Stations", class: 'delete-project' %>
   <% end %>
 </div>
 
@@ -16,7 +20,7 @@
 <% end %>
 
 <% unless @stations.nil? %>
-  <div class="p2 bg-white border rounded my2 mx-auto filter-results">
+  <div class="p2 bg-white rounded my2 mx-auto filter-results">
       Displaying <%= @stations.count %> stations in table below
   </div>
 

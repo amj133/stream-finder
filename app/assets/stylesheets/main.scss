@@ -47,6 +47,16 @@ body {
   background-repeat: no-repeat;
 }
 
+.historical-streamflow-gif {
+  width: 800px;
+  height: 320px;
+  background-image: image-url('streamflow-gif.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 4px rgb(175, 195, 199) solid;
+  padding: 20px;
+}
+
 .flash-container {
   width: 220px;
   height: 55px;

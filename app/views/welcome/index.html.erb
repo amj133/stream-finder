@@ -1,5 +1,6 @@
 <%= render partial: 'layouts/banner_1' %>
-<%= render partial: 'layouts/unlogged_navbar' %>
+<%= render partial: 'layouts/unlogged_navbar' unless current_user %>
+<%= render partial: 'layouts/navbar' if current_user %>
 
 <div class="welcome-header">
   <h1>Welcome to StreamFinder</h1>
@@ -8,21 +9,16 @@
 <div class="welcome-container">
   <div class="p2 bg-white rounded my2 mx-auto welcome-text">
     <h3>An application geared towards environmental consultants and scientists looking to:</h3>
-      <li>Find reference reaches for environmental restoration projects</li><br>
-      <li>Find stream, wetland, and subsurface monitoring stations throughout Colorado</li><br>
-      <li>Search for stations by watershed (HUC 8)</li><br>
-      <li>Search for stream stations by drainage area</li><br>
-      <li>Obtain historic streamflow data</li>
+    <i class="fas fa-check"></i> &nbsp;&nbsp;Find reference reaches for environmental restoration projects<br><br>
+    <i class="fas fa-check"></i> &nbsp;&nbsp;Find stream, wetland, and subsurface monitoring stations throughout Colorado<br><br>
+    <i class="fas fa-check"></i> &nbsp;&nbsp;Search for stations by watershed (HUC 8)</li><br><br>
+    <i class="fas fa-check"></i> &nbsp;&nbsp;Search for stream stations by drainage area<br><br>
+    <i class="fas fa-check"></i> &nbsp;&nbsp;Obtain historic streamflow data<br><br>
   </div>
 </div>
 
 <div class="p2 bg-white rounded my2 mx-auto welcome-text">
-  <p>The station data is retrieved from the <a href="https://www.waterqualitydata.us/webservices_documentation/" target="_blank">Water Quality Portal Web Service</a> and made available in an easy to navigate map interface.</p>
-  <p>By adding monitoring stations to a particular project, users can:</p>
-     <li>View recent (24-hr) streamflow</li>
-     <li>Perform a query for historical streamflow</li>
-     <li>Have streamflow data emailed for further analysis</li>
-  <p>Historical data is provided by way of the USGS Water Data Web Service.</p>
+  <h3>The station data is retrieved from the <a href="https://www.waterqualitydata.us/webservices_documentation/" target="_blank">Water Quality Portal Web Service</a> and made available<br><br> in an easy to navigate map interface.</h3>
 </div>
 
 <div class="map-search-container">
@@ -30,11 +26,27 @@
   </div>
 </div>
 
+<div class="welcome-container">
+  <div class="p2 bg-white rounded my2 mx-auto welcome-text">
+    <h3>By adding monitoring stations to a particular project, users can:</h3><br>
+    <i class="far fa-check-square"></i> &nbsp;&nbsp;View recent (24-hr) streamflow<br><br>
+    <i class="far fa-check-square"></i> &nbsp;&nbsp;Perform a query for historical streamflow<br><br>
+    <i class="far fa-check-square"></i> &nbsp;&nbsp;Have streamflow data emailed for further analysis<br><br>
+    <p>* &nbsp;&nbsp;Historical data is provided via the <a href="https://waterservices.usgs.gov/rest/IV-Service.html" target="_blank">USGS Water Data Web Service API.</a></p>
+  </div>
+</div>
+
+<div class="map-search-container">
+  <div class="historical-streamflow-gif">
+  </div>
+</div>
+
 <div class="historical-section">
   <div class="p2 rounded my2 mx-auto historical-summary">
-    <p>The map to the right shows the major western water districts identified by John Wesley Powell in 1890.</p><br>
-    <p>Powell was a civil war veteran and early American explorer of the western territories (led the first documented passage through the Grand Canyon).  Powell argued to congress in 1877 that future western states should be divided by these districts, stating: "Gentlemen, you are piling up a heritage of conflict and litigation over water rights, for there is not sufficient water to supply the land."</p><br>
-    <p>This impressive foresight provides an interesting thought experiment about well planned environmental regulation and what it means to be a citizen of a state.</p>
+    <i class="fab fa-envira"></i> &nbsp;&nbsp;The map to the right shows the major western water districts identified by John Wesley Powell in 1890.<br>
+    <p>Powell was a civil war veteran and early American explorer of the western territories (led the first documented passage through the Grand Canyon).</p>
+    <p>Powell argued to congress in 1877 that future western states should be divided by these districts, stating: <h3>"Gentlemen, you are piling up a heritage of conflict and litigation over water rights, for there is not sufficient water to supply the land."</h3></p>
+    <p>This impressive foresight provides an interesting thought experiment about well planned environmental regulation and what it means to be state citizen.&nbsp;&nbsp;<i class="fab fa-envira"></i></p>
   </div>
 
   <div class="p2 bg-white border rounded my2 mx-auto welcome-image">

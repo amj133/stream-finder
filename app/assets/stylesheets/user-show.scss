@@ -13,34 +13,68 @@
 }
 
 .show-info {
+  margin-top: 2em;
   width: 80%;
-  background-color: rgb(108, 158, 155);
+  background-color: rgba(108, 158, 155, 0.25);
 }
 
 .current-projects {
+  margin-top: 2em;
   width: 80%;
-  background-color: rgb(142, 189, 186);
+  background-color: rgba(142, 189, 186, 0.25);
+  margin-bottom: 4em;
+  padding-bottom: 2em;
 }
 
 .projects-header {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 2em;
 }
 
 .project-info-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  a {
+    color: rgb(60, 79, 130);
+    text-decoration: none;
+  }
 }
 
 .project-details {
-  width: 300px;
+  width: 240px;
   display: flex;
   flex-direction: column;
-  background-color: #A4AC96;
+  background-color: rgba(164, 172, 150, 0.5);
   padding: 10px;
+  margin-top: 1.5em;
+  border: gray 3.5px solid;
 }
 
 .project-details:hover {
   transform: scale(1.05);
+}
+
+.delete-project {
+  background-color: rgb(199, 174, 157);
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.delete-project:hover {
+  background-color: rgb(166, 132, 109);
+  color: white;
 }

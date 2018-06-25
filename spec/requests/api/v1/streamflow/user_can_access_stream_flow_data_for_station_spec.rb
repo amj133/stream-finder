@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe "GET /api/v1/streamflow" do
-  it "returns time and streamflow for station" do
+describe "GET /api/v1/recent_streamflow" do
+  it "returns time and 24hr streamflow for station" do
     VCR.use_cassette("USGS Streamflow by Station") do
       params = { station_id: "01646500" }
-      get "/api/v1/streamflow", params: params
+      get "/api/v1/recent_streamflow", params: params
 
       expect(response).to be_success
 
