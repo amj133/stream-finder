@@ -28,9 +28,15 @@
   margin-top: 2.5em;
 }
 
+.huc-map-container {
+  display: flex;
+  justify-content: center;
+}
+
 .co-huc-map {
-  margin-left: 23%;
-  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
   margin-bottom: 5%;
   border: rgb(79, 70, 85) solid 2px;
   height: 700px;
@@ -40,8 +46,9 @@
 }
 
 .stations-index-table-container {
-  width: 85%;
-  margin-left: 8%;
+  width: auto;
+  display: flex;
+  justify-content: center;
   margin-top: 3em;
   table td, table th {
     border: 1px solid rgb(110, 110, 117);

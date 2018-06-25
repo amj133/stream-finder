@@ -54,7 +54,6 @@
 
 
 <script>
-// $(".streamflow-container").hide();
 var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
 
 let ctx = document.getElementById("myChart");
@@ -138,6 +137,10 @@ $(document).ready(function(){
         return convertStringToDatetime(time)
       }).sort();
       updateStreamChart(time, streamflow)
+      if (streamChart.data.datasets[0].data.length == 0) {
+        $('#myChart').hide()
+        $('.chart-title')[0].innerHTML = '<p> Twenty-four hour stream discharge data not available </p>'
+      }
     })
 })
 
@@ -154,7 +157,11 @@ const getStationName = () => {
 }
 
 const changeChartTitle = (startDate, endDate) => {
-  $('.chart-title')[0].innerHTML = `Stream Discharge(cfs) from ${startDate} to ${endDate}`
+  if (streamChart.data.datasets[0].data.length == 0) {
+    $('.chart-title')[0].innerHTML = `<p> Stream Discharge(cfs) from ${startDate} to ${endDate} is not available </p>`
+  } else {
+    $('.chart-title')[0].innerHTML = `Stream Discharge(cfs) from ${startDate} to ${endDate}`
+  }
 }
 
 const getHistoricalStreamflow = () => {
