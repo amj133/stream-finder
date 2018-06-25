@@ -4,7 +4,7 @@
 <div class="show-container">
   <div class="p2 bg-white rounded my2 mx-auto station-show-info">
     <div class="project-show-info">
-        <h1 style="inline">Project: <%= @project.name %></h1>
+        <h1>Project: <%= @project.name %></h1>
         <div class="edit-project-container">
           <%= button_to "  edit  ", edit_project_path(@project.slug, user: @project.user.slug), method: :get, class: 'delete-project ' %>
         </div>

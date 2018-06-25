@@ -1,45 +1,57 @@
 <%= render partial: 'layouts/banner_1' %>
-<%= render partial: 'layouts/navbar' if current_user %>
+<%= render partial: 'layouts/navbar' %>
 
-<div class="">
-  <div class="p2 bg-white border rounded my2 mx-auto station-show-info">
-    Station ID: <%= @station.org_id %><br><br>
-    Type: <%= @station.type_of %><br><br>
-    Name: <%= @station.name %><br><br>
-    Description: <%= @station.description %><br><br>
-    Coordinates: <%= @station.latitude %>, <%= @station.longitude %><br><br>
-    Drainage Area: <%= @station.drainage_area %> <%= @station.drainage_area_units %>.
+<div class="show-container">
+  <div class="p2 bg-white rounded my2 mx-auto station-show-info">
+    <div class="project-show-info">
+        <h1>Station ID: <%= @station.org_id %></h1>
+    </div>
+    <div class="rounded station-show-stats">
+      <h3>Watershed: <%= @station.huc %></h3>
+      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Type: <%= @station.type_of %><br><br>
+      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Name: <%= @station.name %><br><br>
+      <% if @station.description %>
+      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Description: <%= @station.description %><br><br>
+      <% else %>
+      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Description: None provided<br><br>
+      <% end %>
+      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Coordinates: <%= @station.latitude %>, <%= @station.longitude %><br><br>
+      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Drainage Area: <%= @station.drainage_area %> <%= @station.drainage_area_units %>.
+    </div>
   </div>
-<div>
-
-<div class="p2 bg-white border rounded my2 mx-auto streamflow-container">
-  <div class="chart-title">
-    Stream Discharge(cfs) in Past 24 Hours
-  </div>
-  <canvas id="myChart" width="1600" height="900"></canvas>
 </div>
 
-<div class="p2 bg-white border rounded my2 mx-auto historical-discharge-search">
-  <h3>Enter dates to search for historic streamflow</h3>
-  <div class="search-container">
-    <div class='filter-ctrl'>
-      <input class='filter-input' type='text' name='filter' placeholder='Start Date' />
+<div class="stream-discharge-section">
+  <div class="p2 bg-white rounded my2 mx-auto streamflow-container">
+    <div class="chart-title">
+      Stream Discharge(cfs) in Past 24 Hours
     </div>
-    <div class='filter-options'>&nbsp;&nbsp;&nbsp;(YYYY-MM-DD)</div>
+    <canvas id="myChart" width="1600" height="900"></canvas>
   </div>
-  <div class="search-container">
-    <div class='filter-ctrl'>
-      <input class='filter-input' type='text' name='filter' placeholder='End Date' />
+
+  <div class="p2 bg-white rounded my2 mx-auto historical-discharge-search">
+    <h3>Enter dates to search for historic streamflow</h3>
+    <div class="search-container">
+      <div class='filter-ctrl'>
+        <input class='filter-input' type='text' name='filter' placeholder='Start Date' />
+      </div>
+      <div class='filter-options'>&nbsp;&nbsp;&nbsp;(YYYY-MM-DD)</div>
     </div>
-    <div class='filter-options'>&nbsp;&nbsp;&nbsp;(YYYY-MM-DD)</div>
-  </div>
-  <div class="get-historic-container">
-    <button onclick="getHistoricalStreamflow()" class="btn rounded get-historic">View Historical Streamflow</button>
-  </div>
-  <div class="get-historic-container">
-    <button onclick="emailStreamflow()" class="btn rounded email-streamflow">Email Me Streamflow Data</button>
+    <div class="search-container">
+      <div class='filter-ctrl'>
+        <input class='filter-input' type='text' name='filter' placeholder='End Date' />
+      </div>
+      <div class='filter-options'>&nbsp;&nbsp;&nbsp;(YYYY-MM-DD)</div>
+    </div>
+    <div class="get-historic-container">
+      <button onclick="getHistoricalStreamflow()" class="view-historical">View Historical Streamflow</button>
+    </div>
+    <div class="get-historic-container">
+      <button onclick="emailStreamflow()" class="view-historical">Email Streamflow Data&nbsp;&nbsp;&nbsp;<i class="fas fa-envelope"></i></button>
+    </div>
   </div>
 </div>
+
 
 <script>
 // $(".streamflow-container").hide();
@@ -141,6 +153,10 @@ const getStationName = () => {
   return window.location.pathname.split("/")[2].split("-")[1]
 }
 
+const changeChartTitle = (startDate, endDate) => {
+  $('.chart-title')[0].innerHTML = `Stream Discharge(cfs) from ${startDate} to ${endDate}`
+}
+
 const getHistoricalStreamflow = () => {
   let dates = $('.filter-input')
   let startDate = getStartDate(dates)
@@ -154,6 +170,7 @@ const getHistoricalStreamflow = () => {
         return convertStringToDatetime(time)
       }).sort();
       updateStreamChart(time, streamflow)
+      changeChartTitle(startDate, endDate)
     })
 }
 
