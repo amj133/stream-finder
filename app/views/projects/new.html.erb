@@ -1,19 +1,22 @@
-<%= render partial: 'layouts/banner_3' %>
+<%= render partial: 'layouts/banner_1' %>
+<%= render partial: 'layouts/navbar' %>
 
-<div class="p2 bg-white border rounded my2 mx-auto edit-project">
+<div class="p2 bg-white border rounded my2 mx-auto sign-in edit">
   <%= form_for @project do |f| %>
-    <div class="session-entry">
+    <h3>Create a new project: </h3>
+
+    <div class="edit-entry">
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div><br>
 
-    <div class="session-entry">
+    <div class="edit-entry">
       <%= f.label :huc %>
       <%= f.text_field :huc %>
     </div><br>
 
     <div class="sign-in-button">
-      <%= f.submit %>
+      <%= f.submit 'Create Project', class: 'register' %>
     </div>
   <% end %>
 </div>
