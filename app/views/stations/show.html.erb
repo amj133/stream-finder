@@ -11,12 +11,16 @@
       <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Type: <%= @station.type_of %><br><br>
       <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Name: <%= @station.name %><br><br>
       <% if @station.description %>
-      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Description: <%= @station.description %><br><br>
+        <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Description: <%= @station.description %><br><br>
       <% else %>
-      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Description: None provided<br><br>
+        <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Description: None provided<br><br>
       <% end %>
       <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Coordinates: <%= @station.latitude %>, <%= @station.longitude %><br><br>
-      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Drainage Area: <%= @station.drainage_area %> <%= @station.drainage_area_units %>.
+      <% if @station.drainage_area %>
+        <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Drainage Area: <%= @station.drainage_area %> <%= @station.drainage_area_units %>.
+      <% else %>
+        <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Drainage Area: Not provided
+      <% end %>
     </div>
   </div>
 </div>
