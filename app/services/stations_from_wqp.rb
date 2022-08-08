@@ -7,6 +7,7 @@ class StationsFromWQP
 
   def stations
     response = raw_stations
+
     if response["WQX"]["Organization"].class == Array
       stations_from_multiple_organizations(response)
     elsif response["WQX"]["Organization"].class == Hash

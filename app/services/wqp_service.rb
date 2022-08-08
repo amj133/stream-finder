@@ -17,7 +17,10 @@ class WqpService
     end
 
     def base_params
-      {"statecode" => "US:08"}
+      {
+        "statecode" => "US:08",
+        "mimeType" => "xml",
+      }
     end
 
     def send_get_request(uri, params)
