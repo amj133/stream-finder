@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:show, :new, :create, :destroy, :edit, :update], param: :slug
   resources :favorite_stations, only: [:destroy]
 
+  get "/providers", to: "welcome#providers"
   get "/register", to: "users#new"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"

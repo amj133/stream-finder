@@ -58,7 +58,7 @@
 
 
 <script>
-var station_id = `${5<%= @station.org_id.split("-")[1] %>}`;
+var station_id = '<%= @station.org_id.split("-")[1] %>';
 
 let ctx = document.getElementById("myChart");
 let streamChart = new Chart(ctx, {
@@ -134,7 +134,7 @@ const convertStringToDatetime = (time) => {
 }
 
 $(document).ready(function(){
-  fetch(`/api/v1/recent_streamflow?station_id=${station_id.substr(0-8)}`)
+  fetch(`/api/v1/recent_streamflow?station_id=${station_id.substr(0,8)}`)
     .then((response) => response.json())
     .then((streamflow) => {
       var time = streamflow.time.map(function(time) {

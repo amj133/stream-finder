@@ -1,0 +1,16 @@
+<%= render partial: 'layouts/banner_1' %>
+<%= render partial: 'layouts/unlogged_navbar' unless current_user %>
+<%= render partial: 'layouts/navbar' if current_user %>
+
+<div class="welcome-header">
+  <h1>History of StreamFinder</h1>
+</div>
+
+<div class="welcome-container">
+  <div class="p2 bg-white rounded my2 mx-auto welcome-text">
+    <i class="fas fa-code"></i> &nbsp;This application was built by Andrew Jeffery as a personal project <br><br>
+    <i class="fas fa-chart-area"></i> &nbsp;&nbsp;Goal is to simplify researching and gathering data from the Water Quality Web Portal <br><br>
+    <i class="far fa-envelope"></i> &nbsp;&nbsp;Andrew can be reached at amj@vt.edu<br><br>
+    <i class="fas fa-code-branch"></i> &nbsp;&nbsp;&nbsp;Application code is available on <a href="https://github.com/amj133/stream-finder" target="_blank">GitHub</a><br><br>
+  </div>
+</div>
