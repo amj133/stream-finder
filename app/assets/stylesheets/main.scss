@@ -92,6 +92,10 @@ body {
   height: 50px;
 }
 
+.shadowed a {
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.08), 0 6px 6px 0 rgba(0,0,0,0.08);
+}
+
 .login-links {
   font-family: 'Ubuntu', sans-serif;
   margin-top: 4px;
