@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '2.4.2'
+ruby '2.6.3'
 gem 'rails', '~> 5.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'active_model_serializers', '0.10'
 gem 'bcrypt'
 gem 'figaro'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'faraday'
 gem 'mapbox-gl-rails'
 gem 'jquery-rails'
