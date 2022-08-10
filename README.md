@@ -4,11 +4,11 @@ StreamFinder is an application geared towards environmental consultants and scie
 
 The map interface was built using the Mapbox GL JS library, and allows users to search for monitoring stations based on watershed, type of station, county, or by a particluar station id.  I plan to build on this to allow users to search by drainage area, a common characterstic used by water resource engineers to find reference reaches for stream restoration projects.  Users can view stream discharge from the past 24 hours for a particular stream station.  I would like to add another feature that allows users to query historical data for a particular station and have it retrieved as a csv.  
 
-See the deployed project here: [StreamFinder](https://still-reef-30303.herokuapp.com/)
+See the deployed project here: [StreamFinder](https://stream-finder-heroku-18.herokuapp.com/)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 1. clone down this project and change into the directory
 ```
