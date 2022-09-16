@@ -1,7 +1,15 @@
 class Api::V1::StationsController < ApplicationController
 
   def index
-    stations = StationsPresenter.new(station_params).stations_by_multiple_params
+    begin
+      stations = StationsPresenter.new(station_params).stations_by_multiple_params
+    rescue InvalidParameterError => e
+      response = {}
+      response[:errors] = e.api_error_messages
+
+      return render :json => response, :status => 400
+    end
+
     geo_stations = transform_to_geojson(stations)
     render json: geo_stations
   end

@@ -144,9 +144,8 @@
            }
        },
 
-
-       error:function() {
-         alert("Could not load the events");
+       error:function(e) {
+         alert(JSON.parse(e.responseText).errors);
        }
      });
      i += 1;
