@@ -1,56 +1,61 @@
 <%= render partial: 'layouts/navbar' if current_user %>
 
-<div id='map' class='dark'></div>
-
-<div class="filter-container">
-  <div class='filter-ctrl'>
-    <input class='filter-input' type='text' name='filter' placeholder='Filter by HUC' />
+<div id='map' class='dark'>
+</div>
+<div id="search">
+  <div class="filter-container">
+    <div class='filter-ctrl'>
+      <input class='filter-input' type='text' name='filter' placeholder='Filter by HUC' />
+    </div>
+    <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC,
+      <%= link_to "CO Watershed HUCS", "/stations", target: '_blank'%>
+    </div>
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;8 digit HUC,
-    <%= link_to "CO Watershed HUCS", "/stations", target: '_blank'%></div>
-</div>
 
-<div class="filter-container station-type">
-  <div class='filter-ctrl'>
-    <input class='filter-input' type='text' name='filter' placeholder='Filter by Station Type' />
+  <div class="filter-container station-type">
+    <div class='filter-ctrl'>
+      <input class='filter-input' type='text' name='filter' placeholder='Filter by Station Type' />
+    </div>
+    <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. Stream,
+      <%= link_to "all options", "https://www.waterqualitydata.us/Codes/siteType?mimeType=json", target: '_blank'%>
+    </div>
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. Stream,
-    <%= link_to "all options", "https://www.waterqualitydata.us/Codes/siteType?mimeType=json", target: '_blank'%></div>
-</div>
 
-<div class="filter-container">
-  <div class='filter-ctrl'>
-    <input class='filter-input' type='text' name='filter' placeholder='Filter by 3-digit County Code' />
+  <div class="filter-container">
+    <div class='filter-ctrl'>
+      <input class='filter-input' type='text' name='filter' placeholder='Filter by 3-digit County Code' />
+    </div>
+    <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 005 for Arapahoe County,
+      <%= link_to "list", "https://en.wikipedia.org/wiki/List_of_counties_in_Colorado", target: '_blank'%>
+    </div>
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 005 for Arapahoe County,
-    <%= link_to "list", "https://en.wikipedia.org/wiki/List_of_counties_in_Colorado", target: '_blank'%></div>
-</div>
 
-<div class="filter-container station-type">
-  <div class='filter-ctrl'>
-    <input class='filter-input' type='text' name='filter' placeholder='Filter by Station ID' />
+  <div class="filter-container station-type">
+    <div class='filter-ctrl'>
+      <input class='filter-input' type='text' name='filter' placeholder='Filter by Station ID' />
+    </div>
+    <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. USGS-09251500</div>
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. USGS-09251500</div>
-</div>
 
-<div class="filter-container" style="border: none">
-  <div class='filter-ctrl'>
-    <input class='filter-input' type='text' name='filter' placeholder='Filter by Drainage Area Range' />
+  <div class="filter-container" style="border: none">
+    <div class='filter-ctrl'>
+      <input class='filter-input' type='text' name='filter' placeholder='Filter by Drainage Area Range' />
+    </div>
+    <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 100-200 (sq. mi.)</div>
   </div>
-  <div class='filter-options'>&nbsp;&nbsp;&nbsp;ex. 100-200 (sq. mi.)</div>
-</div>
 
-<div class="search-button-container">
-  <button onclick="getStations(map)" class="register station-search">Search for Stations</button>
-</div>
+  <div class="search-button-container">
+    <button onclick="getStations(map)" class="register station-search">Search for Stations</button>
+  </div>
 
-<div class="select-project">
-  Select Project:&nbsp;&nbsp;&nbsp;
-  <select class="project" name="project_name">
-  </select>
-</div>
+  <div class="select-project">
+    Select Project:&nbsp;&nbsp;&nbsp;
+    <select class="project" name="project_name">
+    </select>
+  </div>
 
-<div class="search-results-container">
+  <div class="search-results-container">
+  </div>
 </div>
 
 <script>
