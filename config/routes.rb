@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :stations, only: [:index]
       resources :projects, only: [:create]
       resources :recent_streamflow, only: [:index]
+      get "/date_range_streamflow/download", to: "date_range_streamflow#download"
       resources :date_range_streamflow, only: [:show]
       resources :email_streamflow, only: [:show]
     end

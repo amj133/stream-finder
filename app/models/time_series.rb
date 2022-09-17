@@ -1,5 +1,7 @@
+require 'csv'
+
 class TimeSeries
-  attr_reader :discharge
+  attr_reader :discharge, :time_as_string
 
   def initialize(time_series)
     @time_as_string = time_series.keys
@@ -12,7 +14,15 @@ class TimeSeries
     end.sort
   end
 
-  private
-    attr_reader :time_as_string
+  def as_csv
+    headers = ['date_time', 'discharge (cfs)']
+
+    csv = CSV.generate do |csv|
+      csv << headers
+      discharge.each_with_index do |discharge, i|
+        csv << [time_as_string[i], discharge]
+      end
+    end
+  end
 
 end

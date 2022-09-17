@@ -29,6 +29,11 @@ class USGSStreamflowService
 
     def json_response(uri, params)
       response = send_get_request(uri, params)
+
+      if !response.success?
+        raise InvalidParameterError.new("Use the 'View Historical Streamflow' button to verify streamflow data is available in date range of interest before downloading")
+      end
+
       JSON.parse(response.body)
     end
 

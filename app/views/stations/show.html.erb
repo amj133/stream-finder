@@ -51,7 +51,7 @@
       <button onclick="getHistoricalStreamflow()" class="view-historical">View Historical Streamflow</button>
     </div>
     <div class="get-historic-container">
-      <button onclick="emailStreamflow()" class="view-historical">Email Streamflow Data&nbsp;&nbsp;&nbsp;<i class="fas fa-envelope"></i></button>
+      <a onclick="downloadStreamflow()" class="view-historical">Download Streamflow Data&nbsp;&nbsp;&nbsp;<i class="fa fa-download"></i></a>
     </div>
   </div>
 </div>
@@ -143,7 +143,7 @@ $(document).ready(function(){
       updateStreamChart(time, streamflow)
       if (streamChart.data.datasets[0].data.length == 0) {
         $('#myChart').hide()
-        $('.chart-title')[0].innerHTML = '<p> Twenty-four hour stream discharge data not available </p>'
+        $('.chart-title')[0].innerHTML = '<p> 24 hour stream discharge data not available </p>'
       }
     })
 })
@@ -183,6 +183,26 @@ const getHistoricalStreamflow = () => {
       updateStreamChart(time, streamflow)
       changeChartTitle(startDate, endDate)
     })
+}
+
+const downloadStreamflow = () => {
+  let dates = $('.filter-input')
+  let startDate = getStartDate(dates)
+  let endDate = getEndDate(dates)
+  let stationId = getStationName()
+  let params = `?id=${stationId}&startDate=${startDate}&endDate=${endDate}`
+  $.ajax({
+    url: `/api/v1/date_range_streamflow/download` + params,
+    success: function(response) {
+      var blob = new Blob([response], {
+        type: 'text/csv;charset=utf-8',
+      });
+      saveAs(blob, `USGS_${stationId}_historical_streamflow.csv`);
+    },
+    error: function(response) {
+      alert(response.responseJSON.errors);
+    }
+  })
 }
 
 const emailStreamflow = () => {
