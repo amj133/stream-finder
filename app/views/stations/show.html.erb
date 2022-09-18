@@ -174,15 +174,19 @@ const getHistoricalStreamflow = () => {
   let endDate = getEndDate(dates)
   let stationId = getStationName()
   let params = `?startDate=${startDate}&endDate=${endDate}`
-  fetch(`/api/v1/date_range_streamflow/${stationId}` + params)
-    .then((response) => response.json())
-    .then((streamflow) => {
+  $.ajax({
+    url: `/api/v1/date_range_streamflow/${stationId}` + params,
+    success: function(streamflow) {
       var time = streamflow.time.map(function(time) {
         return convertStringToDatetime(time)
       }).sort();
       updateStreamChart(time, streamflow)
       changeChartTitle(startDate, endDate)
-    })
+    },
+    error: function(error) {
+      alert(error.responseJSON.errors);
+    }
+  })
 }
 
 const downloadStreamflow = () => {
@@ -199,8 +203,8 @@ const downloadStreamflow = () => {
       });
       saveAs(blob, `USGS_${stationId}_historical_streamflow.csv`);
     },
-    error: function(response) {
-      alert(response.responseJSON.errors);
+    error: function(error) {
+      alert(error.responseJSON.errors);
     }
   })
 }
