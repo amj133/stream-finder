@@ -13,6 +13,4 @@
 //= require jquery3
 //= require jquery_ujs
 //= require_tree .
-//= require papaparse/papaparse.js
 //= require file-saver/FileSaver.js
-//= require bootbox
