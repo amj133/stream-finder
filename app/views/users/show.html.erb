@@ -11,15 +11,15 @@
 
   <div class="p2 bg-white rounded my2 mx-auto current-projects">
     <div class="projects-header">
-      <h2>Current Projects</h2>
+      <h2><i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;&nbsp;Current Projects</h2>
     </div>
 
     <% unless @user.projects.nil? %>
       <div class="project-info-container">
         <% @user.projects.each do |project| %>
           <div class="rounded project-details">
-            <p>Name: <%= link_to project.name, project_path(project.slug) %></p>
-            <p>Watershed HUC: <%= project.huc %></p>
+            <p>Name: <%= link_to project.name, project_path(project.slug) %>&nbsp;&nbsp;<i class="fab fa-envira"></i></p>
+            <p style="margin-top:0px;">Watershed HUC: <%= project.huc %></p>
             <%= button_to "  edit  ", edit_project_path(project.slug, user: @user.slug), method: :get, class: "delete-project edit" %>
             <%= button_to "delete", project_path(project.slug, user: @user.slug), method: :delete, data: {confirm: "Delete project and all its stations?"}, class: "delete-project" %><br><br>
           </div>

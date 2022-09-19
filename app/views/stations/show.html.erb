@@ -4,18 +4,18 @@
 <div class="show-container">
   <div class="p2 bg-white rounded my2 mx-auto station-show-info">
     <div class="project-show-info">
-        <h1>Station ID: <%= @station.org_id %></h1>
+      <h1>Station ID: <%= @station.org_id %></h1>
     </div>
     <div class="rounded station-show-stats">
       <h3>Watershed: <%= @station.huc %></h3>
       <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Type: <%= @station.type_of %><br><br>
-      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Name: <%= @station.name %><br><br>
+      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Name: <%= link_to(@station.name, "https://www.waterqualitydata.us/provider/NWIS/USGS-CO/#{@station.org_id}/", :target => "_blank") %><br><br>
       <% if @station.description %>
         <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Description: <%= @station.description %><br><br>
       <% else %>
         <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Description: None provided<br><br>
       <% end %>
-      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Coordinates: <%= @station.latitude %>, <%= @station.longitude %><br><br>
+      <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Coordinates: <%= @station.latitude.to_f.floor(8) %>, <%= @station.longitude.to_f.floor(8) %><br><br>
       <% if @station.drainage_area %>
         <i class="fas fa-chevron-circle-right"></i>&nbsp;&nbsp;Drainage Area: <%= @station.drainage_area %> <%= @station.drainage_area_units %>.
       <% else %>
@@ -48,10 +48,10 @@
       <div class='filter-options'>&nbsp;&nbsp;&nbsp;(YYYY-MM-DD)</div>
     </div>
     <div class="get-historic-container">
-      <button onclick="getHistoricalStreamflow()" class="view-historical">View Historical Streamflow</button>
+      <button onclick="getHistoricalStreamflow()" class="view-historical">View Historical Streamflow&nbsp;</button>
     </div>
     <div class="get-historic-container">
-      <a onclick="downloadStreamflow()" class="view-historical">Download Streamflow Data&nbsp;&nbsp;&nbsp;<i class="fa fa-download"></i></a>
+      <a onclick="downloadStreamflow()" class="view-historical">Download Streamflow &nbsp;&nbsp;&nbsp;<i class="fa fa-download"></i></a>
     </div>
   </div>
 </div>
@@ -143,7 +143,9 @@ $(document).ready(function(){
       updateStreamChart(time, streamflow)
       if (streamChart.data.datasets[0].data.length == 0) {
         $('#myChart').hide()
-        $('.chart-title')[0].innerHTML = '<p> 24 hour stream discharge data not available </p>'
+        $('.chart-title')[0].innerHTML =
+          '<p> 24 hour stream discharge data not available </p>' +
+          '<p> Search for historic streamflow over time period of interest or visit the WQP station page (link in station name above) for more station info</p>';
       }
     })
 })
@@ -162,7 +164,9 @@ const getStationName = () => {
 
 const changeChartTitle = (startDate, endDate) => {
   if (streamChart.data.datasets[0].data.length == 0) {
-    $('.chart-title')[0].innerHTML = `<p> Stream Discharge(cfs) from ${startDate} to ${endDate} is not available </p>`
+    var text = `Stream Discharge(cfs) from ${startDate} to ${endDate} is not available`;
+    $('.chart-title')[0].innerHTML = `<p>${text}</p>`;
+    alert(text);
   } else {
     $('.chart-title')[0].innerHTML = `Stream Discharge(cfs) from ${startDate} to ${endDate}`
   }
@@ -198,10 +202,14 @@ const downloadStreamflow = () => {
   $.ajax({
     url: `/api/v1/date_range_streamflow/download` + params,
     success: function(response) {
-      var blob = new Blob([response], {
-        type: 'text/csv;charset=utf-8',
-      });
-      saveAs(blob, `USGS_${stationId}_historical_streamflow.csv`);
+      if(!response) {
+        alert(`No streamflow available from ${startDate} to ${endDate}`);
+      } else {
+        var blob = new Blob([response], {
+          type: 'text/csv;charset=utf-8',
+        });
+        saveAs(blob, `USGS_${stationId}_historical_streamflow.csv`);
+      }
     },
     error: function(error) {
       alert(error.responseJSON.errors);

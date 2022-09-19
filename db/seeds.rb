@@ -49,3 +49,7 @@ hucs.each do |huc|
 end
 
 puts "All front range stations loaded\n"
+
+
+StreamStation.where("org_id !~ '^USGS-\\d{8}$'").destroy_all
+put "Removed stations without streamflow data"

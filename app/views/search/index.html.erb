@@ -96,72 +96,67 @@
 
   var i = 1;
 
-   function getStations(map) {
-     var uri = createURI(filterInput);
-     $.ajax({
-       dataType: 'text',
-       url: '/api/v1/stations' + uri,
-       success:function(events) {
-         var stations = JSON.parse(events);
-         var new_lat = stations[0].geometry.coordinates[0]
-         var new_long = stations[0].geometry.coordinates[1]
-         map.flyTo({center: [new_lat, new_long], zoom: 8.4});
-         map.addLayer({
-           "id": "stations" + i,
-           "type": "symbol",
-           "source": {
-             "type": "geojson",
-             "data": {
-               "type": "FeatureCollection",
-               "features": stations
-             }
-           },
-           "layout": {
-             "icon-image": "circle-11",
-             "icon-allow-overlap": true
-           }
-         });
-         if ($(".search-results-container")[0].innerHTML < 10){
-           $(".search-results-container").append(
-             `<button onclick="addFavoriteStations(map)" class="register station-search">Add Stations To Project</button>
-              </form>`
-           );
-           $(".search-button-container").append(
-             '<button onclick="clearSearch(map)" class="register station-search clear-search">Clear Recent Search</button>'
-           )
-         }
-
-         $(".select-project").show();
-
-         $(".search-results-container").prepend(
-           `<form action="/favorite_stations" method="post" id="station-search-results">
-           ${printStations(stations).join().replace(/,/g, '')}`
-         );
-
-         var projects = <%= raw @projects %>;
-
-         if ($(".select-project")[0].innerHTML.includes("<option value=")) {
-           } else {
-             projects.forEach(function(project) {
-               $(".project").append(
-                 `<option value="${project.name}">${project.name}</option>`
-             )})
-           }
-       },
-
-       error:function(e) {
-        alert(JSON.parse(e.responseText).errors);
-       }
-     });
-     i += 1;
-     map.on('mouseenter', 'stations' + i, function () {
-        map.getCanvas().style.cursor = 'pointer';
-     });
-
-     map.on('mouseleave', 'stations' + i, function () {
-         map.getCanvas().style.cursor = '';
-     });
-   }
+  function getStations(map) {
+  var uri = createURI(filterInput);
+  $.ajax({
+    dataType: 'text',
+    url: '/api/v1/stations' + uri,
+    success:function(events) {
+      var stations = JSON.parse(events);
+      debugger;
+      var new_lat = stations[0].geometry.coordinates[0]
+      var new_long = stations[0].geometry.coordinates[1]
+      map.flyTo({center: [new_lat, new_long], zoom: 8.4});
+      map.addLayer({
+        "id": "stations" + i,
+        "type": "symbol",
+        "source": {
+          "type": "geojson",
+          "data": {
+            "type": "FeatureCollection",
+            "features": stations
+          }
+        },
+        "layout": {
+          "icon-image": "circle-11",
+          "icon-allow-overlap": true
+        }
+      });
+      if ($(".search-results-container")[0].innerHTML < 10){
+        $(".search-results-container").append(
+          `<button onclick="addFavoriteStations(map)" class="register station-search">Add Stations To Project</button>
+           </form>`
+        );
+        $(".search-button-container").append(
+          '<button onclick="clearSearch(map)" class="register station-search clear-search">Clear Recent Search</button>'
+        )
+      }
+      $(".select-project").show();
+      $(".search-results-container").prepend(
+        `<form action="/favorite_stations" method="post" id="station-search-results">
+        ${printStations(stations).join().replace(/,/g, '')}`
+      );
+      var projects = <%= raw @projects %>;
+      if ($(".select-project")[0].innerHTML.includes("<option value=")) {
+        } else {
+          projects.forEach(function(project) {
+            $(".project").append(
+              `<option value="${project.name}">${project.name}</option>`
+          )})
+        }
+    },
+    error:function(e) {
+     alert(JSON.parse(e.responseText).errors);
+    }
+  });
+  i += 1;
+  map.on('mouseenter', 'stations' + i, function () {
+     map.getCanvas().style.cursor = 'pointer';
+  });
+  map.on('mouseleave', 'stations' + i, function () {
+      map.getCanvas().style.cursor = '';
+  });
+  }
 
   function clearSearch(map) {
     map.getStyle().layers.forEach((layer) => {
@@ -197,7 +192,7 @@
 
   function printStations(stations) {
     return stations.map(function(station) {
-      return `<input class="station-results ${station.properties.id}" type="checkbox" name="station_id" value="${station.properties.id}">${station.properties.id}<br>`
+      return `<input class="station-results ${station.properties.id}" id="${station.properties.id}" type="checkbox" name="station_id" value="${station.properties.id}"><label for="${station.properties.id}">${station.properties.id}</label><br>`
     })
   }
 
@@ -226,14 +221,18 @@
       }
     }
 
+    latWhole = feature.geometry.coordinates[1].toFixed(10).split(".")[0];
+    lonWhole = feature.geometry.coordinates[0].toFixed(10).split(".")[0];
+    latDecimal = feature.geometry.coordinates[1].toFixed(10).split(".")[1].substring(0,8);
+    lonDecimal = feature.geometry.coordinates[0].toFixed(10).split(".")[1].substring(0,8);
     var popup = new mapboxgl.Popup({ offset: [0, -1] })
       .setLngLat(feature.geometry.coordinates)
       .setHTML('<h3>' + feature.properties.name + '</h3>'
                + `<a href='/stations/${feature.properties.id}' target='_blank'> ID: ` + feature.properties.id + '</a>'
                + '<p> Type: ' + feature.properties.type
                + '<p> Watershed: ' + createDrainageAreaText(feature)
-               + '<p> Latitude: ' + feature.geometry.coordinates[1]
-               + '<p> Longitude: ' + feature.geometry.coordinates[0]
+               + '<p> Latitude: ' + `${latWhole}.${latDecimal}`
+               + '<p> Longitude: ' + `${lonWhole}.${lonDecimal}`
                + '</p>')
       .setLngLat(feature.geometry.coordinates)
       .addTo(map);

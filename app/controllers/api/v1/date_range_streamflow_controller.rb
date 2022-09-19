@@ -29,6 +29,10 @@ class Api::V1::DateRangeStreamflowController < ApplicationController
       return render :json => response, :status => 400
     end
 
+    if streamflow.discharge.length == 0
+      return render :json => {}, :status => 204
+    end
+
     respond_to do |format|
       format.csv { send_data(streamflow.as_csv, :type => 'text/csv') }
     end

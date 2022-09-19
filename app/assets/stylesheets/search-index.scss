@@ -95,8 +95,8 @@
 
 .search-results-container {
   height: 520px;
-  with: 100%;
-  background-color: rgb(135, 158, 150);
+  // width: 100%;
+  background-color: rgba(135, 158, 150, 0.4);
   overflow: scroll;
   border-bottom: 2px solid rgb(99, 96, 117);
   border-right: 2px solid rgb(99, 96, 117);
