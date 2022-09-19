@@ -6,8 +6,10 @@ class Project < ApplicationRecord
   has_many :stream_station_projects
   has_many :stream_stations, through: :stream_station_projects
 
-  validates_presence_of :name, :huc
-  validates_uniqueness_of :name
+
+  validates_presence_of :name
+  validates_uniqueness_of :name, :scope => [:user], :message => "Desired name has already been taken"
+  validates :huc, presence: true, format: { with: /\A\d{8}\z/, message: "HUC must be exactly 8 digits long"}
   before_save :generate_slug
 
   def to_param

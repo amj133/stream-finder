@@ -7,14 +7,20 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    @errors = []
     @project = Project.new
   end
 
   def create
-    project = current_user.projects.new(project_params)
-    if project.save!
+    @errors = []
+    @project = current_user.projects.new(project_params)
+
+    begin
+      @project.save!
       redirect_to user_path(current_user.slug)
-    else
+    rescue
+      @errors = @project.errors.messages.values.flatten
+
       render :new
     end
   end

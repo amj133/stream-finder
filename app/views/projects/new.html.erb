@@ -1,5 +1,6 @@
 <%= render partial: 'layouts/banner_1' %>
 <%= render partial: 'layouts/navbar' %>
+<%= render("shared/validation_errors", :errors => @errors) %>
 
 <div class="p2 bg-white border rounded my2 mx-auto sign-in edit">
   <%= form_for @project do |f| %>

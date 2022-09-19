@@ -1,0 +1,12 @@
+<% if(!errors.empty?) %>
+  <div class="alert">
+    <div class="message">
+      <h4>Oops! Please check the errors below</h4>
+      <ul>
+        <% errors.each do |error| %>
+        <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
