@@ -45,7 +45,8 @@
   </div>
 
   <div class="search-button-container">
-    <button onclick="getStations(map)" class="register station-search">Search for Stations</button>
+    <button id="stations-search" onclick="getStations(map)" class="register station-search">Search for Stations</button>
+    <button id="stations-searching" class="register station-search" style="display:none;">Searching...&nbsp;&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button>
   </div>
 
   <div class="select-project">
@@ -97,6 +98,11 @@
   var i = 1;
 
   function getStations(map) {
+    var $stationsSearch = $("#stations-search");
+    var $stationsSearching = $("#stations-searching");
+    $stationsSearch.hide();
+    $stationsSearching.show();
+
     var uri = createURI(filterInput);
     $.ajax({
       dataType: 'text',
@@ -127,19 +133,24 @@
             },
           });
           if ($(".search-results-container")[0].innerHTML < 10){
-            $(".search-results-container").append(
-            `<button onclick="addFavoriteStations(map)" class="register station-search">Add Stations To Project</button>
-          </form>`
-          );
-          $(".search-button-container").append(
-          '<button onclick="clearSearch(map)" class="register station-search clear-search">Clear Recent Search</button>'
-          )
-        }
-        $(".select-project").show();
-        $(".search-results-container").prepend(
-        `<form action="/favorite_stations" method="post" id="station-search-results">
-          ${printStations(stations).join().replace(/,/g, '')}`
-          );
+            setTimeout(function() {
+              $(".search-results-container").append(
+                `<button onclick="addFavoriteStations(map)" class="register station-search">Add Stations To Project</button>
+                </form>`
+              );
+              $(".search-button-container").append(
+                '<button onclick="clearSearch(map)" class="register station-search clear-search">Clear Recent Search</button>'
+              )
+            }, 1500)
+          }
+
+          setTimeout(function() {
+            $(".select-project").show();
+            $(".search-results-container").prepend(
+              `<form action="/favorite_stations" method="post" id="station-search-results">
+              ${printStations(stations).join().replace(/,/g, '')}`
+            );
+          }, 1500)
           var projects = <%= raw @projects %>;
           if ($(".select-project")[0].innerHTML.includes("<option value=")) {
           } else {
@@ -149,9 +160,18 @@
               )})
             }
         }
+
+        setTimeout(function() {
+          $stationsSearching.hide();
+          $stationsSearch.show();
+        }, 1500)
       },
       error:function(e) {
-       alert(JSON.parse(e.responseText).errors);
+        alert(JSON.parse(e.responseText).errors);
+        setTimeout(function() {
+        $stationsSearching.hide();
+        $stationsSearch.show();
+        }, 1500)
       }
     });
     i += 1;

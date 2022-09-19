@@ -48,7 +48,8 @@
       <div class='filter-options'>&nbsp;&nbsp;&nbsp;(YYYY-MM-DD)</div>
     </div>
     <div class="get-historic-container">
-      <button onclick="getHistoricalStreamflow()" class="view-historical">View Historical Streamflow&nbsp;</button>
+      <button id="historical-search" onclick="getHistoricalStreamflow()" class="view-historical">View Historical Streamflow&nbsp;</button>
+      <button id="historical-searching" class="view-historical" style="display:none;">Fetching data...&nbsp;&nbsp;<i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button>
     </div>
     <div class="get-historic-container">
       <a onclick="downloadStreamflow()" class="view-historical">Download Streamflow &nbsp;&nbsp;&nbsp;<i class="fa fa-download"></i></a>
@@ -173,6 +174,11 @@ const changeChartTitle = (startDate, endDate) => {
 }
 
 const getHistoricalStreamflow = () => {
+  var search = $("#historical-search");
+  var searching = $("#historical-searching");
+  search.hide();
+  searching.show();
+
   let dates = $('.filter-input')
   let startDate = getStartDate(dates)
   let endDate = getEndDate(dates)
@@ -186,9 +192,18 @@ const getHistoricalStreamflow = () => {
       }).sort();
       updateStreamChart(time, streamflow)
       changeChartTitle(startDate, endDate)
+
+      setTimeout(function() {
+        search.show();
+        searching.hide();
+      }, 1500)
     },
     error: function(error) {
       alert(error.responseJSON.errors);
+      setTimeout(function() {
+        search.show();
+        searching.hide();
+      }, 1500)
     }
   })
 }
