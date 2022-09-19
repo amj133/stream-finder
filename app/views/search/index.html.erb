@@ -103,7 +103,6 @@
     url: '/api/v1/stations' + uri,
     success:function(events) {
       var stations = JSON.parse(events);
-      debugger;
       var new_lat = stations[0].geometry.coordinates[0]
       var new_long = stations[0].geometry.coordinates[1]
       map.flyTo({center: [new_lat, new_long], zoom: 8.4});
