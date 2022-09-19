@@ -10,6 +10,10 @@ class Api::V1::StationsController < ApplicationController
       return render :json => response, :status => 400
     end
 
+    if stations[0].nil?
+      return render :json => {}, :status => 204
+    end
+
     geo_stations = transform_to_geojson(stations)
     render json: geo_stations
   end

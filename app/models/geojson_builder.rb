@@ -10,12 +10,9 @@ class GeojsonBuilder
       "properties" => {
         "id" => station.org_id,
         "name" => station.name,
-        "type" => station.type_of, 
+        "type" => station.type_of,
         "drainage_area" => station.drainage_area.to_i,
         "drainage_area_units" => station.drainage_area_units,
-        "marker-color" => "#FFFFFF",
-        "marker-symbol" => "circle",
-        "marker-size" => "medium",
       }
     }
   end
